@@ -41,6 +41,9 @@ export function Navigation() {
             <Link href="/examples" className="transition-colors hover:text-foreground/80 text-foreground/60">
               Esimerkit
             </Link>
+            <Link href="/status" className="transition-colors hover:text-foreground/80 text-foreground/60">
+              Tila
+            </Link>
             {showDemos ? (
               <>
                 <Link href="/internal/components" className="transition-colors hover:text-foreground/80 text-foreground/60">
@@ -74,6 +77,7 @@ export function Navigation() {
               <div className="flex flex-col space-y-3">
                 <Link href="/components" className="text-muted-foreground">Komponentit</Link>
                 <Link href="/examples" className="text-muted-foreground">Esimerkit</Link>
+                <Link href="/status" className="text-muted-foreground">Tila</Link>
                 {showDemos ? (
                   <>
                     <Link href="/internal/components" className="text-muted-foreground">(Sisäinen) Komponentit</Link>

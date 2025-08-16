@@ -2,7 +2,7 @@
 
 export function GET(request: Request) {
   const { origin } = new URL(request.url)
-  const urls = ["/", "/components", "/examples", "/docs", "/dashboard"]
+  const urls = ["/", "/components", "/examples", "/docs", "/dashboard", "/status"]
   const now = new Date().toISOString()
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
