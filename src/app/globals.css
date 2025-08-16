@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    /* Spektri Labs Brand Colors */
+    --spektri-violet: 275 95% 16%;
+    --quantum-blue: 224 85% 16%;
+    --emergence-green: 186 85% 14%;
+    --celestial-pink: 337 100% 59%;
+    --nova-gold: 51 100% 50%;
+    --horizon-orange: 18 100% 64%;
+    --space-black: 248 85% 4%;
+    --nebula-gray: 248 20% 20%;
+    --stellar-white: 240 60% 99%;
+
+    /* Design System Variables */
+    --background: var(--stellar-white);
+    --foreground: var(--space-black);
+
+    --card: 0 0% 100%;
+    --card-foreground: var(--space-black);
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: var(--space-black);
+ 
+    --primary: var(--spektri-violet);
+    --primary-foreground: var(--stellar-white);
+ 
+    --secondary: 240 20% 96%;
+    --secondary-foreground: var(--space-black);
+ 
+    --muted: 240 10% 94%;
+    --muted-foreground: var(--nebula-gray);
+ 
+    --accent: var(--quantum-blue);
+    --accent-foreground: var(--stellar-white);
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: var(--stellar-white);
+
+    --border: 240 20% 88%;
+    --input: 240 20% 88%;
+    --ring: var(--spektri-violet);
+ 
+    --radius: 0.5rem;
+    
+    /* Premium Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--spektri-violet)) 0%, hsl(var(--quantum-blue)) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--celestial-pink)) 0%, hsl(var(--nova-gold)) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(240 60% 98%) 100%);
+  }
+ 
+  .dark {
+    --background: var(--space-black);
+    --foreground: var(--stellar-white);
+ 
+    --card: var(--nebula-gray);
+    --card-foreground: var(--stellar-white);
+ 
+    --popover: var(--nebula-gray);
+    --popover-foreground: var(--stellar-white);
+ 
+    --primary: var(--spektri-violet);
+    --primary-foreground: var(--stellar-white);
+ 
+    --secondary: 248 15% 25%;
+    --secondary-foreground: var(--stellar-white);
+ 
+    --muted: 248 15% 18%;
+    --muted-foreground: 240 20% 65%;
+ 
+    --accent: var(--quantum-blue);
+    --accent-foreground: var(--stellar-white);
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: var(--stellar-white);
+ 
+    --border: 248 15% 25%;
+    --input: 248 15% 25%;
+    --ring: var(--spektri-violet);
+    
+    /* Dark Mode Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--spektri-violet)) 0%, hsl(var(--quantum-blue)) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--celestial-pink)) 0%, hsl(var(--nova-gold)) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(var(--space-black)) 0%, hsl(var(--nebula-gray)) 100%);
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer components {
+  /* Premium Glass Effect */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+  
+  /* Spektri Gradient Buttons */
+  .btn-spektri {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-spektri:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(42, 10, 74, 0.3);
+  }
+  
+  /* Premium Card Shadows */
+  .card-premium {
+    box-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  .card-premium:hover {
+    box-shadow: 
+      0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    transform: translateY(-5px);
+  }
+  
+  /* Status Indicators */
+  .status-active { 
+    background: hsl(var(--emergence-green)); 
+  }
+  .status-warning { 
+    background: hsl(var(--nova-gold)); 
+  }
+  .status-error { 
+    background: hsl(var(--celestial-pink)); 
+  }
+  .status-info { 
+    background: hsl(var(--quantum-blue)); 
+  }
+}
+
+@layer utilities {
+  /* Text Gradients */
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-accent {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Micro-animations */
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
