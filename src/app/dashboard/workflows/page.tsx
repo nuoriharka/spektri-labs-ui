@@ -1,5 +1,6 @@
 "use client"
 
+import useSWR from "swr"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -13,34 +14,20 @@ import { Switch } from "@/components/ui/switch"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
-const workflows = [
-	{
-		id: "wf-1",
-		name: "Liidien rikastus",
-		description: "Hakee ja rikastaa liidit CRM:ään",
-		status: "active",
-		runs: 342,
-		lastRun: "3 min sitten",
-	},
-	{
-		id: "wf-2",
-		name: "Sisällön tuotanto",
-		description: "Generoi blogi- ja some-sisällöt",
-		status: "paused",
-		runs: 128,
-		lastRun: "2 h sitten",
-	},
-	{
-		id: "wf-3",
-		name: "Raportointi",
-		description: "Koostaa viikkoraportit automaattisesti",
-		status: "active",
-		runs: 78,
-		lastRun: "eilen",
-	},
-]
+type Workflow = {
+	id: string
+	name: string
+	description?: string
+	status?: 'active' | 'paused'
+	runs?: number
+	lastRun?: string
+}
+
+const fetcher = (url: string) => fetch(url).then((r)=>r.json())
 
 export default function WorkflowsPage() {
+		const { data, error, isLoading } = useSWR<Workflow[]>("/api/workflows", fetcher)
+		const workflows = data ?? []
 	return (
 		<DashboardLayout>
 			<div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
