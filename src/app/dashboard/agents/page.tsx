@@ -1,5 +1,6 @@
 "use client"
 
+import useSWR from "swr"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -28,53 +29,18 @@ import {
   Zap
 } from "lucide-react"
 
-// Mock data for agents
-const agents = [
-  {
-    id: "1",
-    name: "Asiakaspalvelurobotti",
-    description: "Automaattinen asiakaspalvelu 24/7",
-    status: "active",
-    type: "Asiakaspalvelu",
-    tasksCompleted: 1247,
-    accuracy: 98.5,
-    lastRun: "2 min sitten",
-  avatar: ""
-  },
-  {
-    id: "2", 
-    name: "Sosiaalisen median manageri",
-    description: "Julkaisee sisältöä ja vastaa kommentteihin",
-    status: "active",
-    type: "Markkinointi",
-    tasksCompleted: 892,
-    accuracy: 95.2,
-    lastRun: "15 min sitten",
-  avatar: ""
-  },
-  {
-    id: "3",
-    name: "Laskutusautomaatti",
-    description: "Käsittelee laskutusta ja maksuja",
-    status: "paused",
-    type: "Talous",
-    tasksCompleted: 543,
-    accuracy: 99.1,
-    lastRun: "2 tuntia sitten",
-  avatar: ""
-  },
-  {
-    id: "4",
-    name: "Dataanalytiikka-agentti",
-    description: "Analysoi myyntidataa ja luo raportteja",
-    status: "error",
-    type: "Analytiikka",
-    tasksCompleted: 234,
-    accuracy: 87.3,
-    lastRun: "1 päivä sitten",
-  avatar: ""
-  }
-]
+type Agent = {
+  id: string
+  name: string
+  description?: string
+  status?: "active" | "paused" | "error"
+  type?: string
+  tasksCompleted?: number
+  accuracy?: number
+  lastRun?: string
+}
+
+const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 function StatusBadge({ status }: { status: string }) {
   const config = {
@@ -110,6 +76,8 @@ function StatusBadge({ status }: { status: string }) {
 
 export default function AgentsPage() {
   const formatInt = useMemo(() => new Intl.NumberFormat("fi-FI"), [])
+  const { data, error, isLoading, mutate } = useSWR<Agent[]>("/api/agents", fetcher)
+  const agents = data ?? []
   return (
     <DashboardLayout>
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -208,6 +176,12 @@ export default function AgentsPage() {
 
         {/* Agents Grid */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {isLoading && (
+            <Card className="p-6">Ladataan agentteja…</Card>
+          )}
+          {error && (
+            <Card className="p-6 text-destructive">Virhe ladattaessa agentteja</Card>
+          )}
           {agents.map((agent) => (
             <Card key={agent.id} className="relative group hover:shadow-md transition-shadow">
               <CardHeader className="pb-3">
@@ -240,30 +214,30 @@ export default function AgentsPage() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">Status</span>
-                    <StatusBadge status={agent.status} />
+                    <StatusBadge status={agent.status || "active"} />
                   </div>
                   
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">Tyyppi</span>
-                    <Badge variant="outline">{agent.type}</Badge>
+                    <Badge variant="outline">{agent.type || "-"}</Badge>
                   </div>
                   
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Tarkkuus</span>
-                      <span className="font-medium">{agent.accuracy}%</span>
+                      <span className="font-medium">{(agent.accuracy ?? 0)}%</span>
                     </div>
-                    <Progress value={agent.accuracy} className="h-2" />
+                    <Progress value={agent.accuracy ?? 0} className="h-2" />
                   </div>
                   
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Tehtäviä</span>
-                    <span className="font-medium">{formatNumber(agent.tasksCompleted, "fi-FI")}</span>
+                    <span className="font-medium">{formatNumber(agent.tasksCompleted ?? 0, "fi-FI")}</span>
                   </div>
                   
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Viimeksi</span>
-                    <span className="font-medium">{agent.lastRun}</span>
+                    <span className="font-medium">{agent.lastRun || "-"}</span>
                   </div>
                   
                   <div className="pt-2">
@@ -279,8 +253,8 @@ export default function AgentsPage() {
           ))}
         </div>
 
-        {/* Empty State */}
-        {agents.length === 0 && (
+  {/* Empty State */}
+  {!isLoading && !error && agents.length === 0 && (
           <Card className="flex flex-col items-center justify-center p-8 text-center">
             <Bot className="h-12 w-12 text-muted-foreground mb-4" />
             <CardTitle className="mb-2">Ei agentteja vielä</CardTitle>

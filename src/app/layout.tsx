@@ -7,10 +7,17 @@ import { Footer } from '@/components/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001'
+// Resolve site URL for canonical/OG. Prefer explicit env, then Vercel-provided URL, fallback to localhost.
+const resolvedBaseUrl = (() => {
+  const explicit = process.env.NEXT_PUBLIC_BASE_URL?.trim()
+  if (explicit) return explicit.startsWith('http') ? explicit : `https://${explicit}`
+  const vercel = process.env.VERCEL_URL?.trim()
+  if (vercel) return vercel.startsWith('http') ? vercel : `https://${vercel}`
+  return 'http://localhost:3001'
+})()
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL(resolvedBaseUrl),
   title: {
     default: 'Spektri.Labs UI',
     template: '%s · Spektri.Labs',
@@ -37,6 +44,10 @@ export const metadata: Metadata = {
     title: 'Spektri.Labs UI',
     description:
       'Ammattimainen käyttöliittymäkirjasto ja demo, rakennettu shadcn/ui-komponenteilla.',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   alternates: { canonical: '/' },
 }

@@ -39,35 +39,35 @@ const sidebarItems: SidebarItem[] = [
   },
   {
     title: "AI Agents",
-    href: "/agents",
+    href: "/dashboard/agents",
     icon: Bot,
     badge: "12",
     children: [
-      { title: "Active Agents", href: "/agents/active", icon: Zap },
-      { title: "Agent Templates", href: "/agents/templates", icon: Star },
-      { title: "Create Agent", href: "/agents/create", icon: Sparkles },
+      { title: "Active Agents", href: "/dashboard/agents", icon: Zap },
+      { title: "Agent Templates", href: "/dashboard/agents", icon: Star },
+      { title: "Create Agent", href: "/dashboard/agents/new", icon: Sparkles },
     ]
   },
   {
     title: "Workflows",
-    href: "/workflows",
+    href: "/dashboard/workflows",
     icon: Workflow,
     badge: "8",
   },
   {
     title: "Analytics",
-    href: "/analytics",
+    href: "/dashboard/analytics",
     icon: BarChart3,
   },
   {
     title: "Team",
-    href: "/team",
+    href: "/dashboard/team",
     icon: Users,
     badge: "Pro",
   },
   {
     title: "Settings",
-    href: "/settings",
+    href: "/dashboard/settings",
     icon: Settings,
   },
 ]
@@ -233,10 +233,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
               </Button>
               
-              <Button className="btn-spektri">
-                <Sparkles className="mr-2 h-4 w-4" />
-                Create Agent
-              </Button>
+              <Link href="/dashboard/agents/new">
+                <Button className="btn-spektri">
+                  <Sparkles className="mr-2 h-4 w-4" />
+                  Create Agent
+                </Button>
+              </Link>
             </div>
           </div>
         </header>

@@ -128,10 +128,12 @@ export function Sidebar() {
 
       {/* Create New */}
       <div className="px-4 pb-4">
-        <Button className="w-full">
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Create Agent
-        </Button>
+        <Link href="/dashboard/agents/new">
+          <Button className="w-full">
+            <PlusCircle className="mr-2 h-4 w-4" />
+            Create Agent
+          </Button>
+        </Link>
       </div>
 
       {/* Navigation */}

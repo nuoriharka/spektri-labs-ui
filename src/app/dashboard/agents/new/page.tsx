@@ -1,5 +1,7 @@
 "use client"
 
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,6 +10,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import Link from "next/link"
+import type { Agent } from "@/lib/agents-store"
+import { useToast } from "@/components/ui/use-toast"
 import { 
   ArrowLeft,
   Bot,
@@ -83,6 +87,45 @@ const templates = [
 ]
 
 export default function NewAgentPage() {
+  const router = useRouter()
+  const { add } = useToast()
+  const [name, setName] = useState("")
+  const [category, setCategory] = useState("")
+  const [description, setDescription] = useState("")
+  const [instructions, setInstructions] = useState("")
+  const [submitting, setSubmitting] = useState(false)
+
+  async function handleCreate() {
+    if (!name.trim()) {
+  add({ title: "Nimi puuttuu", description: "Anna agentille nimi" })
+      return
+    }
+    setSubmitting(true)
+    try {
+      const payload: Partial<Agent> = {
+        name: name.trim(),
+        category: category.trim() || undefined,
+        description: description.trim() || undefined,
+        instructions: instructions.trim() || undefined,
+        status: "active",
+        type: category.trim() || undefined,
+      }
+      const res = await fetch("/api/agents", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const created = (await res.json()) as Agent
+  add({ title: "Agentti luotu", description: `${created.name}` })
+      router.push(`/dashboard/agents/${created.id}`)
+    } catch (e: any) {
+  add({ title: "Luonti epäonnistui", description: String(e) })
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   return (
     <DashboardLayout>
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -116,7 +159,10 @@ export default function NewAgentPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center pt-2">
-              <Button className="w-full btn-spektri">
+              <Button className="w-full btn-spektri" onClick={() => {
+                const el = document.getElementById("custom-agent-form")
+                el?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }}>
                 <Bot className="mr-2 h-4 w-4" />
                 Luo mukautettu agentti
               </Button>
@@ -195,7 +241,7 @@ export default function NewAgentPage() {
         </div>
 
         {/* Custom Agent Form */}
-  <Card className="card-premium">
+  <Card id="custom-agent-form" className="card-premium">
           <CardHeader>
             <CardTitle>Tai luo mukautettu agentti</CardTitle>
             <CardDescription>
@@ -206,42 +252,28 @@ export default function NewAgentPage() {
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="name">Agentin nimi</Label>
-                <Input
-                  id="name"
-                  placeholder="Esim. Asiakaspalvelurobotti"
-                />
+                <Input id="name" placeholder="Esim. Asiakaspalvelurobotti" value={name} onChange={(e) => setName(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="category">Kategoria</Label>
-                <Input
-                  id="category"
-                  placeholder="Esim. Asiakaspalvelu"
-                />
+                <Input id="category" placeholder="Esim. Asiakaspalvelu" value={category} onChange={(e) => setCategory(e.target.value)} />
               </div>
             </div>
             
             <div className="space-y-2">
               <Label htmlFor="description">Kuvaus</Label>
-              <Textarea
-                id="description"
-                placeholder="Kerro mitä agenttisi tekee ja miten se auttaa liiketoimintaasi..."
-                className="min-h-[100px]"
-              />
+              <Textarea id="description" placeholder="Kerro mitä agenttisi tekee ja miten se auttaa liiketoimintaasi..." className="min-h-[100px]" value={description} onChange={(e) => setDescription(e.target.value)} />
             </div>
             
             <div className="space-y-2">
               <Label htmlFor="instructions">Toimintaohjeet</Label>
-              <Textarea
-                id="instructions"
-                placeholder="Anna agentillesi yksityiskohtaiset ohjeet siitä, miten sen tulisi toimia..."
-                className="min-h-[120px]"
-              />
+              <Textarea id="instructions" placeholder="Anna agentillesi yksityiskohtaiset ohjeet siitä, miten sen tulisi toimia..." className="min-h-[120px]" value={instructions} onChange={(e) => setInstructions(e.target.value)} />
             </div>
             
             <div className="flex space-x-2">
-              <Button className="flex-1 btn-spektri">
+              <Button className="flex-1 btn-spektri" onClick={handleCreate} disabled={submitting}>
                 <Bot className="mr-2 h-4 w-4" />
-                Luo agentti
+                {submitting ? "Luodaan…" : "Luo agentti"}
               </Button>
               <Button variant="outline">
                 Esikatselu

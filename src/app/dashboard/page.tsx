@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import { Sidebar } from "@/components/sidebar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -138,10 +139,12 @@ export default function DashboardPage() {
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                 Järjestelmä toimii
               </Badge>
-      <Button className="btn-spektri">
-                <Bot className="mr-2 h-4 w-4" />
-                Luo agentti
-              </Button>
+      <Link href="/dashboard/agents/new">
+                <Button className="btn-spektri">
+                  <Bot className="mr-2 h-4 w-4" />
+                  Luo agentti
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -223,9 +226,11 @@ export default function DashboardPage() {
                     </div>
                   ))}
                 </div>
-        <Button variant="outline" className="w-full mt-4">
-                  Näytä kaikki agentit
-                </Button>
+        <Link href="/dashboard/agents">
+                  <Button variant="outline" className="w-full mt-4">
+                    Näytä kaikki agentit
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
@@ -261,9 +266,11 @@ export default function DashboardPage() {
                     </div>
                   ))}
                 </div>
-                <Button variant="outline" className="w-full mt-4">
-                  Näytä kaikki tapahtumat
-                </Button>
+                <Link href="/dashboard/activity">
+                  <Button variant="outline" className="w-full mt-4">
+                    Näytä kaikki tapahtumat
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
