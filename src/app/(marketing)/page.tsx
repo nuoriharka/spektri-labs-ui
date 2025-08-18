@@ -9,13 +9,16 @@ export const metadata: Metadata = {
 }
 
 import Hero from "@/components/marketing/Hero";
+import { Suspense } from "react";
 import LogoCloud from "@/components/marketing/LogoCloud";
 
 export default function Page() {
   return (
-    <main>
-      <Hero />
-      <LogoCloud />
-    </main>
+    <Suspense>
+      <main>
+        <Hero />
+        <LogoCloud />
+      </main>
+    </Suspense>
   );
 }

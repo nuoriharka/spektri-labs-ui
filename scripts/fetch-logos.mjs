@@ -2,15 +2,16 @@ import fs from "node:fs";
 import path from "node:path";
 import https from "node:https";
 
-const CORE_LOGOS = [
+const LOGOS = [
   { slug: "openai", label: "OpenAI" },
   { slug: "anthropic", label: "Anthropic" },
-  { slug: "google", label: "Google" },
-  { slug: "microsoft", label: "Microsoft" },
   { slug: "github", label: "GitHub" },
   { slug: "stripe", label: "Stripe" },
-  { slug: "vercel", label: "Vercel" },
+  { slug: "notion", label: "Notion" },
+  { slug: "gemini", label: "Gemini" },
+  { slug: "revolut", label: "Revolut" },
   { slug: "supabase", label: "Supabase" },
+  { slug: "vercel", label: "Vercel" },
 ];
 
 const OUT_DIR = path.resolve("public/logos");
@@ -28,7 +29,7 @@ function download(url, outPath) {
 }
 
 (async () => {
-  for (const { slug, label } of CORE_LOGOS) {
+  for (const { slug, label } of LOGOS) {
     const url = `https://cdn.simpleicons.org/${slug}/FFFFFF`;
     const out = path.join(OUT_DIR, `${slug}.svg`);
     process.stdout.write(`↻ ${label} … `);
