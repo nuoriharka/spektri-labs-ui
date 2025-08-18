@@ -188,7 +188,24 @@ export default function AgentsPage() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">Status</span>
-                    <StatusBadge status={agent.status || "active"} />
+                    <div className="flex items-center gap-2">
+                      <StatusBadge status={agent.status || "active"} />
+                      <Button size="icon" variant="ghost" aria-label="Vaihda tila" onClick={async ()=>{
+                        const next = agent.status === 'paused' ? 'active' : 'paused'
+                        const prev = agent.status
+                        // optimistic
+                        await mutate((prevList)=> prevList?.map(a=> a.id===agent.id ? { ...a, status: next } : a), { revalidate: false })
+                        try {
+                          await fetch(`/api/agents/${agent.id}`, { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ status: next }) })
+                          await mutate()
+                        } catch {
+                          // rollback
+                          await mutate((prevList)=> prevList?.map(a=> a.id===agent.id ? { ...a, status: prev } : a), { revalidate: false })
+                        }
+                      }}>
+                        {agent.status === 'paused' ? <Play className="h-4 w-4"/> : <Pause className="h-4 w-4"/>}
+                      </Button>
+                    </div>
                   </div>
                   
                   <div className="flex items-center justify-between">

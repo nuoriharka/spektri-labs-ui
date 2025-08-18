@@ -4,6 +4,9 @@ import { DashboardLayout } from "@/components/dashboard-layout"
 import { PageHeader } from "@/components/page-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Database } from "lucide-react"
+import { EmptyState } from "@/components/empty-state"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function DataSourcesPage() {
   return (
@@ -17,9 +20,13 @@ export default function DataSourcesPage() {
             <CardDescription>Lista datalähteistä tulossa</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-40 rounded-md border bg-muted/30 flex items-center justify-center text-sm text-muted-foreground">
-              Placeholder data sources
-            </div>
+            <EmptyState
+              title="Ei datalähteitä"
+              description="Lisää ensimmäinen datalähde ja aloita."
+              action={(
+                <Link href="/dashboard/integrations"><Button size="sm">Avaa integraatiot</Button></Link>
+              )}
+            />
           </CardContent>
         </Card>
       </div>

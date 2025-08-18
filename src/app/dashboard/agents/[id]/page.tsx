@@ -11,25 +11,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { useToast } from "@/components/ui/use-toast"
 import type { Agent } from "@/lib/agents-store"
-import { ArrowLeft, CheckCircle, Pause, Play, Trash2 } from "lucide-react"
+import { ArrowLeft, Pause, Play, Trash2 } from "lucide-react"
 import { LogsList } from "@/components/logs-list"
+import { FlowCanvas } from "@/components/flow-canvas"
+import { StatusBadge } from "@/components/status-badge"
 import { useEffect, useMemo, useState } from "react"
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
-
-function StatusBadge({ status }: { status: Agent["status"] }) {
-  const map: Record<string, { text: string; className: string }> = {
-    active: { text: "Aktiivinen", className: "bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-300" },
-    paused: { text: "Pysäytetty", className: "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-300" },
-    error: { text: "Virhe", className: "bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-300" },
-  }
-  const conf = map[status || "active"]
-  return <Badge className={conf.className}>{conf.text}</Badge>
-}
 
 export default function AgentDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()
@@ -120,10 +111,27 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
           <Tabs defaultValue="overview" className="w-full">
             <TabsList>
               <TabsTrigger value="overview">Yleiskatsaus</TabsTrigger>
+              <TabsTrigger value="builder">Builder</TabsTrigger>
               <TabsTrigger value="runs">Ajot</TabsTrigger>
               <TabsTrigger value="logs">Lokit</TabsTrigger>
               <TabsTrigger value="settings">Asetukset</TabsTrigger>
             </TabsList>
+
+            <TabsContent value="builder">
+              <Card className="card-premium">
+                <CardHeader>
+                  <CardTitle>Rakenna työnkulku</CardTitle>
+                  <CardDescription>Vedä ja pudota solmuja, zoomaa ja järjestä</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <FlowCanvas nodes={[{ id: "start", x: 60, y: 60, label: "Start" }, { id: "step1", x: 220, y: 160, label: "Step" }]} />
+                  <div className="flex gap-2">
+                    <Button className="btn-spektri" onClick={() => add({ title: "Ajo käynnistetty", description: draft.name || "Agentti" })}>Aja</Button>
+                    <Button variant="outline">Tallenna</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
             <TabsContent value="overview">
               <div className="grid gap-4 md:grid-cols-3">
@@ -215,7 +223,11 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
                   <CardDescription>Aseta ajoajastukset, rajoitukset, yms.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Asetuslomake tulee myöhemmin.</p>
+                  <p className="text-sm text-muted-foreground mb-3">Asetuslomake tulee myöhemmin.</p>
+                  <div className="flex items-center gap-2">
+                    <Button size="sm" className="btn-spektri">Aseta ajastus</Button>
+                    <Button size="sm" variant="outline">Julkaise</Button>
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>

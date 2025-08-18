@@ -4,15 +4,15 @@ import { useEffect, useRef, useState } from "react"
 
 export type RunEvent = { id: string | number; type: "start" | "step" | "end"; message: string; time: string }
 
-export function RunStream({ events: initial = [] as RunEvent[] }: { events?: RunEvent[] }) {
+export function RunStream({ events: initial = [] as RunEvent[], autoScroll = true }: { events?: RunEvent[]; autoScroll?: boolean }) {
   const [events, setEvents] = useState<RunEvent[]>(initial)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (ref.current) {
+    if (autoScroll && ref.current) {
       ref.current.scrollTop = ref.current.scrollHeight
     }
-  }, [events])
+  }, [events, autoScroll])
 
   function simulate() {
     const now = new Date()
@@ -38,7 +38,7 @@ export function RunStream({ events: initial = [] as RunEvent[] }: { events?: Run
           <p className="text-sm text-muted-foreground">Ei tapahtumia vielä.</p>
         ) : null}
       </div>
-      <button onClick={simulate} className="mt-2 text-xs underline">Simuloi tapahtuma</button>
+  <button onClick={simulate} onKeyDown={(e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); simulate() } }} className="mt-2 text-xs underline" aria-label="Simuloi tapahtuma">Simuloi tapahtuma</button>
     </div>
   )
 }

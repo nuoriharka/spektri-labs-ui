@@ -150,6 +150,13 @@ export default function DashboardPage() {
 
           <MoneyBar items={kpis} />
 
+          <div className="flex items-center justify-between py-2">
+            <div className="text-sm text-muted-foreground">Aloita nopea ajo</div>
+            <Link href="/dashboard/workflows/new">
+              <Button size="sm" className="btn-spektri">Uusi työnkulku</Button>
+            </Link>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Recent Agents */}

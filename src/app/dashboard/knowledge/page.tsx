@@ -4,6 +4,9 @@ import { DashboardLayout } from "@/components/dashboard-layout"
 import { PageHeader } from "@/components/page-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Brain } from "lucide-react"
+import { EmptyState } from "@/components/empty-state"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function KnowledgePage() {
   return (
@@ -17,9 +20,13 @@ export default function KnowledgePage() {
             <CardDescription>Lisää tietolähteitä myöhemmin</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-40 rounded-md border bg-muted/30 flex items-center justify-center text-sm text-muted-foreground">
-              Placeholder list
-            </div>
+            <EmptyState
+              title="Ei tietolähteitä"
+              description="Aloita yhdistämällä datalähde tai lisää dokumentteja."
+              action={(
+                <Link href="/dashboard/data"><Button size="sm">Yhdistä datalähde</Button></Link>
+              )}
+            />
           </CardContent>
         </Card>
       </div>
