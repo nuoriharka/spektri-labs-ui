@@ -4,7 +4,6 @@ import { Pillars, TrustBar, Features, HowItWorks, FinalCTA } from "@/components/
 import WinSection from "@/components/marketing/WinSection"
 import LogosMarquee from "@/components/marketing/LogosMarquee"
 import Testimonials from "@/components/marketing/Testimonials"
-export const metadata = { openGraph: { images: ["/images/og/og-home.png"] } } as const
 
 function Landing() {
   return (

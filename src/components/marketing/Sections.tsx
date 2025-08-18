@@ -1,7 +1,9 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Container from "@/components/layout/Container";
 import SkeletonBlock from "@/components/ui/SkeletonBlock";
 import win from "@/content/win.fi.json";
+import { photos } from "@/content/photos";
+import PoweredByStrip from "@/components/common/PoweredByStrip";
 
 export function Pillars(){
   const items = [
@@ -26,11 +28,16 @@ export function Pillars(){
 }
 
 export function TrustBar(){
-  // Replaced by LogosMarquee component; kept for backward compatibility
-  return null
+  return (
+    <section className="py-8">
+      <Container>
+        <PoweredByStrip />
+      </Container>
+    </section>
+  )
 }
 
-function FeatureRow({reverse,title,desc,src,alt}:{reverse?:boolean;title:string;desc:string;src:string;alt:string;}){
+function FeatureRow({reverse,title,desc,src,alt}:{reverse?:boolean;title:string;desc:string;src:StaticImageData|string;alt:string;}){
   return (
     <div className={`grid items-center gap-6 md:grid-cols-2 ${reverse?"md:[&>div:first-child]:order-last":""}`}>
       <div>
@@ -62,10 +69,10 @@ export function Features(){
           <p className="mt-3 text-white/80">Keskustelu on käyttöliittymä. Kaikki muu on nopeaa ja läpinäkyvää.</p>
         </div>
         <div className="mt-10 space-y-12">
-          <FeatureRow title="Agent builder – split-näkymä" desc="Chat vasemmalla, visualisointi oikealla." src="/images/sections/features-1-builder.webp" alt="Agent builder – split-näkymä"/>
-          <FeatureRow reverse title="Mallikirjasto – aloita 60 sekunnissa" desc="Valitse malli ja aja yhdellä klikkauksella." src="/images/sections/features-2-templates.webp" alt="Mallikirjasto – korttipino"/>
-          <FeatureRow title="Integraatiot ilman kitkaa" desc="OAuth Googleen, Microsoftiin, CRM:iin ja verkkokauppoihin." src="/images/sections/features-3-integrations.webp" alt="Integraatiot – ikonipilvi"/>
-          <FeatureRow reverse title="Suorituskyky & kustannukset" desc="Onnistumisprosentti, kustannus/ajo ja säästetty aika." src="/images/sections/features-4-performance.webp" alt="Suorituskyky ja kustannukset – mittarit"/>
+          <FeatureRow title="Agent builder – split-näkymä" desc="Chat vasemmalla, visualisointi oikealla." src={photos.how.split.src} alt={photos.how.split.alt}/>
+          <FeatureRow reverse title="Mallikirjasto – aloita 60 sekunnissa" desc="Valitse malli ja aja yhdellä klikkauksella." src={photos.features.temps.src} alt={photos.features.temps.alt}/>
+          <FeatureRow title="Integraatiot ilman kitkaa" desc="OAuth Googleen, Microsoftiin, CRM:iin ja verkkokauppoihin." src={photos.features.integ.src} alt={photos.features.integ.alt}/>
+          <FeatureRow reverse title="Suorituskyky & kustannukset" desc="Onnistumisprosentti, kustannus/ajo ja säästetty aika." src={photos.features.cost.src} alt={photos.features.cost.alt}/>
         </div>
       </Container>
     </section>
@@ -91,7 +98,7 @@ export function HowItWorks(){
           ))}
         </div>
         <div className="relative mt-10 aspect-[7/4] w-full overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-          <Image src="/images/sections/how-it-works.webp" alt="Kolme vaihetta – lasisolmut ja valosäteet" fill sizes="100vw" className="object-cover" placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="/>
+          <Image src={photos.how.overall.src} alt={photos.how.overall.alt} fill sizes="100vw" className="object-cover" placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="/>
         </div>
       </Container>
     </section>
