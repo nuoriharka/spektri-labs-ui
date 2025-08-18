@@ -4,6 +4,7 @@ import './globals.css'
 import { ConditionalNav } from '@/components/conditional-nav'
 import { Toaster } from '@/components/ui/toaster'
 import { Footer } from '@/components/footer'
+import { initTelemetry } from '@/lib/telemetry'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -64,6 +65,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  if (typeof window !== 'undefined') {
+    try { initTelemetry() } catch {}
+  }
   return (
     <html lang="fi" suppressHydrationWarning>
       <body className={inter.className}>
