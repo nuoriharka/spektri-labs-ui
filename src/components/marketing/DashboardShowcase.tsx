@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { getBlur } from "@/lib/images";
 
 type Props = { src: string; alt: string; caption?: string; badge?: string };
 
@@ -59,6 +60,8 @@ export default function DashboardShowcase({ src, alt, caption, badge }: Props) {
                   fill
                   sizes="(max-width: 768px) 100vw, 1024px"
                   className="object-cover"
+                  placeholder="blur"
+                  blurDataURL={getBlur(src)}
                 />
               </div>
             </div>

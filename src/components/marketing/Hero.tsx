@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getBlur } from "@/lib/images";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 
@@ -6,16 +7,16 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
-  <Image
+        <Image
           src="/images/landing/hero-desktop.webp"
           alt="Spektri.Labs – tumma hero, abstrakti verkko ja brändisäteet"
-          fill priority sizes="100vw"
+          fill priority sizes="100vw" placeholder="blur" blurDataURL={getBlur('/images/landing/hero-desktop.webp')}
           className="hidden md:block object-cover"
         />
-  <Image
+        <Image
           src="/images/landing/hero-mobile.webp"
           alt="Spektri.Labs – hero mobiilissa, abstrakti verkko"
-          fill priority sizes="100vw"
+          fill priority sizes="100vw" placeholder="blur" blurDataURL={getBlur('/images/landing/hero-mobile.webp')}
           className="md:hidden object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-transparent" aria-hidden />
