@@ -8,8 +8,10 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Settings } from "lucide-react"
+import { useToast } from "@/components/ui/use-toast"
 
 export default function SettingsPage() {
+  const { add } = useToast()
   return (
     <DashboardLayout>
       <div className="page-wrap">
@@ -38,7 +40,7 @@ export default function SettingsPage() {
                     <Input id="domain" placeholder="spektri.fi" />
                   </div>
                 </div>
-                <Button className="btn-spektri">Tallenna</Button>
+                <Button className="btn-spektri" onClick={()=> add({ title: "Tallennettu", description: "Asetukset päivitettiin" })}>Tallenna</Button>
               </CardContent>
             </Card>
           </TabsContent>

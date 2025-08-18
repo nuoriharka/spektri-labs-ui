@@ -310,6 +310,9 @@ function Cmdk({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean
     { label: "Templates", href: "/dashboard/templates" },
     { label: "Integrations", href: "/dashboard/integrations" },
     { label: "Settings", href: "/dashboard/settings" },
+  { label: "Create Agent", href: "/dashboard/agents/new" },
+  { label: "Open Templates", href: "/dashboard/templates" },
+  { label: "Open Settings", href: "/dashboard/settings" },
   ], [])
   const filtered = items.filter(i=> i.label.toLowerCase().includes(q.toLowerCase()))
   if (!open) return null

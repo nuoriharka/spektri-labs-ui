@@ -22,6 +22,15 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+  // Alias tokens (mirror CSS vars)
+  bg: "hsl(var(--bg))",
+  panel: "hsl(var(--panel))",
+  fg: "hsl(var(--fg))",
+  brand: "hsl(var(--brand))",
+  'brand-2': "hsl(var(--brand-2))",
+  success: "hsl(var(--success))",
+  warning: "hsl(var(--warning))",
+  danger: "hsl(var(--danger))",
         // Spektri brand palette (mapped to CSS variables in globals.css)
         spektri: {
           violet: "hsl(var(--spektri-violet))",

@@ -15,7 +15,7 @@
     --nebula-gray: 248 20% 20%;
     --stellar-white: 240 60% 99%;
 
-    /* Design System Variables */
+  /* Design System Variables */
     --background: var(--stellar-white);
     --foreground: var(--space-black);
 
@@ -43,6 +43,16 @@
     --border: 240 20% 88%;
     --input: 240 20% 88%;
     --ring: var(--spektri-violet);
+    
+  /* Requested token aliases */
+  --bg: var(--background);
+  --panel: var(--card);
+  --fg: var(--foreground);
+  --brand: var(--spektri-violet);
+  --brand-2: var(--quantum-blue);
+  --success: 142 76% 36%;
+  --warning: 43 96% 56%;
+  --danger: 0 84% 60%;
  
   /* Radius per design (rounded-2xl) */
   --radius: 1rem;
@@ -80,7 +90,11 @@
  
     --border: 248 15% 25%;
     --input: 248 15% 25%;
-    --ring: var(--spektri-violet);
+  --ring: var(--spektri-violet);
+  /* Keep aliases consistent in dark mode */
+  --bg: var(--background);
+  --panel: var(--card);
+  --fg: var(--foreground);
     
     /* Dark Mode Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--spektri-violet)) 0%, hsl(var(--quantum-blue)) 100%);

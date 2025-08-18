@@ -26,6 +26,7 @@ import {
 } from "lucide-react"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { MoneyBar } from "@/components/money-bar"
+import { RetroGrid } from "@/components/visual/RetroGrid"
 
 const stats = [
   {
@@ -134,7 +135,8 @@ export default function DashboardPage() {
   ]
   return (
     <DashboardLayout>
-  <div className="page-wrap">
+  <div className="relative page-wrap">
+        <RetroGrid opacity={0.05} />
         <PageHeader title="Hallintapaneeli" description="Tervetuloa takaisin Spektri.Labs -alustalle">
           <Badge variant="outline" className="border-green-300/40 bg-green-100/40 text-green-700 dark:bg-green-900/20 dark:text-green-300">
             <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
