@@ -59,10 +59,13 @@ const features = [
     className: "col-span-3 lg:col-span-1",
     background: (
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex items-center gap-6 opacity-90">
+        <div className="flex items-center gap-5 md:gap-6 opacity-90">
           <img src="/logos/openai.svg" alt="OpenAI" className="h-6 w-auto object-contain" />
           <img src="/logos/google.svg" alt="Google" className="h-6 w-auto object-contain" />
           <img src="/logos/anthropic.svg" alt="Anthropic" className="h-6 w-auto object-contain" />
+          <img src="/logos/microsoft.svg" alt="Microsoft" className="h-6 w-auto object-contain" />
+          <img src="/logos/github.svg" alt="GitHub" className="h-6 w-auto object-contain" />
+          <img src="/logos/figma.svg" alt="Figma" className="h-6 w-auto object-contain" />
         </div>
       </div>
     ),
