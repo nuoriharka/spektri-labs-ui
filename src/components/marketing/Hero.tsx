@@ -9,6 +9,7 @@ import PrimaryCta from "@/components/ui/PrimaryCta";
 import { track } from "@/lib/analytics";
 import dynamic from "next/dynamic";
 const SimRun = dynamic(() => import("@/components/marketing/SimRun"), { ssr: false });
+import VideoLoop from "@/components/ui/VideoLoop";
 
 export default function Hero() {
   return (
@@ -38,16 +39,12 @@ export default function Hero() {
             </button>
           </div>
           <p className="mt-3 text-sm text-white/60">Ei luottokorttia, ei sitoumuksia.</p>
-          <div className="mt-10">
-            <Image
-              src={photos.hero.dashboard.src}
-              alt={photos.hero.dashboard.alt}
-              priority
-              placeholder="blur"
-              sizes="(max-width: 768px) 100vw, 1200px"
-              className="rounded-2xl ring-1 ring-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
-            />
-          </div>
+          <VideoLoop
+            srcMp4="/videos/hero-video.mp4"
+            poster="/posters/hero-video.jpg"
+            label="Spektri hero demo"
+            className="mt-10"
+          />
           <div id="simrun-dialog" className="hidden fixed inset-0 z-50 grid place-items-center bg-black/70 p-4">
             <div className="w-full max-w-3xl rounded-2xl border border-white/10 bg-[#0B0C0E] p-4 shadow-2xl">
               <div className="flex items-center justify-between p-2">

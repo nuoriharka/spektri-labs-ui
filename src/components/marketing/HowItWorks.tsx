@@ -5,6 +5,7 @@ import Image from "next/image";
 import { photos } from "@/content/photos";
 import { BLUR_DATA_URL } from "@/lib/blur";
 import AnimatedBeam from "@/components/effects/AnimatedBeam";
+import VideoLoop from "@/components/ui/VideoLoop";
 
 export default function HowItWorks(){
   const steps = [
@@ -26,8 +27,9 @@ export default function HowItWorks(){
             </div>
           ))}
         </div>
-        <div className="relative mt-10 aspect-[7/4] w-full overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-          <Image src={photos.how.overall.src} alt={photos.how.overall.alt} fill sizes="100vw" className="object-cover" placeholder="blur" blurDataURL={BLUR_DATA_URL}/>
+        <div className="relative mt-10">
+          <Image src={photos.how.overall.src} alt={photos.how.overall.alt} fill sizes="100vw" className="object-cover rounded-2xl border border-white/10" placeholder="blur" blurDataURL={BLUR_DATA_URL}/>
+          <VideoLoop srcMp4="/videos/flowing-diagram.mp4" poster="/posters/flowing-diagram.jpg" label="Data flow demo" className="mt-8" />
         </div>
       </Container>
     </section>

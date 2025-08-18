@@ -48,11 +48,7 @@ export const viewport: Viewport = {
   ],
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   if (typeof window !== 'undefined') {
     try { initTelemetry() } catch {}
   }
@@ -82,6 +78,11 @@ export default function RootLayout({
             >
               Siirry sisältöön
             </a>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `(() => {try {var mq = window.matchMedia('(prefers-reduced-motion: reduce)'); var apply = (v) => document.documentElement.classList.toggle('reduced-motion', !!v); apply(mq.matches); mq.addEventListener && mq.addEventListener('change', (e)=> apply(e.matches));} catch (e) {}})();`
+              }}
+            />
             <QueryProvider>
               <Toaster>
                 <main id="main">
