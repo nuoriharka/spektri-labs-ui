@@ -16,9 +16,9 @@ const tasks = [
   { src: ['templates.png'], out: 'public/images/sections/features-2-templates', w: 1200, h: 800 },
   { src: ['integrations.png'], out: 'public/images/sections/features-3-integrations', w: 1200, h: 800 },
   { src: ['cost-performance.png'], out: 'public/images/sections/features-4-performance', w: 1200, h: 800 },
-  { src: ['how it works.png'], out: 'public/images/sections/how-it-works', w: 1400, h: 800 },
+  { src: ['how-it-works.png'], out: 'public/images/sections/how-it-works', w: 1400, h: 800 },
   // app
-  { src: ['dashboard1.png', 'dashboard 3.png'], out: 'public/images/app/dashboard', w: 1600, h: 900 },
+  { src: ['dashboard-1.png', 'dashboard-3.png'], out: 'public/images/app/dashboard', w: 1600, h: 900 },
   { src: ['dashboard-agents.png'], out: 'public/images/app/agents', w: 1600, h: 900 },
   { src: ['builder-split.png'], out: 'public/images/app/agent-builder', w: 1600, h: 900 },
   // landing/og

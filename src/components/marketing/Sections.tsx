@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Container from "@/components/layout/Container";
 import SkeletonBlock from "@/components/ui/SkeletonBlock";
+import win from "@/content/win.fi.json";
 
 export function Pillars(){
   const items = [
@@ -102,9 +103,9 @@ export function FinalCTA(){
     <section className="py-16 md:py-24">
       <Container>
         <div className="rounded-3xl border border-white/10 bg-gradient-to-r from-[var(--brand)]/20 to-[var(--brand2)]/20 p-10 text-center">
-          <h3 className="text-3xl font-semibold text-white">Aloita automaatiomatkasi 60 sekunnissa</h3>
-          <p className="mt-3 text-white/80">Ilmainen Basic-tili: rakenna ensimmäiset agenttisi heti.</p>
-          <a href="/dashboard" className="inline-flex items-center rounded-2xl px-6 py-3 bg-[var(--brand)] hover:brightness-110 text-white font-medium transition mt-6">Aloita ilmaiseksi</a>
+          <h3 className="text-3xl font-semibold text-white">{win.final_cta.title}</h3>
+          <p className="mt-3 text-white/80">{win.final_cta.desc}</p>
+          <a href="/dashboard" className="inline-flex items-center rounded-2xl px-6 py-3 bg-[var(--brand)] hover:brightness-110 text-white font-medium transition mt-6">{win.final_cta.action}</a>
         </div>
       </Container>
     </section>

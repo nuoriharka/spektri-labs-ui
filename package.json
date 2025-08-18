@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start -p 3001 -H 0.0.0.0",
     "lint": "next lint",
+  "lint:images": "node scripts/lint-images.mjs",
     "assets:build": "node scripts/build-images.js",
     "images:ingest": "node scripts/ingest-images.mjs",
     "doctor": "node -v && npm -v && npx next --version"
