@@ -19,7 +19,14 @@ jobs:
       - run: npm ci
       - run: npm run images:ingest
       - run: node scripts/check-images.mjs
+      - run: npm run -s lint:images
       - run: npm run build
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+      - name: Run e2e tests
+        env:
+          PORT: 3001
+        run: npm run -s test:e2e
       - name: Lighthouse (optional)
         if: env.LHCI == '1'
         run: |

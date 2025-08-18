@@ -10,7 +10,8 @@
     "lint:images": "node scripts/lint-images.mjs",
     "assets:build": "node scripts/build-images.js",
     "images:ingest": "node scripts/ingest-images.mjs",
-    "doctor": "node -v && npm -v && npx next --version"
+  "doctor": "node -v && npm -v && npx next --version",
+  "test:e2e": "playwright test --reporter=line"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "1.1.2",
@@ -49,6 +50,7 @@
   "overrides": {},
   "resolutions": {},
   "devDependencies": {
+  "@playwright/test": "^1.47.2",
     "@types/marked": "^6.0.0",
     "@types/node": "^20",
     "@types/react": "^18",

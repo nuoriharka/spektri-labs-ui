@@ -4,6 +4,7 @@ import SkeletonBlock from "@/components/ui/SkeletonBlock";
 import win from "@/content/win.fi.json";
 import { photos } from "@/content/photos";
 import PoweredByStrip from "@/components/common/PoweredByStrip";
+import { BLUR_DATA_URL } from "@/lib/blur";
 
 export function Pillars(){
   const items = [
@@ -53,7 +54,7 @@ function FeatureRow({reverse,title,desc,src,alt}:{reverse?:boolean;title:string;
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover"
           placeholder="blur"
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
+          blurDataURL={BLUR_DATA_URL}
         />
       </div>
     </div>
@@ -98,7 +99,7 @@ export function HowItWorks(){
           ))}
         </div>
         <div className="relative mt-10 aspect-[7/4] w-full overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-          <Image src={photos.how.overall.src} alt={photos.how.overall.alt} fill sizes="100vw" className="object-cover" placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="/>
+          <Image src={photos.how.overall.src} alt={photos.how.overall.alt} fill sizes="100vw" className="object-cover" placeholder="blur" blurDataURL={BLUR_DATA_URL}/>
         </div>
       </Container>
     </section>
@@ -109,10 +110,17 @@ export function FinalCTA(){
   return (
     <section className="py-16 md:py-24">
       <Container>
-        <div className="rounded-3xl border border-white/10 bg-gradient-to-r from-[var(--brand)]/20 to-[var(--brand2)]/20 p-10 text-center">
-          <h3 className="text-3xl font-semibold text-white">{win.final_cta.title}</h3>
-          <p className="mt-3 text-white/80">{win.final_cta.desc}</p>
-          <a href="/dashboard" className="inline-flex items-center rounded-2xl px-6 py-3 bg-[var(--brand)] hover:brightness-110 text-white font-medium transition mt-6">{win.final_cta.action}</a>
+        <div className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-[var(--brand)]/20 to-[var(--brand2)]/20 p-0">
+          <div className="grid gap-0 md:grid-cols-2">
+            <div className="p-10 text-center md:text-left flex flex-col justify-center">
+              <h3 className="text-3xl font-semibold text-white">{win.final_cta.title}</h3>
+              <p className="mt-3 text-white/80">{win.final_cta.desc}</p>
+              <a href="/dashboard" className="inline-flex justify-center md:justify-start items-center rounded-2xl px-6 py-3 bg-[var(--brand)] hover:brightness-110 text-white font-medium transition mt-6 w-full md:w-auto">{win.final_cta.action}</a>
+            </div>
+            <div className="relative aspect-[3/2] md:aspect-auto min-h-[260px]">
+              <Image src={photos.hero.cta.src} alt={photos.hero.cta.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" placeholder="blur" blurDataURL={BLUR_DATA_URL} />
+            </div>
+          </div>
         </div>
       </Container>
     </section>
