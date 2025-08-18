@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start -p 3001 -H 0.0.0.0",
     "lint": "next lint",
-  "lint:images": "node scripts/lint-images.mjs",
+    "lint:images": "node scripts/lint-images.mjs",
     "assets:build": "node scripts/build-images.js",
     "images:ingest": "node scripts/ingest-images.mjs",
     "doctor": "node -v && npm -v && npx next --version"
@@ -41,6 +41,7 @@
     "react-dom": "^18",
     "recharts": "^2.12.7",
     "sanitize-html": "^2.13.0",
+    "simple-icons": "^12.4.0",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7"

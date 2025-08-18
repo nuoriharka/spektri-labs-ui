@@ -163,6 +163,12 @@
       0 0 0 1px rgba(255, 255, 255, 0.1) inset;
     transform: translateY(-5px);
   }
+
+  /* LogoCloud premium card */
+  .logo-cloud-card{
+    backdrop-filter: saturate(120%) blur(6px);
+    box-shadow: 0 10px 40px rgba(0,0,0,.35);
+  }
   
   /* Status Indicators */
   .status-active { 

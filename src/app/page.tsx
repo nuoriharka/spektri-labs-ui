@@ -4,6 +4,8 @@ import { Pillars, TrustBar, Features, HowItWorks, FinalCTA } from "@/components/
 import WinSection from "@/components/marketing/WinSection"
 import LogosMarquee from "@/components/marketing/LogosMarquee"
 import Testimonials from "@/components/marketing/Testimonials"
+import dynamic from "next/dynamic"
+const LogoCloud = dynamic(() => import("@/components/marketing/LogoCloud"), { ssr: false })
 
 function Landing() {
   return (
@@ -15,6 +17,9 @@ function Landing() {
         badge="Live product"
         caption="Reaaliaikaiset KPI:t, ajot ja agentit yhdestä näkymästä"
       />
+      <section className="py-12 md:py-16">
+        <LogoCloud variant="mono" />
+      </section>
   {/* WinSection early to communicate value */}
   <WinSection />
   <Pillars />
