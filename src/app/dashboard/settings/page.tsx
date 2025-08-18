@@ -9,9 +9,26 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Settings } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
+import * as React from "react"
 
 export default function SettingsPage() {
   const { add } = useToast()
+  const [org, setOrg] = React.useState("Yritys Oy")
+  const [domain, setDomain] = React.useState("spektri.fi")
+  const [errors, setErrors] = React.useState<{ org?: string; domain?: string }>({})
+  const validate = () => {
+    const e: { org?: string; domain?: string } = {}
+    if (!org || org.trim().length < 2) e.org = "Liian lyhyt"
+    if (!domain) e.domain = "Pakollinen"
+    else if (!/^[a-z0-9.-]+$/i.test(domain)) e.domain = "Virheellinen domain"
+    setErrors(e)
+    return Object.keys(e).length === 0
+  }
+  const onSubmit = (ev: React.FormEvent) => {
+    ev.preventDefault()
+    if (!validate()) return
+    add({ title: "Tallennettu", description: `${org} · ${domain}` })
+  }
   return (
     <DashboardLayout>
       <div className="page-wrap">
@@ -30,17 +47,27 @@ export default function SettingsPage() {
                 <CardDescription>Perusasetukset tuotteelle</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="org">Organisaation nimi</Label>
-                    <Input id="org" placeholder="Yritys Oy" />
+                <form onSubmit={onSubmit} className="space-y-4">
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="org">Organisaation nimi</Label>
+                      <Input id="org" placeholder="Yritys Oy" value={org} onChange={(e)=> setOrg(e.target.value)} />
+                      {errors.org && (
+                        <p className="text-xs text-danger">{errors.org}</p>
+                      )}
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="domain">Verkkotunnus</Label>
+                      <Input id="domain" placeholder="spektri.fi" value={domain} onChange={(e)=> setDomain(e.target.value)} />
+                      {errors.domain && (
+                        <p className="text-xs text-danger">{errors.domain}</p>
+                      )}
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="domain">Verkkotunnus</Label>
-                    <Input id="domain" placeholder="spektri.fi" />
+                  <div className="flex items-center gap-2">
+                    <Button className="btn-spektri" type="submit">Tallenna</Button>
                   </div>
-                </div>
-                <Button className="btn-spektri" onClick={()=> add({ title: "Tallennettu", description: "Asetukset päivitettiin" })}>Tallenna</Button>
+                </form>
               </CardContent>
             </Card>
           </TabsContent>

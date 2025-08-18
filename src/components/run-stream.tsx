@@ -2,9 +2,14 @@
 
 import { useEffect, useRef, useState } from "react"
 
-export type RunEvent = { id: string | number; type: "start" | "step" | "end"; message: string; time: string }
+export type RunEvent = {
+  id: string | number
+  type: "start" | "step" | "end" | "TASK_UPDATE" | "LOG" | "METRIC" | "DONE"
+  message: string
+  time: string
+}
 
-export function RunStream({ events: initial = [] as RunEvent[], autoScroll = true }: { events?: RunEvent[]; autoScroll?: boolean }) {
+export function RunStream({ events: initial = [] as RunEvent[], autoScroll = true, sseUrl }: { events?: RunEvent[]; autoScroll?: boolean; sseUrl?: string }) {
   const [events, setEvents] = useState<RunEvent[]>(initial)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -13,6 +18,28 @@ export function RunStream({ events: initial = [] as RunEvent[], autoScroll = tru
       ref.current.scrollTop = ref.current.scrollHeight
     }
   }, [events, autoScroll])
+
+  useEffect(() => {
+    if (!sseUrl) return
+    const es = new EventSource(sseUrl)
+    const push = (type: RunEvent["type"], message: string) =>
+      setEvents((ev) => [...ev, { id: ev.length + 1, type, message, time: new Date().toLocaleTimeString() }])
+    es.addEventListener("TASK_UPDATE", () => push("TASK_UPDATE", "Status päivittyi"))
+    es.addEventListener("LOG", (e) => {
+      try {
+        const d = JSON.parse((e as MessageEvent).data)
+        push("LOG", d.message || "Lokirivi")
+      } catch {
+        push("LOG", "Lokirivi")
+      }
+    })
+    es.addEventListener("METRIC", () => push("METRIC", "Mittaustieto"))
+    es.addEventListener("DONE", () => {
+      push("DONE", "Valmis")
+      es.close()
+    })
+    return () => es.close()
+  }, [sseUrl])
 
   function simulate() {
     const now = new Date()
@@ -38,7 +65,21 @@ export function RunStream({ events: initial = [] as RunEvent[], autoScroll = tru
           <p className="text-sm text-muted-foreground">Ei tapahtumia vielä.</p>
         ) : null}
       </div>
-  <button onClick={simulate} onKeyDown={(e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); simulate() } }} className="mt-2 text-xs underline" aria-label="Simuloi tapahtuma">Simuloi tapahtuma</button>
+      {!sseUrl && (
+        <button
+          onClick={simulate}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault()
+              simulate()
+            }
+          }}
+          className="mt-2 text-xs underline"
+          aria-label="Simuloi tapahtuma"
+        >
+          Simuloi tapahtuma
+        </button>
+      )}
     </div>
   )
 }

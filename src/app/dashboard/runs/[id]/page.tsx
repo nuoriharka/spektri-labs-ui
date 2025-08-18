@@ -34,7 +34,7 @@ export default function RunDetailPage({ params }: { params: { id: string } }) {
             <CardDescription>Mock-SSE</CardDescription>
           </CardHeader>
           <CardContent>
-            <RunStream />
+            <RunStream sseUrl={`/api/runs/${params.id}/stream`} />
           </CardContent>
         </Card>
 
