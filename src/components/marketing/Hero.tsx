@@ -1,4 +1,5 @@
 import VideoLoop from "./VideoLoop";
+import ThemeSwitcher from "@/components/theme/ThemeSwitcher";
 import { ShimmerCTA } from "./ShimmerCTA";
 
 export default function Hero(){
@@ -10,9 +11,12 @@ export default function Hero(){
           alt="Spektri"
           className="h-7 w-auto mb-4 opacity-90"
         />
-        <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
-          Sinulla on idea. <br/>Me annamme sille armeijan.
-        </h1>
+        <div className="mb-4 flex items-center justify-between">
+          <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
+            Sinulla on idea. <br/>Me annamme sille armeijan.
+          </h1>
+          <ThemeSwitcher />
+        </div>
         <p className="mt-4 text-white/70">
           Muuta tavoitteesi tuloksiksi keskustelemalla. Ensimmäinen digitaalinen työntekijäsi on valmiina alle 60 sekunnissa.
         </p>
