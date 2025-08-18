@@ -1,37 +1,21 @@
-"use client";
-import Container from "@/components/layout/Container";
-import PrimaryCta from "@/components/ui/PrimaryCta";
-import Image from "next/image";
-import { photos } from "@/content/photos";
-import { BLUR_DATA_URL } from "@/lib/blur";
-import AnimatedBeam from "@/components/effects/AnimatedBeam";
-import VideoLoop from "@/components/ui/VideoLoop";
-
 export default function HowItWorks(){
   const steps = [
-    { n:1, t:"Valitse malli", d:"Aloita pohjasta tai kerro tavoitteesi.", cta:"Selaa malleja", href:"/templates" },
-    { n:2, t:"Yhdistä", d:"OAuth-integraatiot yhdellä klikkauksella.", cta:"Yhdistä palvelut", href:"/integrations" },
-    { n:3, t:"Aja & Ajasta", d:"Katso tulokset ja ajasta toistuvaksi.", cta:"Aja demo", href:"#" },
+    {t:"Keskustele", d:"Kerro tavoitteesi. “Luo kuukausiraportti ja lähetä Slackiin.”"},
+    {t:"Orkestroi", d:"Spektri valitsee agentit ja työkalut – näyttää suunnitelman."},
+    {t:"Toteuta", d:"Hyväksy ja seuraa reaaliajassa. Sinä olet ohjaksissa."},
   ];
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden">
-      <AnimatedBeam />
-      <Container>
-        <div className="grid gap-4 md:grid-cols-3">
-          {steps.map(s => (
-            <div key={s.n} className="rounded-2xl border border-white/10 bg-black/30 p-6 backdrop-blur">
-              <div className="text-sm text-white/60">Vaihe {s.n}</div>
-              <h3 className="mt-1 text-lg font-semibold text-white">{s.t}</h3>
-              <p className="mt-2 text-white/70">{s.d}</p>
-              <div className="mt-4"><PrimaryCta href={s.href} variant="ghost">{s.cta}</PrimaryCta></div>
-            </div>
-          ))}
-        </div>
-        <div className="relative mt-10">
-          <Image src={photos.how.overall.src} alt={photos.how.overall.alt} fill sizes="100vw" className="object-cover rounded-2xl border border-white/10" placeholder="blur" blurDataURL={BLUR_DATA_URL}/>
-          <VideoLoop srcMp4="/videos/flowing-diagram.mp4" poster="/posters/flowing-diagram.jpg" label="Data flow demo" className="mt-8" />
-        </div>
-      </Container>
+    <section className="mx-auto max-w-6xl px-6 py-20">
+      <h2 className="text-3xl font-semibold">Näin helppoa se on.</h2>
+      <div className="mt-8 grid gap-6 md:grid-cols-3">
+        {steps.map((s,i)=>(
+          <div key={i} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+            <div className="text-sm text-white/50">0{i+1}</div>
+            <h3 className="mt-2 text-xl font-semibold">{s.t}</h3>
+            <p className="mt-2 text-white/70">{s.d}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
