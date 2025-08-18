@@ -1,7 +1,8 @@
 
 "use client";
-import Image from "next/image";
+
 import Link from "next/link";
+import BorderBeam from "@/components/magicui/BorderBeam";
 
 export default function HeroTailark() {
   return (
@@ -45,6 +46,7 @@ export default function HeroTailark() {
               className="w-full h-72 md:h-96 object-contain scale-105 transition-transform duration-500 hover:scale-110 z-10 relative rounded-2xl shadow-xl"
               style={{ filter: "drop-shadow(0 4px 32px rgba(34,211,238,0.10))" }}
             />
+            <BorderBeam />
             {/* Reduce overlay opacity for better visibility */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
             {/* Animated glow */}
