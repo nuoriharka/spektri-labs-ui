@@ -8,6 +8,7 @@ import { Pillars, TrustBar, FinalCTA } from "@/components/marketing/Sections"
 import WinSection from "@/components/marketing/WinSection"
 import LogosMarquee from "@/components/marketing/LogosMarquee"
 import Testimonials from "@/components/marketing/Testimonials"
+import Problems from "@/components/marketing/Problems"
 
 export const metadata: Metadata = {
   title: "Etusivu",
@@ -20,6 +21,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+  <Problems />
       <section className="py-12 md:py-16">
         <LogoCloud variant="mono" />
       </section>
