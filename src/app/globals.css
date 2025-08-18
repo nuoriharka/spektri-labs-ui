@@ -251,3 +251,8 @@ html,body { background:var(--bg); color:var(--fg); }
 }
 .marquee { display: flex; white-space: nowrap; will-change: transform; animation: marquee linear infinite; }
 .reduced-motion .marquee { animation: none; transform: none; }
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
