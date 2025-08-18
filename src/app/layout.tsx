@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Spektri.Labs' }],
   keywords: ['Spektri', 'UI', 'shadcn', 'Next.js', 'Tailwind'],
   icons: {
-    icon: '/favicon.svg',
+  icon: '/brand/favicon.svg',
   },
   openGraph: { images: ["/images/og/og-home.png"] },
   twitter: {

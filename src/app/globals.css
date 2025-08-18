@@ -237,5 +237,9 @@
 :root{
   --bg:#0B0C0E; --panel:#111316; --fg:#E7E9EC; --muted:#9BA3AF;
   --brand:#6D6AFF; --brand2:#22D3EE; --ring:#6D6AFF;
+  /* Alias for docs: */
+  --brand-2:#22D3EE;
+  --success:#10B981; --warning:#F59E0B; --danger:#EF4444;
+  --brand-grad: linear-gradient(135deg, #6D6AFF 0%, #22D3EE 100%);
 }
 html,body { background:var(--bg); color:var(--fg); }
