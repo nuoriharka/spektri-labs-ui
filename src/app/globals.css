@@ -243,3 +243,11 @@
   --brand-grad: linear-gradient(135deg, #6D6AFF 0%, #22D3EE 100%);
 }
 html,body { background:var(--bg); color:var(--fg); }
+
+/* Marquee animation (for LogoCloud/Integrations) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee { display: flex; white-space: nowrap; will-change: transform; animation: marquee linear infinite; }
+.reduced-motion .marquee { animation: none; transform: none; }
