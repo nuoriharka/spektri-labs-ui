@@ -1,6 +1,28 @@
+
 "use client";
 import * as React from "react";
-import { BRAND_ICONS } from "@/content/brand-icons";
+
+const LOGOS = [
+  { slug: "openai", label: "OpenAI", href: "https://openai.com" },
+  { slug: "anthropic", label: "Anthropic", href: "https://www.anthropic.com" },
+  { slug: "google", label: "Google", href: "https://www.google.com" },
+  { slug: "microsoft", label: "Microsoft", href: "https://www.microsoft.com" },
+  { slug: "github", label: "GitHub", href: "https://github.com" },
+  { slug: "stripe", label: "Stripe", href: "https://stripe.com" },
+  { slug: "vercel", label: "Vercel", href: "https://vercel.com" },
+  { slug: "supabase", label: "Supabase", href: "https://supabase.com" },
+];
+
+export default function LogoCloud() {
+  const [isDesigner, setIsDesigner] = React.useState(false);
+  React.useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDesigner(document.documentElement.getAttribute("data-theme") === "designer");
+    });
+    observer.observe(document.documentElement, { attributes: true });
+    setIsDesigner(document.documentElement.getAttribute("data-theme") === "designer");
+    return () => observer.disconnect();
+  }, []);
   return (
     <section className="overflow-hidden py-16 md:py-24">
       <div className="container mx-auto px-6">
@@ -39,21 +61,5 @@ import { BRAND_ICONS } from "@/content/brand-icons";
         .animate-marquee { animation: marquee 30s linear infinite; }
       `}</style>
     </section>
-  );
-              viewBox="0 0 24 24"
-              className="h-6 md:h-7 lg:h-8 w-auto transition-opacity opacity-70 hover:opacity-100"
-              style={variant === "brand" ? { color: hex } : { color: "rgb(156 163 175)" }}
-            >
-              <title>{label}</title>
-              <path d={path} fill="currentColor" />
-            </svg>
-          </li>
-        ))}
-      </ul>
-
-      <p className="mt-6 text-center text-xs text-white/50">
-        Logot ovat tavaramerkkejä – käyttötapa viitteellinen (“works with”). Ei sponsorointia tai kumppanuusviestiä.
-      </p>
-    </div>
   );
 }
