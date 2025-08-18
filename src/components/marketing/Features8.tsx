@@ -1,30 +1,28 @@
-import { Sparkles, Workflow, Bot, Shield, Rocket, Timer, DollarSign, ListChecks } from "lucide-react";
-
+import Image from "next/image";
 const features = [
-  { icon: Sparkles, title: "Keskustelu on käyttöliittymä", text: "Kerro mitä haluat – agentit tekevät loput. Ei koodausta." },
-  { icon: Workflow, title: "Meta-orkestrointi", text: "Valitsee automaattisesti parhaan työkalun ja mallin jokaiseen tehtävään." },
-  { icon: Bot, title: "Agenttifarmit™", text: "Rakenna tiimi erikoistuneita agentteja pitkien prosessien hoitamiseen." },
-  { icon: Shield, title: "Yritystason turva", text: "SSO/SAML, RBAC, audit-logit ja hyväksyntäportit kriittisiin vaiheisiin." },
-  { icon: Rocket, title: "Ideasta sovellukseksi", text: "UI → koodi → julkaisu. Kaikki yhdestä komennosta." },
-  { icon: Timer, title: "Aika on rahaa", text: "Näet säästetyn ajan ja kustannuksen jokaisesta ajosta." },
-  { icon: DollarSign, title: "Ennustettava hinnoittelu", text: "Yksi alusta, yksi lasku – ei yllätyksiä." },
-  { icon: ListChecks, title: "Mission Control™", text: "Yksi näkymä, täydellinen hallinta. Pause/Boost/Reroute." },
+  {
+    title: "Kustannus & vaikutus",
+    text: "Seuraa kustannusta/ajoa, onnistumisprosenttia ja säästettyä aikaa.",
+    img: "/images/sections/features-4-performance.png"
+  },
+  {
+    title: "Integraatiot",
+    text: "OAuth Googleen, Microsoftiin, CRM:iin ja verkkokauppoihin.",
+    img: "/images/sections/features-3-integrations.png"
+  },
 ];
 
 export default function Features8() {
   return (
-    <section className="py-20">
+    <section className="py-16 md:py-24">
       <div className="container mx-auto px-6">
-        <h2 className="mb-4 text-3xl font-semibold tracking-tight">Enemmän kuin työkalu — koko digitaalinen työvoimasi</h2>
-        <p className="mb-10 max-w-2xl text-white/80">Kun idea syntyy, Spektri rakentaa toteutuksen. Ilman kitkaa.</p>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map(({ icon: Icon, title, text }) => (
-            <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-              <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10">
-                <Icon className="h-5 w-5 text-white/90" />
-              </div>
-              <h3 className="mb-1 text-base font-medium">{title}</h3>
-              <p className="text-sm text-white/75">{text}</p>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8 [font-family:var(--font-display-active)] data-[theme=designer]:tracking-[0.08em] data-[theme=designer]:uppercase">Ominaisuudet</h2>
+        <div className="grid md:grid-cols-2 gap-10">
+          {features.map(({ title, text, img }) => (
+            <div key={title} className="rounded-[var(--radius)] border border-white/10 bg-[var(--panel)] p-6 flex flex-col gap-4 shadow-lg data-[theme=designer]:border-[#E5E5E5] data-[theme=designer]:bg-white data-[theme=designer]:shadow-none">
+              <h3 className="text-lg font-semibold mb-2 [font-family:var(--font-display-active)]">{title}</h3>
+              <p className="text-[color:var(--muted)]">{text}</p>
+              <Image src={img} alt={title} width={600} height={400} className="rounded-[var(--radius)] w-full data-[theme=designer]:grayscale data-[theme=designer]:contrast-110" />
             </div>
           ))}
         </div>

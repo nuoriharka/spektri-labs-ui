@@ -8,20 +8,14 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 }
 
-  import HeroTailark from "@/components/marketing/HeroTailark";
-  import LogoCloudTailark from "@/components/marketing/LogoCloudTailark";
-  import Features8 from "@/components/marketing/Features8";
-  import Content2 from "@/components/marketing/Content2";
-  import CTA1 from "@/components/marketing/CTA1";
+import Hero from "@/components/marketing/Hero";
+import LogoCloud from "@/components/marketing/LogoCloud";
 
-  export default function Page() {
-    return (
-      <>
-        <HeroTailark />
-        <LogoCloudTailark />
-        <Features8 />
-        <Content2 />
-        <CTA1 />
-      </>
-    );
-  }
+export default function Page() {
+  return (
+    <main>
+      <Hero />
+      <LogoCloud />
+    </main>
+  );
+}

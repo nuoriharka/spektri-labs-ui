@@ -1,0 +1,38 @@
+/* Perustokenit + molempien teemojen arvot CSS-muuttujina */
+:root {
+  --bg: #0B0C0E;
+  --fg: #E7E9EC;
+  --panel: #111316;
+  --muted: #9BA3AF;
+  --brand: #6D6AFF;
+  --brand-2: #22D3EE;
+  --ring: var(--brand);
+  --radius: 16px;
+  --font-sans-active: var(--font-sans-tech);
+  --font-display-active: var(--font-display-tech);
+}
+[data-theme="tech"] {
+  --bg: #0B0C0E;
+  --fg: #E7E9EC;
+  --panel: #111316;
+  --muted: #9BA3AF;
+  --brand: #6D6AFF;
+  --brand-2: #22D3EE;
+  --ring: var(--brand);
+  --radius: 16px;
+  --font-sans-active: var(--font-sans-tech);
+  --font-display-active: var(--font-display-tech);
+}
+[data-theme="designer"] {
+  --bg: #FAFAF7;
+  --fg: #0A0A0A;
+  --panel: #FFFFFF;
+  --muted: #6B6B6B;
+  --brand: #0A0A0A;
+  --brand-2: #0A0A0A;
+  --ring: #0A0A0A;
+  --radius: 4px;
+  --font-sans-active: var(--font-sans-designer);
+  --font-display-active: var(--font-display-designer);
+}
+html, body { background: var(--bg); color: var(--fg); }
