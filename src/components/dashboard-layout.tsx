@@ -91,6 +91,14 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         el?.click()
         return
       }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+        e.preventDefault();
+        setIsCollapsed(v=>{
+          const next = !v; try { localStorage.setItem('sidebar-collapsed', next? '1':'0') } catch {}
+          return next
+        })
+        return
+      }
       if (e.key.toLowerCase() === 'g') {
         const handler = (ev: KeyboardEvent) => {
           const map: Record<string, string> = { d: '/dashboard', a: '/dashboard/agents', r: '/dashboard/runs', t: '/dashboard/templates', i: '/dashboard/integrations', s: '/dashboard/settings' }
@@ -107,8 +115,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     return () => window.removeEventListener('keydown', onKey)
   }, [router])
 
+  // Restore theme and collapsed state
+  React.useEffect(() => {
+    try {
+      const t = localStorage.getItem('theme')
+      if (t === 'dark') document.documentElement.classList.add('dark')
+      const c = localStorage.getItem('sidebar-collapsed')
+      if (c === '1') setIsCollapsed(true)
+    } catch {}
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-card px-3 py-2 rounded-md border">Siirry sisältöön</a>
       {/* Sidebar */}
       <aside className={cn(
         "fixed left-0 top-0 z-50 h-full transform bg-white/80 backdrop-blur-xl border-r border-slate-200/50 dark:bg-slate-900/80 dark:border-slate-700/50 transition-all duration-300 ease-in-out lg:translate-x-0 glass-card",
@@ -248,6 +267,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" strokeWidth="2" fill="none"/>
                 </svg>
               </Button>
+              <Link href="/docs" className="hidden md:inline text-sm text-muted-foreground hover:underline">Ohjeet</Link>
+              <span className="text-xs text-muted-foreground hidden md:inline">{process.env.NODE_ENV === 'development' ? 'DEV' : 'PROD'}</span>
               
               <Link href="/dashboard/agents/new">
                 <Button className="btn-spektri">
