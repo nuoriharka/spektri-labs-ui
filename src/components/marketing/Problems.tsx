@@ -1,3 +1,4 @@
+"use client";
 import Container from "@/components/layout/Container";
 import { track } from "@/lib/analytics";
 
