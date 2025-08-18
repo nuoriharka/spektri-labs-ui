@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Hero from "@/components/marketing/Hero"
 import DashboardShowcase from "@/components/marketing/DashboardShowcase"
-import LogoCloud from "@/components/marketing/LogoCloud"
 import FeatureGrid from "@/components/marketing/FeatureGrid"
 import { LogoCloudMarquee } from "@/components/marketing/LogoCloudMarquee"
 import { IntegrationsMarquee } from "@/components/marketing/IntegrationsMarquee"
@@ -28,9 +27,6 @@ export default function Home() {
         <LogoCloudMarquee speed={28} />
       </SectionBg>
   <Problems />
-      <section className="py-12 md:py-16">
-        <LogoCloud variant="mono" />
-      </section>
       <DashboardShowcase
         src="/images/app/dashboard.webp"
         alt="Spektri.Labs – Komentokeskus, KPI-kortit ja ajot"
@@ -45,7 +41,6 @@ export default function Home() {
       <SectionBg>
         <IntegrationsMarquee speed={22} />
       </SectionBg>
-      <LogosMarquee />
       <Testimonials />
       <FinalCTA />
     </>

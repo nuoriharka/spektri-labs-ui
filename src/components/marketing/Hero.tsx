@@ -12,7 +12,7 @@ const SimRun = dynamic(() => import("@/components/marketing/SimRun"), { ssr: fal
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
+  <section className="relative overflow-hidden bg-gradient-to-b from-[rgba(109,106,255,0.15)] via-transparent to-transparent">
       {/* Simplified background; focus on primary hero image below */}
       <Container>
         <div className="py-28 md:py-36 max-w-2xl">
@@ -25,10 +25,10 @@ export default function Hero() {
           </h1>
           <p className="mt-6 text-lg text-white/80">Muuta tavoitteesi tuloksiksi keskustelemalla. Ensimmäinen digitaalinen työntekijäsi on valmiina alle 60 sekunnissa.</p>
           <div className="mt-8 flex items-center gap-3">
-            <PrimaryCta href="/app" event="hero_cta_click">Aloita ilmaiseksi</PrimaryCta>
+            <PrimaryCta href="/app" event="hero_cta_primary">Aloita ilmaiseksi</PrimaryCta>
             <button
               onClick={() => {
-                track('demo_opened');
+                track('hero_cta_demo');
                 const el = document.getElementById('simrun-dialog');
                 el?.classList.remove('hidden');
               }}
@@ -37,6 +37,7 @@ export default function Hero() {
               Katso 60 sekunnin demo
             </button>
           </div>
+          <p className="mt-3 text-sm text-white/60">Ei luottokorttia, ei sitoumuksia.</p>
           <div className="mt-10">
             <Image
               src={photos.hero.dashboard.src}
