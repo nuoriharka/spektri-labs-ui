@@ -1,5 +1,7 @@
 "use client";
 import Link from "next/link";
+import ThemeToggle from "@/components/layout/ThemeToggle";
+import LanguageToggle from "@/components/layout/LanguageToggle";
 import { useState } from "react";
 
 export default function SiteHeader() {
@@ -24,6 +26,8 @@ export default function SiteHeader() {
               {n.label}
             </Link>
           ))}
+          <LanguageToggle />
+          <ThemeToggle />
           <Link href="/dashboard" className="rounded-xl bg-[var(--brand)] px-4 py-2 text-sm font-medium text-white hover:brightness-110 transition">
             Aloita
           </Link>
@@ -44,6 +48,7 @@ export default function SiteHeader() {
                 {n.label}
               </Link>
             ))}
+            <ThemeToggle />
             <Link href="/dashboard" className="block rounded-lg bg-[var(--brand)] px-3 py-2 text-center text-white hover:brightness-110 transition" onClick={() => setOpen(false)}>
               Aloita
             </Link>

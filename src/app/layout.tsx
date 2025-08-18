@@ -1,10 +1,13 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { ConditionalNav } from '@/components/conditional-nav'
 import { Toaster } from '@/components/ui/toaster'
 import { Footer } from '@/components/footer'
+import SiteHeader from '@/components/layout/SiteHeader'
 import { initTelemetry } from '@/lib/telemetry'
+import { ThemeProvider } from '@/components/layout/ThemeProvider'
+import { QueryProvider } from '@/components/providers/QueryProvider'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -62,18 +65,40 @@ export default function RootLayout({
   }
   return (
     <html lang="fi" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          // Organization structured data
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Spektri.Labs',
+              url: resolvedBaseUrl,
+              logo: `${resolvedBaseUrl}/favicon.svg`,
+            }),
+          }}
+        />
+      </head>
       <body className={inter.className}>
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-black"
-        >
-          Siirry sisältöön
-        </a>
-        <Toaster>
-          <ConditionalNav />
-          {children}
-          <Footer />
-        </Toaster>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-black"
+          >
+            Siirry sisältöön
+          </a>
+          <SiteHeader />
+          <QueryProvider>
+            <Toaster>
+              <main id="main">
+                {children}
+              </main>
+              <Footer />
+            </Toaster>
+          </QueryProvider>
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )

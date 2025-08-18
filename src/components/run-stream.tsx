@@ -11,7 +11,9 @@ export type RunEvent = {
 
 export function RunStream({ events: initial = [] as RunEvent[], autoScroll = true, sseUrl }: { events?: RunEvent[]; autoScroll?: boolean; sseUrl?: string }) {
   const [events, setEvents] = useState<RunEvent[]>(initial)
+  const [open, setOpen] = useState<boolean>(false)
   const ref = useRef<HTMLDivElement>(null)
+  const esRef = useRef<EventSource | null>(null)
 
   useEffect(() => {
     if (autoScroll && ref.current) {
@@ -22,6 +24,8 @@ export function RunStream({ events: initial = [] as RunEvent[], autoScroll = tru
   useEffect(() => {
     if (!sseUrl) return
     const es = new EventSource(sseUrl)
+    esRef.current = es
+    setOpen(true)
     const push = (type: RunEvent["type"], message: string) =>
       setEvents((ev) => [...ev, { id: ev.length + 1, type, message, time: new Date().toLocaleTimeString() }])
     es.addEventListener("TASK_UPDATE", () => push("TASK_UPDATE", "Status päivittyi"))
@@ -37,8 +41,14 @@ export function RunStream({ events: initial = [] as RunEvent[], autoScroll = tru
     es.addEventListener("DONE", () => {
       push("DONE", "Valmis")
       es.close()
+      setOpen(false)
     })
-    return () => es.close()
+    es.onerror = () => {
+      push("LOG", "Virhe yhteydessa 	6")
+      es.close()
+      setOpen(false)
+    }
+    return () => { try { es.close() } catch {} }
   }, [sseUrl])
 
   function simulate() {
@@ -65,6 +75,16 @@ export function RunStream({ events: initial = [] as RunEvent[], autoScroll = tru
           <p className="text-sm text-muted-foreground">Ei tapahtumia vielä.</p>
         ) : null}
       </div>
+      {sseUrl && (
+        <button
+          onClick={() => { esRef.current?.close(); setOpen(false); }}
+          className="mt-2 text-xs underline"
+          aria-pressed={!open}
+          aria-label="Stop stream"
+        >
+          Stop stream
+        </button>
+      )}
       {!sseUrl && (
         <button
           onClick={simulate}

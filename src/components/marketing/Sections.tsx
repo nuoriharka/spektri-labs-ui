@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Container from "@/components/layout/Container";
+import SkeletonBlock from "@/components/ui/SkeletonBlock";
 
 export function Pillars(){
   const items = [
@@ -44,7 +45,16 @@ function FeatureRow({reverse,title,desc,src,alt}:{reverse?:boolean;title:string;
         <p className="mt-3 text-white/80">{desc}</p>
       </div>
       <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-        <Image src={src} alt={alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover"/>
+        <SkeletonBlock className="absolute inset-0" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover"
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="
+        />
       </div>
     </div>
   );
