@@ -17,7 +17,7 @@ export default function Content2() {
         </div>
 
         <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-4">
-          <img src="/photos/dashboard-agents.png" alt="Agenttifarmit ja Mission Control" className="w-full rounded-xl" />
+          <img src="/photos/dashboard-agents.png" alt="Agenttifarmit ja Mission Control" className="w-full h-72 md:h-96 object-contain rounded-xl shadow-xl transition-transform duration-500 hover:scale-105" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
         </div>
       </div>

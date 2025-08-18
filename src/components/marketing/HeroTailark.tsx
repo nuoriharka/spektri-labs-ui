@@ -40,9 +40,9 @@ export default function HeroTailark() {
         <div className="relative flex items-center justify-center">
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] shadow-[0_20px_60px_rgba(0,0,0,.35)]">
             <img
-              src="/photos/dashboard1.png"
+              src="/photos/näyttökuva-dashboard.png"
               alt="Spektri.Labs dashboard"
-              className="w-full scale-105 transition-transform duration-500 hover:scale-110 z-10 relative"
+              className="w-full h-72 md:h-96 object-contain scale-105 transition-transform duration-500 hover:scale-110 z-10 relative rounded-2xl shadow-xl"
               style={{ filter: "drop-shadow(0 4px 32px rgba(34,211,238,0.10))" }}
             />
             {/* Reduce overlay opacity for better visibility */}
