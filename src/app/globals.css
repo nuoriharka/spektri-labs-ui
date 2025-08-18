@@ -226,3 +226,10 @@
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
 }
+
+/* --- T1: Brand tokens override for marketing pages --- */
+:root{
+  --bg:#0B0C0E; --panel:#111316; --fg:#E7E9EC; --muted:#9BA3AF;
+  --brand:#6D6AFF; --brand2:#22D3EE; --ring:#6D6AFF;
+}
+html,body { background:var(--bg); color:var(--fg); }

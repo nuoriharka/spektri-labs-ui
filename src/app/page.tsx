@@ -1,175 +1,34 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
-import { Bot, Sparkles, Workflow, Brain, ArrowRight, ShieldCheck, Gauge, Layers } from "lucide-react"
-import { ChartCard } from "@/components/chart-card"
-import Image from "next/image"
-import saasScreenshot from "../../photos/image.png"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { HeroDusk } from "@/components/sections/hero-dusk"
-import { FeaturesPro } from "@/components/sections/features-pro"
-import { HowItWorks } from "@/components/sections/how-it-works"
+import SiteHeader from "@/components/layout/SiteHeader"
+import Hero from "@/components/marketing/Hero"
 import DashboardShowcase from "@/components/marketing/DashboardShowcase"
-import { AnimatedStats } from "@/components/sections/animated-stats"
-import { UseCases } from "@/components/sections/use-cases"
-import { ContactSection } from "@/components/sections/contact"
-import { Testimonials } from "@/components/sections/testimonials"
-import { PricingTeaser } from "@/components/sections/pricing-teaser"
-// Removed alternate hero variants for stability
-import { FAQSection } from "@/components/sections/faq"
-import { Chart3D } from "@/components/chart-3d"
-const dashboardImg = "/images/app/dashboard.webp"
+import { Pillars, TrustBar, Features, HowItWorks, FinalCTA } from "@/components/marketing/Sections"
+export const metadata = { openGraph: { images: ["/images/og/og-home.png"] } } as const
 
-function FancyLanding() {
-  // All features enabled by default
+function Landing() {
   return (
-  <main id="main" className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      {/* Hero Section – Tailark-inspired hero */}
-      <HeroDusk />
-
-      {/* Dashboard showcase directly under hero */}
+    <main className="min-h-screen bg-[#0B0C0E] text-[var(--fg,#E7E9EC)]">
+      <SiteHeader />
+      <Hero />
       <DashboardShowcase
         src="/images/app/dashboard.webp"
         alt="Spektri.Labs – Komentokeskus, KPI-kortit ja ajot"
         badge="Live product"
         caption="Reaaliaikaiset KPI:t, ajot ja agentit yhdestä näkymästä"
       />
-
-      {/* Highlights – Tailark features when enabled */}
-      <FeaturesPro />
-
-  {/* How it works */}
-  <HowItWorks />
-
-  {/* Animated stats */}
-  <AnimatedStats />
-
-  {/* Product UI preview replaced by DashboardShowcase above */}
-
-      {/* Integrations cloud when enabled, else simple logo cloud */}
-  {/* Logo sections removed per request */}
-
-
-      {/* CTA Section */}
-    <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="container mx-auto px-4 relative z-10 text-center text-white">
-      <h2 className="text-4xl md:text-5xl font-bold mb-6">Aloita tänään</h2>
-      <p className="text-xl mb-8 text-purple-100 max-w-2xl mx-auto">Käyttöönotto minuuteissa. Skaalaa ilman yllätyksiä.</p>
-          <Link href="/dashboard">
-            <Button size="lg" className="btn-spektri text-lg px-8 py-4">
-              <Sparkles className="mr-2 h-5 w-5" /> Kokeile ilmaiseksi 14 päivää
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-  {/* Social proof */}
-  <Testimonials />
-
-  {/* Use cases */}
-  <UseCases />
-
-  {/* Pricing teaser */}
-  <PricingTeaser />
-
-  {/* Contact */}
-  <ContactSection />
-
-  {/* FAQ */}
-  <FAQSection />
+      <Pillars />
+      <TrustBar />
+      <Features />
+      <HowItWorks />
+      <FinalCTA />
+      <footer className="border-t border-white/10 py-10 text-center text-sm text-white/60">© {new Date().getFullYear()} Spektri.Labs</footer>
     </main>
   )
 }
 
 function ClassicLanding() {
   return (
-    <main id="main" className="min-h-screen bg-background">
-      <section className="border-b">
-        <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge className="mb-3" variant="secondary">Rakennettu shadcn/ui-komponenteilla</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-              Spektri.Labs UI
-            </h1>
-            <p className="mt-4 text-muted-foreground text-lg">
-              Ammattimainen UI-malli Next.js 14:lle. Yksinkertainen, vakaa ja laajennettava.
-            </p>
-            <div className="mt-8 flex items-center justify-center gap-3">
-              <Link href="/dashboard">
-                <Button size="lg">Aloita</Button>
-              </Link>
-              <Link href="/components">
-                <Button size="lg" variant="outline">Komponentit</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-6 md:grid-cols-3">
-            <Card>
-              <CardHeader>
-                <CardTitle>Nopea aloitus</CardTitle>
-                <CardDescription>Selkeä peruspohja ilman ylimääräistä.</CardDescription>
-              </CardHeader>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>shadcn/ui</CardTitle>
-                <CardDescription>Yhtenäiset ja saavutettavat komponentit.</CardDescription>
-              </CardHeader>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Laajennettavuus</CardTitle>
-                <CardDescription>Lisää osioita ja sivuja tarpeen mukaan.</CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base md:text-lg">Kokonaisaktiivisuus</CardTitle>
-              <CardDescription>Ajot 14 päivän aikana</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ChartCard
-                title=""
-                description=""
-                data={[8,12,11,18,20,22,25,24,28,30,31,33,35,37]}
-                labels={["1","2","3","4","5","6","7","8","9","10","11","12","13","14"]}
-                className="bg-card"
-                accentClassName="stroke-[hsl(var(--quantum-blue))]"
-              />
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <section className="py-16 border-t">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold">Valmis tuotantoon</h2>
-          <p className="mt-2 text-muted-foreground">Seuraavat askeleet: lisää sisältöä, kytke data ja julkaise.</p>
-          <div className="mt-6">
-            <Link href="/status">
-              <Button variant="secondary">Katso järjestelmän tila</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
+  <main id="main" />
   )
 }
 
-export default function Home() {
-  return <FancyLanding />
-}
+export default function Home() { return <Landing /> }
