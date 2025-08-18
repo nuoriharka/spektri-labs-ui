@@ -1,6 +1,7 @@
 "use client"
 
 import useSWR from "swr"
+import { useRouter, useSearchParams } from "next/navigation"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { Button } from "@/components/ui/button"
 import { PageHeader } from "@/components/page-header"
@@ -15,6 +16,8 @@ import Link from "next/link"
 import { InlineHint } from "@/components/inline-hint"
 import { StatusBadge } from "@/components/status-badge"
 import { EmptyState } from "@/components/empty-state"
+import { AgentsGrid } from "@/components/agents/AgentsGrid"
+import { AgentsTable } from "@/components/agents/AgentsTable"
 import { 
   Bot, 
   Plus, 
@@ -51,6 +54,14 @@ export default function AgentsPage() {
   const formatInt = useMemo(() => new Intl.NumberFormat("fi-FI"), [])
   const { data, error, isLoading, mutate } = useSWR<Agent[]>("/api/agents", fetcher)
   const agents = data ?? []
+  const router = useRouter()
+  const sp = useSearchParams()
+  const view = (sp.get("view") as "list" | "grid") || "grid"
+  function setView(v: "list" | "grid") {
+    const params = new URLSearchParams(Array.from(sp.entries()))
+    params.set("view", v)
+    router.push(`/dashboard/agents?${params.toString()}`)
+  }
   return (
     <DashboardLayout>
   <div className="page-wrap">
@@ -136,7 +147,7 @@ export default function AgentsPage() {
           </Card>
         </div>
 
-        {/* Search and Filter */}
+        {/* Search and Filter + View toggle */}
         <div className="flex items-center space-x-2">
           <div className="relative flex-1 max-w-sm">
             <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -146,103 +157,22 @@ export default function AgentsPage() {
             <Filter className="mr-2 h-4 w-4" />
             Suodata
           </Button>
+          <div className="ml-auto flex items-center gap-1">
+            <Button variant={view === 'grid' ? 'default' : 'outline'} size="sm" onClick={()=> setView('grid')}>Grid</Button>
+            <Button variant={view === 'list' ? 'default' : 'outline'} size="sm" onClick={()=> setView('list')}>Lista</Button>
+          </div>
         </div>
 
-        {/* Agents Grid */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {isLoading && (
-            <Card className="p-6">Ladataan agentteja…</Card>
-          )}
-          {error && (
-            <Card className="p-6 text-destructive">Virhe ladattaessa agentteja</Card>
-          )}
-          {agents.map((agent) => (
-            <Card key={agent.id} className="relative group hover:shadow-md transition-shadow">
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center space-x-3">
-                    <Avatar>
-                      {/* In real app, use AvatarImage with src. Here we show initials */}
-                      <AvatarFallback className="text-xs font-medium bg-muted">{
-                        agent.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .slice(0, 2)
-                          .join("")
-                      }</AvatarFallback>
-                    </Avatar>
-                    <div className="space-y-1">
-                      <CardTitle className="text-base">{agent.name}</CardTitle>
-                      <CardDescription className="text-sm">
-                        {agent.description}
-                      </CardDescription>
-                    </div>
-                  </div>
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                    <MoreVertical className="h-4 w-4" />
-                  </Button>
-                </div>
-              </CardHeader>
-              
-              <CardContent className="pt-0">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Status</span>
-                    <div className="flex items-center gap-2">
-                      <StatusBadge status={agent.status || "active"} />
-                      <Button size="icon" variant="ghost" aria-label="Vaihda tila" onClick={async ()=>{
-                        const next = agent.status === 'paused' ? 'active' : 'paused'
-                        const prev = agent.status
-                        // optimistic
-                        await mutate((prevList)=> prevList?.map(a=> a.id===agent.id ? { ...a, status: next } : a), { revalidate: false })
-                        try {
-                          await fetch(`/api/agents/${agent.id}`, { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ status: next }) })
-                          await mutate()
-                        } catch {
-                          // rollback
-                          await mutate((prevList)=> prevList?.map(a=> a.id===agent.id ? { ...a, status: prev } : a), { revalidate: false })
-                        }
-                      }}>
-                        {agent.status === 'paused' ? <Play className="h-4 w-4"/> : <Pause className="h-4 w-4"/>}
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Tyyppi</span>
-                    <Badge variant="outline">{agent.type || "-"}</Badge>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Tarkkuus</span>
-                      <span className="font-medium">{(agent.accuracy ?? 0)}%</span>
-                    </div>
-                    <Progress value={agent.accuracy ?? 0} className="h-2" />
-                  </div>
-                  
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Tehtäviä</span>
-                    <span className="font-medium">{formatNumber(agent.tasksCompleted ?? 0, "fi-FI")}</span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Viimeksi</span>
-                    <span className="font-medium">{agent.lastRun || "-"}</span>
-                  </div>
-                  
-                  <div className="pt-2">
-                    <Link href={`/dashboard/agents/${agent.id}`}>
-                      <Button className="w-full" size="sm">
-                        Näytä yksityiskohdat
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {/* Agents list/grid */}
+        {isLoading && (<Card className="p-6">Ladataan agentteja…</Card>)}
+        {error && (<Card className="p-6 text-destructive">Virhe ladattaessa agentteja</Card>)}
+        {!isLoading && !error && (
+          view === 'grid' ? (
+            <AgentsGrid agents={agents as any} />
+          ) : (
+            <AgentsTable />
+          )
+        )}
 
         {/* Empty State */}
         {!isLoading && !error && agents.length === 0 && (
