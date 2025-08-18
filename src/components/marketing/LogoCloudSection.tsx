@@ -7,7 +7,7 @@ export default function LogoCloudSection(){
     <section className="relative py-6">
       <VideoLoop srcMp4="/videos/icon-cloud.mp4" poster="/posters/icon-cloud.jpg" className="absolute inset-0 opacity-30 pointer-events-none" label="Icon cloud background" />
       <div className="relative">
-        <LogoCloud max={12} />
+  <LogoCloud />
       </div>
     </section>
   );

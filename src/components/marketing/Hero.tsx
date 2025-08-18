@@ -1,3 +1,4 @@
+"use client";
 import VideoLoop from "./VideoLoop";
 import ThemeSwitcher from "@/components/theme/ThemeSwitcher";
 import { useEffect, useRef } from "react";
