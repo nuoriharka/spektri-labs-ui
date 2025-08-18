@@ -3,6 +3,7 @@
 import useSWR from "swr"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { Button } from "@/components/ui/button"
+import { PageHeader } from "@/components/page-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
@@ -11,6 +12,9 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { formatNumber } from "@/lib/format"
 import { useMemo } from "react"
 import Link from "next/link"
+import { InlineHint } from "@/components/inline-hint"
+import { StatusBadge } from "@/components/status-badge"
+import { EmptyState } from "@/components/empty-state"
 import { 
   Bot, 
   Plus, 
@@ -25,7 +29,6 @@ import {
   CheckCircle,
   AlertCircle,
   TrendingUp,
-  Users,
   Zap
 } from "lucide-react"
 
@@ -42,37 +45,7 @@ type Agent = {
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
-function StatusBadge({ status }: { status: string }) {
-  const config = {
-    active: { 
-      variant: "default" as const, 
-      icon: CheckCircle, 
-      text: "Aktiivinen",
-      className: "bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-300"
-    },
-    paused: { 
-      variant: "secondary" as const, 
-      icon: Clock, 
-      text: "Pysäytetty",
-      className: "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-300"
-    },
-    error: { 
-      variant: "destructive" as const, 
-      icon: AlertCircle, 
-      text: "Virhe",
-      className: "bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-300"
-    }
-  }
-  
-  const { icon: Icon, text, className } = config[status as keyof typeof config]
-  
-  return (
-    <Badge className={className}>
-      <Icon className="w-3 h-3 mr-1" />
-      {text}
-    </Badge>
-  )
-}
+// using shared StatusBadge
 
 export default function AgentsPage() {
   const formatInt = useMemo(() => new Intl.NumberFormat("fi-FI"), [])
@@ -80,24 +53,25 @@ export default function AgentsPage() {
   const agents = data ?? []
   return (
     <DashboardLayout>
-      <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-        {/* Header */}
-        <div className="flex items-center justify-between space-y-2">
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight">Agentit</h2>
-            <p className="text-muted-foreground">
-              Hallitse ja seuraa tekoälyagenttejasi
-            </p>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Link href="/dashboard/agents/new">
-              <Button className="btn-spektri">
-                <Plus className="mr-2 h-4 w-4" />
-                Uusi agentti
-              </Button>
+  <div className="page-wrap">
+        <PageHeader title="Agentit" description="Hallitse ja seuraa tekoälyagenttejasi">
+          <Link href="/dashboard/agents/new">
+            <Button className="btn-spektri">
+              <Plus className="mr-2 h-4 w-4" />
+              Uusi agentti
+            </Button>
+          </Link>
+        </PageHeader>
+
+        <InlineHint
+          action={(
+            <Link href="/dashboard/templates">
+              <Button size="sm" variant="outline">Avaa pohjat</Button>
             </Link>
-          </div>
-        </div>
+          )}
+        >
+          Vinkki: Aloita nopeammin valmiista pohjista.
+        </InlineHint>
 
         {/* Stats Cards */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -253,21 +227,20 @@ export default function AgentsPage() {
           ))}
         </div>
 
-  {/* Empty State */}
-  {!isLoading && !error && agents.length === 0 && (
-          <Card className="flex flex-col items-center justify-center p-8 text-center">
-            <Bot className="h-12 w-12 text-muted-foreground mb-4" />
-            <CardTitle className="mb-2">Ei agentteja vielä</CardTitle>
-            <CardDescription className="mb-4">
-              Aloita luomalla ensimmäinen tekoälyagenttisi
-            </CardDescription>
-            <Link href="/dashboard/agents/new">
-              <Button>
-                <Plus className="mr-2 h-4 w-4" />
-                Luo ensimmäinen agentti
-              </Button>
-            </Link>
-          </Card>
+        {/* Empty State */}
+        {!isLoading && !error && agents.length === 0 && (
+          <EmptyState
+            title="Ei agentteja vielä"
+            description="Aloita luomalla ensimmäinen tekoälyagenttisi"
+            icon={<Bot className="h-12 w-12" />}
+            action={(
+              <Link href="/dashboard/agents/new">
+                <Button>
+                  <Plus className="mr-2 h-4 w-4" /> Luo ensimmäinen agentti
+                </Button>
+              </Link>
+            )}
+          />
         )}
       </div>
     </DashboardLayout>

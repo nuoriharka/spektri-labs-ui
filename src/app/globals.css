@@ -44,7 +44,8 @@
     --input: 240 20% 88%;
     --ring: var(--spektri-violet);
  
-    --radius: 0.5rem;
+  /* Radius per design (rounded-2xl) */
+  --radius: 1rem;
     
     /* Premium Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--spektri-violet)) 0%, hsl(var(--quantum-blue)) 100%);
@@ -94,11 +95,19 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Base typography per design guide: body 15/24 */
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 24px;
   }
 }
 
 @layer components {
+  /* Unified page wrapper spacing (4,8,12,16,24,32,48) */
+  .page-wrap {
+    @apply flex-1 space-y-6 p-4 md:p-8 pt-6;
+  }
+
   /* Premium Glass Effect */
   .glass-card {
     background: rgba(255, 255, 255, 0.1);
@@ -153,6 +162,13 @@
 }
 
 @layer utilities {
+  /* Heading sizes per design: h1 30/36, h2 24/32 */
+  h1 { font-size: 30px; line-height: 36px; }
+  h2 { font-size: 24px; line-height: 32px; }
+  h3 { font-size: 18px; line-height: 28px; }
+  p, li { line-height: 24px; }
+  small { font-size: 13px; line-height: 20px; }
+
   /* Text Gradients */
   .text-gradient-primary {
     background: var(--gradient-primary);

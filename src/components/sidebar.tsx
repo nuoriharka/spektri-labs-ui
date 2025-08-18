@@ -47,6 +47,16 @@ const navigation = [
     count: 8,
   },
   {
+    name: "Runs",
+    href: "/dashboard/runs",
+    icon: Activity,
+  },
+  {
+    name: "Templates",
+    href: "/dashboard/templates",
+    icon: FileText,
+  },
+  {
     name: "Analytics",
     href: "/dashboard/analytics",
     icon: BarChart3,

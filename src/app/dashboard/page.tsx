@@ -2,6 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { DashboardLayout } from "@/components/dashboard-layout"
+import { PageHeader } from "@/components/page-header"
 import { Sidebar } from "@/components/sidebar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -23,6 +25,7 @@ import {
   BarChart3
 } from "lucide-react"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
+import { MoneyBar } from "@/components/money-bar"
 
 const stats = [
   {
@@ -122,72 +125,32 @@ const recentActivity = [
 ]
 
 export default function DashboardPage() {
+  const kpis = [
+    { label: "MRR", value: formatCurrency(12540, "EUR", "fi-FI"), delta: "+8 %", intent: "good" as const },
+    { label: "Runs 7d", value: formatNumber(2847, "fi-FI"), delta: "+12 %", intent: "good" as const },
+    { label: "Success %", value: `${(98.5).toFixed(1)} %`, delta: "+0.5 %", intent: "good" as const },
+    { label: "Cost / run", value: "€0.07", delta: "-3 %", intent: "good" as const },
+    { label: "Saved h", value: "247h", delta: "+19 %", intent: "good" as const },
+  ]
   return (
-    <div className="flex h-screen bg-background">
-      <Sidebar />
-      
-      <main className="flex-1 overflow-auto">
-        {/* Header */}
-    <div className="bg-card border-b px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold">Hallintapaneeli</h1>
-              <p className="text-muted-foreground">Tervetuloa takaisin Spektri.Labs -alustalle</p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Badge variant="outline" className="border-green-300/40 bg-green-100/40 text-green-700 dark:bg-green-900/20 dark:text-green-300">
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                Järjestelmä toimii
-              </Badge>
-      <Link href="/dashboard/agents/new">
-                <Button className="btn-spektri">
-                  <Bot className="mr-2 h-4 w-4" />
-                  Luo agentti
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
+    <DashboardLayout>
+  <div className="page-wrap">
+        <PageHeader title="Hallintapaneeli" description="Tervetuloa takaisin Spektri.Labs -alustalle">
+          <Badge variant="outline" className="border-green-300/40 bg-green-100/40 text-green-700 dark:bg-green-900/20 dark:text-green-300">
+            <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+            Järjestelmä toimii
+          </Badge>
+          <Link href="/dashboard/agents/new">
+            <Button className="btn-spektri">
+              <Bot className="mr-2 h-4 w-4" />
+              Luo agentti
+            </Button>
+          </Link>
+        </PageHeader>
 
-        <div className="p-6">
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {stats.map((stat) => (
-              <Card key={stat.name} className="card-premium">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-muted-foreground">{stat.name}</p>
-                      <p className="text-2xl font-bold">
-                        {stat.name === "Kustannussäästöt"
-                          ? formatCurrency(stat.value as number, "EUR", "fi-FI")
-                          : stat.name === "Onnistumisprosentti"
-                          ? `${(stat.value as number).toFixed(1)} %`
-                          : formatNumber(stat.value as number, "fi-FI")}
-                      </p>
-                    </div>
-                    <div className="h-12 w-12 rounded-lg flex items-center justify-center bg-muted">
-                      <stat.icon className="h-6 w-6 text-[hsl(var(--quantum-blue))]" />
-                    </div>
-                  </div>
-                  <div className="mt-4 flex items-center">
-                    {stat.changeType === "increase" ? (
-                      <ArrowUpRight className="h-4 w-4 text-green-500 mr-1" />
-                    ) : (
-                      <ArrowDownRight className="h-4 w-4 text-red-500 mr-1" />
-                    )}
-                    <span className={`text-sm font-medium ${
-                      stat.changeType === "increase" ? "text-green-600" : "text-red-600"
-                    }`}>
-                      {stat.change}
-                    </span>
-                    <span className="text-sm text-muted-foreground ml-2">vs. viime kuu</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <MoneyBar items={kpis} />
 
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Recent Agents */}
             <Card className="card-premium">
@@ -280,7 +243,7 @@ export default function DashboardPage() {
             <ChartAreaInteractive />
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </DashboardLayout>
   )
 }

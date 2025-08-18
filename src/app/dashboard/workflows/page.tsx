@@ -2,6 +2,7 @@
 
 import useSWR from "swr"
 import { DashboardLayout } from "@/components/dashboard-layout"
+import { PageHeader } from "@/components/page-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -30,19 +31,14 @@ export default function WorkflowsPage() {
 		const workflows = data ?? []
 	return (
 		<DashboardLayout>
-			<div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
-				{/* Header */}
-				<div className="flex items-center justify-between">
-					<div>
-						<h2 className="text-3xl font-bold tracking-tight">Työnkulut</h2>
-						<p className="text-muted-foreground">Rakenna ja hallitse työnkulkuja</p>
-					</div>
+			<div className="page-wrap">
+				<PageHeader title="Työnkulut" description="Rakenna ja hallitse työnkulkuja">
 					<Link href="/dashboard/workflows/new">
-							<Button className="btn-spektri">
+						<Button className="btn-spektri">
 							<Plus className="mr-2 h-4 w-4" /> Uusi workflow
 						</Button>
 					</Link>
-				</div>
+				</PageHeader>
 
 						{/* Filters + Chart */}
 						<Tabs defaultValue="all" className="w-full">

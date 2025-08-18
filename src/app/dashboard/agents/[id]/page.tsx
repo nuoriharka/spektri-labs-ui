@@ -4,8 +4,10 @@ import useSWR from "swr"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { DashboardLayout } from "@/components/dashboard-layout"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -14,6 +16,7 @@ import { Progress } from "@/components/ui/progress"
 import { useToast } from "@/components/ui/use-toast"
 import type { Agent } from "@/lib/agents-store"
 import { ArrowLeft, CheckCircle, Pause, Play, Trash2 } from "lucide-react"
+import { LogsList } from "@/components/logs-list"
 import { useEffect, useMemo, useState } from "react"
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
@@ -93,13 +96,14 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
 
   return (
     <DashboardLayout>
-      <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-        <div className="flex items-center justify-between">
+  <div className="page-wrap">
+    <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
+      <Breadcrumbs items={[{ label: "Agentit", href: "/dashboard/agents" }, { label: data?.name || "Agentti" }]} />
             <Link href="/dashboard/agents">
               <Button variant="ghost" size="sm"><ArrowLeft className="h-4 w-4 mr-2" />Takaisin</Button>
             </Link>
-            <h2 className="text-2xl font-bold tracking-tight">Agentti</h2>
+      <h1 className="font-bold tracking-tight">{data?.name || "Agentti"}</h1>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="outline" onClick={toggleStatus} disabled={isLoading || saving}>
@@ -113,62 +117,109 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
         {isLoading && <Card className="p-6">Ladataan…</Card>}
         {error && <Card className="p-6 text-destructive">Virhe ladattaessa agenttia</Card>}
         {data && (
-          <div className="grid gap-4 md:grid-cols-3">
-            <Card className="md:col-span-2 card-premium">
-              <CardHeader>
-                <CardTitle>Perustiedot</CardTitle>
-                <CardDescription>Muokkaa agentin perustietoja</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Nimi</Label>
-                    <Input id="name" value={draft.name || ""} onChange={(e)=>setDraft((d)=>({...d, name:e.target.value}))} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="category">Kategoria</Label>
-                    <Input id="category" value={draft.category || ""} onChange={(e)=>setDraft((d)=>({...d, category:e.target.value, type:e.target.value}))} />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="description">Kuvaus</Label>
-                  <Textarea id="description" value={draft.description || ""} onChange={(e)=>setDraft((d)=>({...d, description:e.target.value}))} />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="instructions">Toimintaohjeet</Label>
-                  <Textarea id="instructions" className="min-h-[120px]" value={draft.instructions || ""} onChange={(e)=>setDraft((d)=>({...d, instructions:e.target.value}))} />
-                </div>
-              </CardContent>
-            </Card>
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList>
+              <TabsTrigger value="overview">Yleiskatsaus</TabsTrigger>
+              <TabsTrigger value="runs">Ajot</TabsTrigger>
+              <TabsTrigger value="logs">Lokit</TabsTrigger>
+              <TabsTrigger value="settings">Asetukset</TabsTrigger>
+            </TabsList>
 
-            <Card className="card-premium">
-              <CardHeader>
-                <CardTitle>Tila ja mittarit</CardTitle>
-                <CardDescription>Yleiskuva</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Tila</span>
-                  <StatusBadge status={draft.status || "active"} />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Tarkkuus</span>
-                    <span className="font-medium">{(draft.accuracy ?? data.accuracy ?? 95)}%</span>
-                  </div>
-                  <Progress value={draft.accuracy ?? data.accuracy ?? 95} className="h-2" />
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Tehtäviä</span>
-                  <span className="font-medium">{draft.tasksCompleted ?? data.tasksCompleted ?? 0}</span>
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Viimeksi ajettu</span>
-                  <span className="font-medium">{draft.lastRun || data.lastRun || "-"}</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+            <TabsContent value="overview">
+              <div className="grid gap-4 md:grid-cols-3">
+                <Card className="md:col-span-2 card-premium">
+                  <CardHeader>
+                    <CardTitle>Perustiedot</CardTitle>
+                    <CardDescription>Muokkaa agentin perustietoja</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Nimi</Label>
+                        <Input id="name" value={draft.name || ""} onChange={(e)=>setDraft((d)=>({...d, name:e.target.value}))} />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="category">Kategoria</Label>
+                        <Input id="category" value={draft.category || ""} onChange={(e)=>setDraft((d)=>({...d, category:e.target.value, type:e.target.value}))} />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="description">Kuvaus</Label>
+                      <Textarea id="description" value={draft.description || ""} onChange={(e)=>setDraft((d)=>({...d, description:e.target.value}))} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="instructions">Toimintaohjeet</Label>
+                      <Textarea id="instructions" className="min-h-[120px]" value={draft.instructions || ""} onChange={(e)=>setDraft((d)=>({...d, instructions:e.target.value}))} />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="card-premium">
+                  <CardHeader>
+                    <CardTitle>Tila ja mittarit</CardTitle>
+                    <CardDescription>Yleiskuva</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">Tila</span>
+                      <StatusBadge status={draft.status || "active"} />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Tarkkuus</span>
+                        <span className="font-medium">{(draft.accuracy ?? data.accuracy ?? 95)}%</span>
+                      </div>
+                      <Progress value={draft.accuracy ?? data.accuracy ?? 95} className="h-2" />
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-muted-foreground">Tehtäviä</span>
+                      <span className="font-medium">{draft.tasksCompleted ?? data.tasksCompleted ?? 0}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-muted-foreground">Viimeksi ajettu</span>
+                      <span className="font-medium">{draft.lastRun || data.lastRun || "-"}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="runs">
+              <Card className="card-premium">
+                <CardHeader>
+                  <CardTitle>Ajohistoria</CardTitle>
+                  <CardDescription>Viimeisimmät suoritukset</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">Ajohistorian listaus tulee myöhemmin.</p>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="logs">
+              <Card className="card-premium">
+                <CardHeader>
+                  <CardTitle>Lokit</CardTitle>
+                  <CardDescription>Kehittäjille</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <LogsList items={[{ id: 1, level: "info", message: "Agentti käynnistyi", time: "nyt" }]} />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="settings">
+              <Card className="card-premium">
+                <CardHeader>
+                  <CardTitle>Lisäasetukset</CardTitle>
+                  <CardDescription>Aseta ajoajastukset, rajoitukset, yms.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">Asetuslomake tulee myöhemmin.</p>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         )}
       </div>
     </DashboardLayout>

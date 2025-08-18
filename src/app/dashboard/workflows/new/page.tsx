@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { ArrowLeft, Workflow } from "lucide-react"
+import { FlowCanvas } from "@/components/flow-canvas"
 
 export default function NewWorkflowPage() {
   const router = useRouter()
@@ -46,7 +47,7 @@ export default function NewWorkflowPage() {
           <h2 className="text-3xl font-bold tracking-tight">Uusi työnkulku</h2>
           <p className="text-muted-foreground">Määrittele työnkulun nimi ja kuvaus</p>
         </div>
-        <Card className="card-premium">
+  <Card className="card-premium">
           <CardHeader>
             <CardTitle className="flex items-center"><Workflow className="h-5 w-5 mr-2"/>Perustiedot</CardTitle>
             <CardDescription>Luo uusi workflow</CardDescription>
@@ -63,6 +64,10 @@ export default function NewWorkflowPage() {
             <div className="flex gap-2">
               <Button className="btn-spektri" onClick={create} disabled={submitting || !name.trim()}>Luo</Button>
               <Button variant="outline" onClick={()=>router.push('/dashboard/workflows')}>Peruuta</Button>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground mb-2">Visuaalinen kehys (demo)</p>
+              <FlowCanvas nodes={[{ id: "n1", x: 60, y: 40, label: "Start" }, { id: "n2", x: 220, y: 140, label: "Step" }]} />
             </div>
           </CardContent>
         </Card>
