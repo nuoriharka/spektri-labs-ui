@@ -102,7 +102,7 @@ export function FinalCTA(){
         <div className="rounded-3xl border border-white/10 bg-gradient-to-r from-[var(--brand)]/20 to-[var(--brand2)]/20 p-10 text-center">
           <h3 className="text-3xl font-semibold text-white">Aloita automaatiomatkasi 60 sekunnissa</h3>
           <p className="mt-3 text-white/80">Ilmainen Basic-tili: rakenna ensimmäiset agenttisi heti.</p>
-          <a href="/app" className="inline-flex items-center rounded-2xl px-6 py-3 bg-[var(--brand)] hover:brightness-110 text-white font-medium transition mt-6">Aloita ilmaiseksi</a>
+          <a href="/dashboard" className="inline-flex items-center rounded-2xl px-6 py-3 bg-[var(--brand)] hover:brightness-110 text-white font-medium transition mt-6">Aloita ilmaiseksi</a>
         </div>
       </Container>
     </section>

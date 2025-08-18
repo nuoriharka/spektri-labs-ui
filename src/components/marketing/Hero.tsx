@@ -29,7 +29,7 @@ export default function Hero() {
             Rakenna ja käytä älyagentteja ilman kitkaa. Aja ensimmäinen työnkulku alle 60 sekunnissa.
           </p>
           <div className="mt-8 flex items-center gap-3">
-            <Link href="/app" className="inline-flex items-center rounded-2xl px-5 py-3 bg-[var(--brand)] text-white font-medium hover:brightness-110 transition">
+            <Link href="/dashboard" className="inline-flex items-center rounded-2xl px-5 py-3 bg-[var(--brand)] text-white font-medium hover:brightness-110 transition">
               Aloita ilmaiseksi
             </Link>
             <Link href="#features" className="inline-flex items-center rounded-2xl px-5 py-3 bg-white/10 hover:bg-white/15 text-white font-medium backdrop-blur transition">

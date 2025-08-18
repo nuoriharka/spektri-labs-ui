@@ -24,7 +24,7 @@ export default function SiteHeader() {
               {n.label}
             </Link>
           ))}
-          <Link href="/app" className="rounded-xl bg-[var(--brand)] px-4 py-2 text-sm font-medium text-white hover:brightness-110 transition">
+          <Link href="/dashboard" className="rounded-xl bg-[var(--brand)] px-4 py-2 text-sm font-medium text-white hover:brightness-110 transition">
             Aloita
           </Link>
         </nav>
@@ -44,7 +44,7 @@ export default function SiteHeader() {
                 {n.label}
               </Link>
             ))}
-            <Link href="/app" className="block rounded-lg bg-[var(--brand)] px-3 py-2 text-center text-white hover:brightness-110 transition" onClick={() => setOpen(false)}>
+            <Link href="/dashboard" className="block rounded-lg bg-[var(--brand)] px-3 py-2 text-center text-white hover:brightness-110 transition" onClick={() => setOpen(false)}>
               Aloita
             </Link>
           </div>
