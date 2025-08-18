@@ -20,32 +20,30 @@ export default function LogoCloudTailark() {
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background" />
-          <div className="flex animate-[marquee_30s_linear_infinite] gap-12 md:gap-16 whitespace-nowrap will-change-transform items-center">
-            {/* Spektri logo at start */}
+          <div className="flex animate-[marquee_30s_linear_infinite] gap-14 md:gap-20 whitespace-nowrap will-change-transform items-center">
+            {/* Spektri logo at start, large and crisp */}
             <a
               href={spektriLogo.href}
-              className="inline-flex items-center gap-3 opacity-90 hover:opacity-100"
-              style={{ marginRight: '2.5rem' }}
+              className="inline-flex items-center justify-center opacity-95 hover:opacity-100 transition-transform hover:scale-110"
+              style={{ marginRight: '3.5rem' }}
             >
-              <img src={spektriLogo.src} alt={spektriLogo.label} className="h-8 w-8 object-contain drop-shadow-lg" />
-              <span className="text-xs font-semibold">{spektriLogo.label}</span>
+              <img src={spektriLogo.src} alt={spektriLogo.label} className="h-12 w-12 object-contain drop-shadow-xl" />
             </a>
-            {/* Brand logos, uniform size, color on hover, crisp rendering */}
+            {/* Brand logos, large, crisp, no grayscale, soft shadow, scale on hover, no text */}
             {[...CORE_LOGOS, ...CORE_LOGOS].map(({ slug, label, href }, i) => (
               <a
                 key={`${slug}-${i}`}
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 opacity-80 hover:opacity-100 transition-transform hover:scale-105"
+                className="inline-flex items-center justify-center opacity-90 hover:opacity-100 transition-transform hover:scale-110"
               >
                 <img
                   src={`/logos/${slug}.svg`}
-                  alt={`${label} logo`}
-                  className="h-8 w-8 object-contain transition-all duration-200 grayscale hover:grayscale-0 drop-shadow"
+                  alt={label}
+                  className="h-12 w-12 object-contain drop-shadow-xl transition-all duration-200"
                   style={{ imageRendering: 'auto' }}
                 />
-                <span className="text-xs">{label}</span>
               </a>
             ))}
           </div>
