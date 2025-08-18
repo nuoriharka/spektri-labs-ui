@@ -14,8 +14,8 @@ export function Pillars(){
         <div className="grid gap-4 md:grid-cols-3">
           {items.map((x)=>(
             <div key={x.t} className="rounded-2xl border border-white/10 bg-black/30 p-6 backdrop-blur">
-              <div className="text-lg font-semibold text-white">{x.t}</div>
-              <p className="mt-2 text-white/80">{x.d}</p>
+              <h3 className="text-lg font-semibold text-white">{x.t}</h3>
+              <p className="mt-2 text-white/70">{x.d}</p>
             </div>
           ))}
         </div>
@@ -25,16 +25,8 @@ export function Pillars(){
 }
 
 export function TrustBar(){
-  const items=["Google","Microsoft","Slack","Notion","HubSpot"];
-  return (
-    <section className="border-t border-white/10 bg-black/20">
-      <Container>
-        <div className="py-16 md:py-24 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {items.map((n)=>(<div key={n} className="text-sm text-white/60">{n}</div>))}
-        </div>
-      </Container>
-    </section>
-  );
+  // Replaced by LogosMarquee component; kept for backward compatibility
+  return null
 }
 
 function FeatureRow({reverse,title,desc,src,alt}:{reverse?:boolean;title:string;desc:string;src:string;alt:string;}){
@@ -72,7 +64,7 @@ export function Features(){
           <FeatureRow title="Agent builder – split-näkymä" desc="Chat vasemmalla, visualisointi oikealla." src="/images/sections/features-1-builder.webp" alt="Agent builder – split-näkymä"/>
           <FeatureRow reverse title="Mallikirjasto – aloita 60 sekunnissa" desc="Valitse malli ja aja yhdellä klikkauksella." src="/images/sections/features-2-templates.webp" alt="Mallikirjasto – korttipino"/>
           <FeatureRow title="Integraatiot ilman kitkaa" desc="OAuth Googleen, Microsoftiin, CRM:iin ja verkkokauppoihin." src="/images/sections/features-3-integrations.webp" alt="Integraatiot – ikonipilvi"/>
-          <FeatureRow reverse title="Suorituskyky & kustannukset" desc="Onnistumisprosentti, kustannus/ajo ja säästetty aika." src="/images/sections/features-4-performance.webp" alt="Suorituskyky & kustannukset – abstrakti graafi"/>
+          <FeatureRow reverse title="Suorituskyky & kustannukset" desc="Onnistumisprosentti, kustannus/ajo ja säästetty aika." src="/images/sections/features-4-performance.webp" alt="Suorituskyky ja kustannukset – mittarit"/>
         </div>
       </Container>
     </section>
@@ -91,9 +83,9 @@ export function HowItWorks(){
         <div className="grid gap-4 md:grid-cols-3">
           {steps.map((s)=>(
             <div key={s.n} className="rounded-2xl border border-white/10 bg-black/30 p-6 backdrop-blur">
-              <div className="text-[var(--brand)] text-sm font-semibold">Vaihe {s.n}</div>
-              <div className="mt-2 text-lg font-semibold text-white">{s.t}</div>
-              <p className="mt-1 text-white/80">{s.d}</p>
+              <div className="text-sm text-white/60">Vaihe {s.n}</div>
+              <h3 className="mt-1 text-lg font-semibold text-white">{s.t}</h3>
+              <p className="mt-2 text-white/70">{s.d}</p>
             </div>
           ))}
         </div>
