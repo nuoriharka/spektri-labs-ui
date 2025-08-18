@@ -1,30 +1,45 @@
 "use client";
 import * as React from "react";
 import { BRAND_ICONS } from "@/content/brand-icons";
-
-type Props = {
-  variant?: "mono" | "brand";
-  max?: number;
-  className?: string;
-};
-
-export default function LogoCloud({ variant = "mono", max, className }: Props) {
-  const items = max ? BRAND_ICONS.slice(0, max) : BRAND_ICONS;
-
   return (
-    <div data-testid="logo-cloud" className={["w-full mx-auto", className].filter(Boolean).join(" ")}> 
-      <div className="text-center mb-6">
-        <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs bg-white/5 text-white/80 ring-1 ring-white/10">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80" />
-          Works with your stack
-        </span>
+    <section className="overflow-hidden py-16 md:py-24">
+      <div className="container mx-auto px-6">
+        <p className="mb-8 text-center text-lg font-medium text-[color:var(--muted)] tracking-tight">
+          Orkestroimme maailman parhaita työkaluja puolestasi
+        </p>
+        <div className={`relative ${isDesigner ? "" : "animate-marquee"}`}>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--bg)]" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[var(--bg)]" />
+          <div className="flex gap-20 md:gap-24 whitespace-nowrap will-change-transform items-center py-4">
+            {[...LOGOS, ...LOGOS].map(({ slug, label, href }, i) => (
+              <a
+                key={`${slug}-${i}`}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-4 opacity-90 hover:opacity-100 transition-transform hover:scale-110"
+                style={{ filter: isDesigner ? "none" : "drop-shadow(0 2px 12px rgba(34,211,238,0.10))" }}
+              >
+                <img
+                  src={`/logos/${slug}.svg`}
+                  alt={`${label} logo`}
+                  className={`h-10 w-10 object-contain drop-shadow-xl transition-all duration-200 ${isDesigner ? "" : "grayscale invert"} data-[theme=designer]:invert-0`}
+                  style={{ imageRendering: 'auto' }}
+                />
+                <span className="text-xs md:text-sm text-[color:var(--fg)] font-medium tracking-wide drop-shadow-lg">
+                  {label}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
-
-  <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 items-center">
-        {items.map(({ id, label, path, hex }) => (
-          <li key={id} className="flex justify-center">
-            <svg
-              role="img" aria-label={label}
+      <style jsx>{`
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .animate-marquee { animation: marquee 30s linear infinite; }
+      `}</style>
+    </section>
+  );
               viewBox="0 0 24 24"
               className="h-6 md:h-7 lg:h-8 w-auto transition-opacity opacity-70 hover:opacity-100"
               style={variant === "brand" ? { color: hex } : { color: "rgb(156 163 175)" }}

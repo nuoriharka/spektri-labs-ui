@@ -13,11 +13,17 @@ import { Suspense } from "react";
 import LogoCloud from "@/components/marketing/LogoCloud";
 
 export default function Page() {
+  const Features8 = require("@/components/marketing/Features8").default;
+  const Content2 = require("@/components/marketing/Content2").default;
+  const CTA1 = require("@/components/marketing/CTA1").default;
   return (
     <Suspense>
       <main>
         <Hero />
         <LogoCloud />
+        <Features8 />
+        <Content2 />
+        <CTA1 />
       </main>
     </Suspense>
   );
