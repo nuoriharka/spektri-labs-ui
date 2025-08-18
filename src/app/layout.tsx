@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from '@/components/ui/toaster'
-import { Footer } from '@/components/footer'
 import SiteHeader from '@/components/layout/SiteHeader'
+import { Footer } from '@/components/footer'
 import { initTelemetry } from '@/lib/telemetry'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import { QueryProvider } from '@/components/providers/QueryProvider'
@@ -88,9 +88,9 @@ export default function RootLayout({
           >
             Siirry sisältöön
           </a>
-          <SiteHeader />
           <QueryProvider>
             <Toaster>
+              <SiteHeader />
               <main id="main">
                 {children}
               </main>

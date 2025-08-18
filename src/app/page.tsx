@@ -1,4 +1,3 @@
-import SiteHeader from "@/components/layout/SiteHeader"
 import Hero from "@/components/marketing/Hero"
 import DashboardShowcase from "@/components/marketing/DashboardShowcase"
 import { Pillars, TrustBar, Features, HowItWorks, FinalCTA } from "@/components/marketing/Sections"
@@ -8,8 +7,7 @@ export const metadata = { openGraph: { images: ["/images/og/og-home.png"] } } as
 
 function Landing() {
   return (
-    <main className="min-h-screen bg-[#0B0C0E] text-[var(--fg,#E7E9EC)]">
-      <SiteHeader />
+  <main className="min-h-screen bg-[#0B0C0E] text-[var(--fg,#E7E9EC)]" id="main">
       <Hero />
       <DashboardShowcase
         src="/images/app/dashboard.webp"
@@ -24,7 +22,6 @@ function Landing() {
   <Testimonials />
       <HowItWorks />
       <FinalCTA />
-      <footer className="border-t border-white/10 py-10 text-center text-sm text-white/60">© {new Date().getFullYear()} Spektri.Labs</footer>
     </main>
   )
 }

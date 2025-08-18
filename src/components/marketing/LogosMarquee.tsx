@@ -14,9 +14,9 @@ function MonoLogo({ label }: { label: string }){
 
 export default function LogosMarquee(){
   return (
-    <section className="border-y border-white/10 bg-black/20">
+  <section className="border-y border-white/10 bg-black/20">
       <Container>
-        <div className="overflow-hidden py-16 md:py-24">
+    <div className="overflow-hidden py-16 md:py-24">
           <div className="flex animate-[scroll_30s_linear_infinite] [--gap:3rem] gap-[var(--gap)] will-change-transform motion-reduce:animate-none">
             {[...brands, ...brands].map((n, i) => (
               <MonoLogo key={i} label={n} />

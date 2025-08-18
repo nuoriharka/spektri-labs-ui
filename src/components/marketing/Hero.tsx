@@ -6,13 +6,13 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <Image
+  <Image
           src="/images/landing/hero-desktop.webp"
           alt="Spektri.Labs – tumma hero, abstrakti verkko ja brändisäteet"
           fill priority sizes="100vw"
           className="hidden md:block object-cover"
         />
-        <Image
+  <Image
           src="/images/landing/hero-mobile.webp"
           alt="Spektri.Labs – hero mobiilissa, abstrakti verkko"
           fill priority sizes="100vw"

@@ -14,7 +14,7 @@ export default function SiteHeader() {
     { href: "/docs", label: "Dokumentaatio" },
   ];
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-black/30 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-black/30 backdrop-blur supports-[backdrop-filter]:bg-black/20">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-2">
           <div className="size-6 rounded-md bg-gradient-to-br from-[var(--brand)] to-[var(--brand2)]" />

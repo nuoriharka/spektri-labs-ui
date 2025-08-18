@@ -9,7 +9,7 @@ export function Pillars(){
     { t:"Taikuutta yksityiskohdissa", d:"Hienovaraiset animaatiot ja tuotantotason läpinäkyvyys." },
   ];
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-16 md:py-24">
       <Container>
         <div className="grid gap-4 md:grid-cols-3">
           {items.map((x)=>(
@@ -29,7 +29,7 @@ export function TrustBar(){
   return (
     <section className="border-t border-white/10 bg-black/20">
       <Container>
-        <div className="py-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+        <div className="py-16 md:py-24 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
           {items.map((n)=>(<div key={n} className="text-sm text-white/60">{n}</div>))}
         </div>
       </Container>
@@ -98,7 +98,7 @@ export function HowItWorks(){
           ))}
         </div>
         <div className="relative mt-10 aspect-[7/4] w-full overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-          <Image src="/images/sections/how-it-works.webp" alt="Kolme vaihetta – lasisolmut ja valosäteet" fill sizes="100vw" className="object-cover"/>
+          <Image src="/images/sections/how-it-works.webp" alt="Kolme vaihetta – lasisolmut ja valosäteet" fill sizes="100vw" className="object-cover" placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII="/>
         </div>
       </Container>
     </section>

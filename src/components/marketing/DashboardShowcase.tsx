@@ -57,7 +57,6 @@ export default function DashboardShowcase({ src, alt, caption, badge }: Props) {
                   src={src}
                   alt={alt}
                   fill
-                  priority
                   sizes="(max-width: 768px) 100vw, 1024px"
                   className="object-cover"
                 />
