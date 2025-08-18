@@ -4,12 +4,15 @@ export default function LogoMarquee(){
     <section className="py-10 border-t border-white/10">
       <p className="text-center text-sm text-white/60">Orkestroimme maailman parhaat työkalut ja palvelut puolestasi</p>
       <div className="mt-6 overflow-hidden">
-        <div className="flex animate-[marquee_25s_linear_infinite] gap-12 whitespace-nowrap px-4 items-center">
-          <img src="/brand/spektri-logomark-gradient.svg" alt="Spektri" className="h-6 w-auto opacity-80" />
+        <div className="flex animate-[marquee_25s_linear_infinite] gap-10 md:gap-14 whitespace-nowrap px-4 items-center">
+          <div className="h-10 md:h-12 flex items-center opacity-80">
+            <img src="/brand/spektri-logomark-gradient.svg" alt="Spektri" className="h-8 md:h-9 w-auto object-contain" />
+            <span className="sr-only">Spektri</span>
+          </div>
           {[...logos, ...logos].map((l,i)=>(
-            <div key={i} className="flex items-center gap-3 opacity-70 hover:opacity-100 transition">
-              <img src={l.src} alt={l.name} className="h-6 w-auto" />
-              <span className="text-xs">{l.name}</span>
+            <div key={i} className="h-10 md:h-12 flex items-center opacity-70 hover:opacity-100 transition">
+              <img src={l.src} alt={l.name} className="h-8 md:h-9 w-auto max-w-[140px] object-contain" />
+              <span className="sr-only">{l.name}</span>
             </div>
           ))}
         </div>
