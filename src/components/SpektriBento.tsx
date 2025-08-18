@@ -58,8 +58,12 @@ const features = [
     cta: "Lue lisää",
     className: "col-span-3 lg:col-span-1",
     background: (
-      <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center">
-        <p className="text-center text-white/70">OpenAI + Google + Anthropic</p>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="flex items-center gap-6 opacity-90">
+          <img src="/logos/openai.svg" alt="OpenAI" className="h-6 w-auto object-contain" />
+          <img src="/logos/google.svg" alt="Google" className="h-6 w-auto object-contain" />
+          <img src="/logos/anthropic.svg" alt="Anthropic" className="h-6 w-auto object-contain" />
+        </div>
       </div>
     ),
   },
