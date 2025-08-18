@@ -53,6 +53,8 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
 export default function AgentsPage() {
   const formatInt = useMemo(() => new Intl.NumberFormat("fi-FI"), [])
   const { data, error, isLoading, mutate } = useSWR<Agent[]>("/api/agents", fetcher)
+    // TODO: Add metadata override for agents list to use a placeholder OG image
+    const ogImage = "/path/to/placeholder/image.jpg"; // Placeholder OG image path
   const agents = data ?? []
   const router = useRouter()
   const sp = useSearchParams()

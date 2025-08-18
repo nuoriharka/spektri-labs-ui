@@ -38,7 +38,7 @@ export function HowItWorks() {
         </div>
         <div className="mt-10 overflow-hidden rounded-xl border border-white/10">
           <div className="relative aspect-[7/4]">
-            <Image src="/images/sections/how-it-works.webp" alt="Miten se toimii" fill className="object-cover" sizes="(min-width: 1024px) 896px, 100vw" />
+            <Image src="/images/sections/how-it-works.webp" alt="Miten Spektri.Labsin työnkulku toimii – yleisnäkymä" fill className="object-cover" sizes="(min-width: 1024px) 896px, 100vw" />
           </div>
         </div>
       </div>

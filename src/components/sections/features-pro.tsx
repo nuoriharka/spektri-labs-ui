@@ -3,10 +3,10 @@
 import Image from "next/image"
 
 const features = [
-  { src: "/images/sections/features-1-builder.webp", alt: "Agent builder", title: "Rakentaja", desc: "Rakenna agentit ja työnkulut rinnakkain" },
-  { src: "/images/sections/features-2-templates.webp", alt: "Templates", title: "Mallipohjat", desc: "Käynnistä valmiilla pohjilla" },
-  { src: "/images/sections/features-3-integrations.webp", alt: "Integrations", title: "Integraatiot", desc: "Yhdistä suosittuihin palveluihin" },
-  { src: "/images/sections/features-4-performance.webp", alt: "Performance", title: "Suorituskyky", desc: "Nopea, vakaa ja skaalautuva" },
+  { src: "/images/sections/features-1-builder.webp", alt: "Agent builder – Rakenna agentteja ja työnkulkuja", title: "Rakentaja", desc: "Rakenna agentit ja työnkulut rinnakkain" },
+  { src: "/images/sections/features-2-templates.webp", alt: "Mallipohjat – käynnistä valmiilla pohjilla", title: "Mallipohjat", desc: "Käynnistä valmiilla pohjilla" },
+  { src: "/images/sections/features-3-integrations.webp", alt: "Integraatiot – yhdistä suosittuihin palveluihin", title: "Integraatiot", desc: "Yhdistä suosittuihin palveluihin" },
+  { src: "/images/sections/features-4-performance.webp", alt: "Suorituskyky – nopea ja skaalautuva", title: "Suorituskyky", desc: "Nopea, vakaa ja skaalautuva" },
 ]
 
 export function FeaturesPro() {

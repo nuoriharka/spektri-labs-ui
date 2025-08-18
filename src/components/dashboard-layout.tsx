@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import RetroGrid from "@/components/visual/RetroGrid"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
@@ -213,7 +214,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       </aside>
 
       {/* Main Content */}
-  <div className={cn("transition-[margin] duration-300", isCollapsed ? "lg:ml-20" : "lg:ml-64") }>
+  <div className={cn("transition-[margin] duration-300 relative", isCollapsed ? "lg:ml-20" : "lg:ml-64") }>
+        <RetroGrid />
         {/* Top Bar */}
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 dark:bg-slate-900/80 dark:border-slate-700/50">
           <div className="flex items-center justify-between px-6 py-4">

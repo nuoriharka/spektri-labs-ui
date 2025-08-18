@@ -50,7 +50,7 @@ export function HeroDusk() {
           <div className="relative">
       <div className="absolute -inset-6 rounded-3xl bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-2xl">
-              <Image src={heroSrc} alt="Sovelluksen esittelykuva" className="w-full h-auto object-cover" width={1600} height={900} priority />
+              <Image src={heroSrc} alt="Spektri.Labs – tumma hero, abstrakti verkko ja brändisäteet" className="w-full h-auto object-cover" width={1600} height={900} priority />
             </div>
           </div>
         </div>

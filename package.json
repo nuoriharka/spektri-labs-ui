@@ -8,6 +8,7 @@
     "start": "next start -p 3001 -H 0.0.0.0",
   "lint": "next lint",
   "assets:build": "node scripts/build-images.js",
+  "images:ingest": "node scripts/ingest-images.mjs",
     "doctor": "node -v && npm -v && npx next --version"
   },
   "dependencies": {
@@ -54,7 +55,9 @@
   "typescript": "^5",
     "@types/marked": "^6.0.0",
   "@types/sanitize-html": "^2.13.0",
-  "sharp": "^0.33.4"
+  "sharp": "^0.33.4",
+  "glob": "^10.4.5",
+  "fs-extra": "^11.2.0"
   },
   "engines": {
     "node": ">=18.17.0"

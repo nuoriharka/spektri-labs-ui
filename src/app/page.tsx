@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { HeroDusk } from "@/components/sections/hero-dusk"
 import { FeaturesPro } from "@/components/sections/features-pro"
 import { HowItWorks } from "@/components/sections/how-it-works"
+import DashboardShowcase from "@/components/marketing/DashboardShowcase"
 import { AnimatedStats } from "@/components/sections/animated-stats"
 import { UseCases } from "@/components/sections/use-cases"
 import { ContactSection } from "@/components/sections/contact"
@@ -27,8 +28,16 @@ function FancyLanding() {
       {/* Hero Section – Tailark-inspired hero */}
       <HeroDusk />
 
+      {/* Dashboard showcase directly under hero */}
+      <DashboardShowcase
+        src="/images/app/dashboard.webp"
+        alt="Spektri.Labs – Komentokeskus, KPI-kortit ja ajot"
+        badge="Live product"
+        caption="Reaaliaikaiset KPI:t, ajot ja agentit yhdestä näkymästä"
+      />
+
       {/* Highlights – Tailark features when enabled */}
-  <FeaturesPro />
+      <FeaturesPro />
 
   {/* How it works */}
   <HowItWorks />
@@ -36,71 +45,7 @@ function FancyLanding() {
   {/* Animated stats */}
   <AnimatedStats />
 
-  {/* Product UI preview – compact demo */}
-  <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 shadow-xl overflow-hidden text-white">
-            {/* Browser frame */}
-            <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2 bg-white/5">
-              <span className="h-3 w-3 rounded-full bg-red-400" />
-              <span className="h-3 w-3 rounded-full bg-yellow-400" />
-              <span className="h-3 w-3 rounded-full bg-green-400" />
-              <div className="ml-3 text-xs text-slate-300">app.spektri.labs</div>
-            </div>
-            {/* Content */}
-            <div className="grid gap-6 p-4 md:p-6 md:grid-cols-3">
-              <div className="md:col-span-2 space-y-4">
-                <div className="relative overflow-hidden rounded-xl ring-1 ring-white/10">
-                  <Image src={dashboardImg} alt="Dashboard" width={1600} height={900} className="w-full h-auto object-cover" />
-                </div>
-                <div className="grid sm:grid-cols-3 gap-3">
-                  <Card className="bg-white/5 border-white/10">
-                    <CardHeader className="pb-2"><CardTitle className="text-sm text-slate-300">Aktiiviset agentit</CardTitle></CardHeader>
-                    <CardContent className="pt-0 text-2xl font-semibold text-white">12</CardContent>
-                  </Card>
-                  <Card className="bg-white/5 border-white/10">
-                    <CardHeader className="pb-2"><CardTitle className="text-sm text-slate-300">Tehtävät / vrk</CardTitle></CardHeader>
-                    <CardContent className="pt-0 text-2xl font-semibold text-white">1 942</CardContent>
-                  </Card>
-                  <Card className="bg-white/5 border-white/10">
-                    <CardHeader className="pb-2"><CardTitle className="text-sm text-slate-300">Kesk. tarkkuus</CardTitle></CardHeader>
-                    <CardContent className="pt-0 text-2xl font-semibold text-white">98.3%</CardContent>
-                  </Card>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <Card className="bg-white/5 border-white/10">
-                  <CardHeader className="pb-2"><CardTitle className="text-sm">Viimeaikaiset</CardTitle></CardHeader>
-                  <CardContent className="pt-0 space-y-3">
-                    {["Raportointi", "Sisällön tuotanto", "Liidien rikastus"].map((n, i) => (
-                      <div key={i} className="flex items-center justify-between text-sm">
-                        <div className="flex items-center gap-2">
-                          <span className="h-2 w-2 rounded-full bg-green-500" /><span className="text-white/90">{n}</span>
-                        </div>
-                        <span className="text-slate-300">{i * 7 + 3} min</span>
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-                <Card className="bg-white/5 border-white/10">
-                  <CardHeader className="pb-2"><CardTitle className="text-sm">Käyttäjät</CardTitle></CardHeader>
-                  <CardContent className="pt-0 space-y-3">
-                    {["MS","AT","JL"].map((ini, i) => (
-                      <div key={i} className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Avatar className="h-7 w-7"><AvatarFallback className="text-xs">{ini}</AvatarFallback></Avatar>
-                          <span className="text-sm text-white/90">Käyttäjä {i+1}</span>
-                        </div>
-                        <span className="text-xs text-slate-300">online</span>
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  {/* Product UI preview replaced by DashboardShowcase above */}
 
       {/* Integrations cloud when enabled, else simple logo cloud */}
   {/* Logo sections removed per request */}

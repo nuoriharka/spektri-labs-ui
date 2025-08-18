@@ -1,18 +1,28 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@/lib/utils"
 
-export function RetroGrid({ className, opacity = 0.06 }: { className?: string; opacity?: number }) {
+function cx(...c: (string | false | null | undefined)[]) {
+  return c.filter(Boolean).join(" ")
+}
+
+function RetroGridBase({ className = "" }: { className?: string }) {
   return (
     <div
       aria-hidden
-      className={cn("pointer-events-none absolute inset-0 -z-10", className)}
-      style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,${opacity}) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,${opacity}) 1px, transparent 1px)`,
-        backgroundSize: "24px 24px, 24px 24px",
-        backgroundPosition: "-1px -1px, -1px -1px",
-      }}
+      className={cx(
+        "pointer-events-none absolute inset-0 -z-10 opacity-20",
+        "bg-[radial-gradient(circle_at_1px_1px,rgba(109,106,255,.3)_1px,transparent_1px)] [background-size:22px_22px]",
+        "before:absolute before:inset-0 before:bg-[radial-gradient(600px_300px_at_10%_20%,rgba(34,211,238,.10),transparent),radial-gradient(600px_300px_at_90%_60%,rgba(109,106,255,.10),transparent)]",
+        className
+      )}
     />
   )
 }
+
+function RetroGridDefault({ className = "" }: { className?: string }) {
+  return <RetroGridBase className={className} />
+}
+
+export default RetroGridDefault
+export const RetroGrid = RetroGridBase

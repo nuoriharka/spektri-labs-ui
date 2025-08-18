@@ -31,15 +31,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.svg',
   },
-  openGraph: {
-    title: 'Spektri.Labs UI',
-    description:
-      'Ammattimainen käyttöliittymäkirjasto ja demo, rakennettu shadcn/ui-komponenteilla.',
-    url: '/',
-    siteName: 'Spektri.Labs',
-    locale: 'fi_FI',
-    type: 'website',
-  },
+  openGraph: { images: ["/images/og/og-home.png"] },
   twitter: {
     card: 'summary_large_image',
     title: 'Spektri.Labs UI',
