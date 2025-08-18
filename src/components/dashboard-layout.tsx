@@ -10,25 +10,27 @@ import {
   LayoutDashboard,
   Bot,
   Workflow,
-  Users,
   Settings,
-  BarChart3,
   Zap,
   Bell,
   Search,
   Menu,
   X,
-  ChevronDown,
-  Star,
-  Sparkles
+  Sparkles,
+  Activity,
+  FileText,
+  Globe,
+  ChevronLeft,
+  Command
 } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 interface SidebarItem {
   title: string
   href: string
   icon: React.ComponentType<{ className?: string }>
   badge?: string
-  children?: SidebarItem[]
 }
 
 const sidebarItems: SidebarItem[] = [
@@ -38,32 +40,29 @@ const sidebarItems: SidebarItem[] = [
     icon: LayoutDashboard,
   },
   {
-    title: "AI Agents",
+    title: "Agents",
     href: "/dashboard/agents",
     icon: Bot,
-    badge: "12",
-    children: [
-      { title: "Active Agents", href: "/dashboard/agents", icon: Zap },
-      { title: "Agent Templates", href: "/dashboard/agents", icon: Star },
-      { title: "Create Agent", href: "/dashboard/agents/new", icon: Sparkles },
-    ]
+  },
+  {
+    title: "Runs",
+    href: "/dashboard/runs",
+    icon: Activity,
+  },
+  {
+    title: "Templates",
+    href: "/dashboard/templates",
+    icon: FileText,
+  },
+  {
+    title: "Integrations",
+    href: "/dashboard/integrations",
+    icon: Globe,
   },
   {
     title: "Workflows",
     href: "/dashboard/workflows",
     icon: Workflow,
-    badge: "8",
-  },
-  {
-    title: "Analytics",
-    href: "/dashboard/analytics",
-    icon: BarChart3,
-  },
-  {
-    title: "Team",
-    href: "/dashboard/team",
-    icon: Users,
-    badge: "Pro",
   },
   {
     title: "Settings",
@@ -78,110 +77,97 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
-  const [expandedItems, setExpandedItems] = React.useState<string[]>([])
+  const [isCollapsed, setIsCollapsed] = React.useState(false)
+  const [showCmd, setShowCmd] = React.useState(false)
   const pathname = usePathname()
+  const router = useRouter()
 
-  const toggleExpanded = (title: string) => {
-    setExpandedItems(prev => 
-      prev.includes(title) 
-        ? prev.filter(item => item !== title)
-        : [...prev, title]
-    )
-  }
+  // Keyboard shortcuts: g d/a/r/t/i/s
+  React.useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        const el = document.getElementById('cmdk-trigger')
+        el?.click()
+        return
+      }
+      if (e.key.toLowerCase() === 'g') {
+        const handler = (ev: KeyboardEvent) => {
+          const map: Record<string, string> = { d: '/dashboard', a: '/dashboard/agents', r: '/dashboard/runs', t: '/dashboard/templates', i: '/dashboard/integrations', s: '/dashboard/settings' }
+          const dest = map[ev.key.toLowerCase()]
+          if (dest) {
+            ev.preventDefault(); router.push(dest)
+          }
+          window.removeEventListener('keydown', handler)
+        }
+        window.addEventListener('keydown', handler, { once: true })
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [router])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Sidebar */}
       <aside className={cn(
-        "fixed left-0 top-0 z-50 h-full w-64 transform bg-white/80 backdrop-blur-xl border-r border-slate-200/50 dark:bg-slate-900/80 dark:border-slate-700/50 transition-transform duration-300 ease-in-out lg:translate-x-0 glass-card",
+        "fixed left-0 top-0 z-50 h-full transform bg-white/80 backdrop-blur-xl border-r border-slate-200/50 dark:bg-slate-900/80 dark:border-slate-700/50 transition-all duration-300 ease-in-out lg:translate-x-0 glass-card",
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-      )}>
+      )} style={{ width: isCollapsed ? 80 : 256 }}>
         {/* Logo */}
         <div className="flex items-center justify-between p-6 border-b border-slate-200/50 dark:border-slate-700/50">
           <Link href="/dashboard" className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
               <Zap className="h-5 w-5 text-white" />
             </div>
-            <div>
-              <span className="text-xl font-bold text-gradient-primary">Spektri</span>
-              <span className="text-xs block text-muted-foreground">Labs</span>
-            </div>
+            {!isCollapsed && (
+              <div>
+                <span className="text-xl font-bold text-gradient-primary">Spektri</span>
+                <span className="text-xs block text-muted-foreground">Labs</span>
+              </div>
+            )}
           </Link>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={() => setIsSidebarOpen(false)}
-          >
-            <X className="h-5 w-5" />
-          </Button>
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon" onClick={()=> setIsCollapsed(v=>!v)} aria-label={isCollapsed?"Expand sidebar":"Collapse sidebar"}>
+              <ChevronLeft className={cn("h-5 w-5 transition-transform", isCollapsed ? "rotate-180" : "rotate-0")} />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2">
-          {sidebarItems.map((item) => (
-            <div key={item.title}>
-              <div className="relative">
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group",
-                    pathname === item.href || pathname.startsWith(item.href + "/")
-                      ? "bg-gradient-to-r from-purple-600/10 to-blue-600/10 text-purple-700 dark:text-purple-300 border border-purple-200/50 dark:border-purple-700/50"
-                      : "text-slate-700 dark:text-slate-300 hover:bg-slate-100/70 dark:hover:bg-slate-800/70 hover:text-slate-900 dark:hover:text-slate-100"
-                  )}
-                  onClick={() => item.children && toggleExpanded(item.title)}
-                >
-                  <div className="flex items-center space-x-3">
-                    <item.icon className={cn(
-                      "h-5 w-5 transition-colors",
-                      pathname === item.href || pathname.startsWith(item.href + "/")
-                        ? "text-purple-600 dark:text-purple-400"
-                        : "text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300"
-                    )} />
-                    <span>{item.title}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    {item.badge && (
-                      <Badge 
-                        variant={item.badge === "Pro" ? "default" : "secondary"}
-                        className="text-xs px-1.5 py-0.5"
-                      >
-                        {item.badge}
-                      </Badge>
-                    )}
-                    {item.children && (
-                      <ChevronDown className={cn(
-                        "h-4 w-4 transition-transform duration-200",
-                        expandedItems.includes(item.title) ? "rotate-180" : ""
-                      )} />
-                    )}
-                  </div>
-                </Link>
-                
-                {/* Submenu */}
-                {item.children && expandedItems.includes(item.title) && (
-                  <div className="mt-2 ml-6 space-y-1 border-l border-slate-200 dark:border-slate-700 pl-4">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.title}
-                        href={child.href}
-                        className={cn(
-                          "flex items-center space-x-3 px-3 py-2 text-sm rounded-md transition-colors",
-                          pathname === child.href
-                            ? "bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300"
-                            : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100"
-                        )}
-                      >
-                        <child.icon className="h-4 w-4" />
-                        <span>{child.title}</span>
-                      </Link>
-                    ))}
-                  </div>
+        <nav className="flex-1 p-4 space-y-1">
+          {sidebarItems.map((item) => {
+            const active = pathname === item.href || pathname.startsWith(item.href + "/")
+            return (
+              <Link
+                key={item.title}
+                href={item.href}
+                title={isCollapsed ? item.title : undefined}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "relative flex items-center w-full gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
+                  active
+                    ? "text-purple-700 dark:text-purple-300 bg-gradient-to-r from-purple-600/10 to-blue-600/10"
+                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-100/70 dark:hover:bg-slate-800/70 hover:text-slate-900 dark:hover:text-slate-100"
                 )}
-              </div>
-            </div>
-          ))}
+              >
+                <span className={cn("absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-r-full bg-gradient-to-b from-purple-500 to-blue-500", active ? "opacity-100" : "opacity-0")} />
+                <item.icon className={cn("h-5 w-5", active ? "text-purple-600 dark:text-purple-400" : "text-slate-500 dark:text-slate-400")} />
+                {!isCollapsed && <span>{item.title}</span>}
+                {!isCollapsed && item.badge && (
+                  <Badge variant="secondary" className="ml-auto text-xs px-1.5 py-0.5">{item.badge}</Badge>
+                )}
+              </Link>
+            )
+          })}
         </nav>
 
         {/* User Panel */}
@@ -190,20 +176,25 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
               JD
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
-                John Doe
-              </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
-                john@spektrilabs.com
-              </p>
-            </div>
+            {!isCollapsed && (
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">
+                  John Doe
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                  john@spektrilabs.com
+                </p>
+              </div>
+            )}
           </div>
+          {!isCollapsed && (
+            <div className="mt-2 text-xs text-muted-foreground">v0.1.0</div>
+          )}
         </div>
       </aside>
 
       {/* Main Content */}
-      <div className="lg:ml-64">
+  <div className={cn("transition-[margin] duration-300", isCollapsed ? "lg:ml-20" : "lg:ml-64") }>
         {/* Top Bar */}
         <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 dark:bg-slate-900/80 dark:border-slate-700/50">
           <div className="flex items-center justify-between px-6 py-4">
@@ -228,9 +219,34 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </div>
 
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="h-5 w-5" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
+                    <Bell className="h-5 w-5" />
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-72">
+                  <DropdownMenuLabel>Ilmoitukset</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Agentti "Content Writer" suoritti ajon</DropdownMenuItem>
+                  <DropdownMenuItem>Uusi integraatio: GitHub</DropdownMenuItem>
+                  <DropdownMenuItem>Sopimus päivitetty</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <Button id="cmdk-trigger" variant="outline" size="sm" className="hidden md:inline-flex" onClick={() => setShowCmd(true)}>
+                <Command className="h-4 w-4 mr-2"/>Hakukomento (Ctrl/Cmd K)
+              </Button>
+              <Button variant="ghost" size="icon" aria-label="Vaihda teema" onClick={()=>{
+                const root = document.documentElement
+                const isDark = root.classList.toggle('dark')
+                try { localStorage.setItem('theme', isDark ? 'dark' : 'light') } catch {}
+              }}>
+                <span className="sr-only">Vaihda teema</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                </svg>
               </Button>
               
               <Link href="/dashboard/agents/new">
@@ -256,6 +272,43 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
+
+      {/* Command Palette */}
+      <Cmdk open={showCmd} onOpenChange={setShowCmd} />
+    </div>
+  )
+}
+
+function Cmdk({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean)=>void }) {
+  const router = useRouter()
+  const [q, setQ] = React.useState("")
+  const items = React.useMemo(()=>[
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Agents", href: "/dashboard/agents" },
+    { label: "Runs", href: "/dashboard/runs" },
+    { label: "Templates", href: "/dashboard/templates" },
+    { label: "Integrations", href: "/dashboard/integrations" },
+    { label: "Settings", href: "/dashboard/settings" },
+  ], [])
+  const filtered = items.filter(i=> i.label.toLowerCase().includes(q.toLowerCase()))
+  if (!open) return null
+  return (
+    <div className="fixed inset-0 z-[60] flex items-start justify-center pt-24 bg-black/40" onClick={()=>onOpenChange(false)}>
+      <div className="w-full max-w-lg rounded-xl border bg-card shadow-xl" onClick={e=>e.stopPropagation()}>
+        <div className="p-3 border-b">
+          <input autoFocus value={q} onChange={e=>setQ(e.target.value)} placeholder="Hae toimintoja…" className="w-full bg-transparent outline-none" />
+        </div>
+        <div className="max-h-72 overflow-auto">
+          {filtered.map((i)=> (
+            <button key={i.href} className="w-full text-left px-4 py-2 hover:bg-muted" onClick={()=>{ router.push(i.href); onOpenChange(false) }}>
+              {i.label}
+            </button>
+          ))}
+          {filtered.length === 0 && (
+            <div className="px-4 py-6 text-sm text-muted-foreground">Ei tuloksia</div>
+          )}
+        </div>
+      </div>
     </div>
   )
 }
