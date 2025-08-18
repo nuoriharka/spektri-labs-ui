@@ -1,8 +1,10 @@
+"use client";
 import Container from "@/components/layout/Container";
 import PrimaryCta from "@/components/ui/PrimaryCta";
 import Image from "next/image";
 import { photos } from "@/content/photos";
 import { BLUR_DATA_URL } from "@/lib/blur";
+import AnimatedBeam from "@/components/effects/AnimatedBeam";
 
 export default function HowItWorks(){
   const steps = [
@@ -11,7 +13,8 @@ export default function HowItWorks(){
     { n:3, t:"Aja & Ajasta", d:"Katso tulokset ja ajasta toistuvaksi.", cta:"Aja demo", href:"#" },
   ];
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 relative overflow-hidden">
+      <AnimatedBeam />
       <Container>
         <div className="grid gap-4 md:grid-cols-3">
           {steps.map(s => (
