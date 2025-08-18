@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image"
-import spektriLogo from "../../../photos/Spektri (2).png"
+import spektriLogo from "photos/spektri-2.png"
 
 export function LogoCloud3() {
   const logos = Array.from({ length: 8 }).map((_, i) => ({ id: i }))

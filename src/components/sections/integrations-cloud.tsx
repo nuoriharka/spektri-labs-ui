@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image"
-import spektriLogo from "../../../photos/Spektri (2).png"
+import spektriLogo from "photos/spektri-2.png"
 
 export function IntegrationsCloud() {
   const logos = Array.from({ length: 6 }).map((_, i) => ({ id: i }))

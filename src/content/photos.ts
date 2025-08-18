@@ -1,21 +1,21 @@
 /* Autogeneraattori voi korvata tämän myöhemmin; nyt staattiset importit. */
-import heroDashboard from "../../photos/klassinen-spektri-hero.png";
-import heroBuilder   from "../../photos/builder-hero.png";
-import heroIconcloud from "../../photos/iconcloud-hero.png";
-import ctaHero       from "../../photos/cta-hero.png";
+import heroDashboard from "photos/klassinen-spektri-hero.png";
+import heroBuilder   from "photos/builder-hero.png";
+import heroIconcloud from "photos/iconcloud-hero.png";
+import ctaHero       from "photos/cta-hero.png";
 
-import dashboard3    from "../../photos/dashboard-3.png";
-import dashboard1    from "../../photos/dashboard-1.png";
-import agentsDash    from "../../photos/dashboard-agents.png";
+import dashboard3    from "photos/dashboard-3.png";
+import dashboard1    from "photos/dashboard-1.png";
+import agentsDash    from "photos/dashboard-agents.png";
 
-import builderSplit  from "../../photos/builder-split.png";
-import howWorks      from "../../photos/how-it-works.png";
+import builderSplit  from "photos/builder-split.png";
+import howWorks      from "photos/how-it-works.png";
 
-import costPerf      from "../../photos/cost-performance.png";
-import integrations  from "../../photos/integrations.png";
-import templates     from "../../photos/templates.png";
+import costPerf      from "photos/cost-performance.png";
+import integrations  from "photos/integrations.png";
+import templates     from "photos/templates.png";
 
-import ogHome        from "../../photos/dark-og-image.png";
+import ogHome        from "photos/dark-og-image.png";
 
 export const photos = {
   hero: {
