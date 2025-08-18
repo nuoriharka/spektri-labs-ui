@@ -4,8 +4,7 @@ import { Pillars, TrustBar, Features, HowItWorks, FinalCTA } from "@/components/
 import WinSection from "@/components/marketing/WinSection"
 import LogosMarquee from "@/components/marketing/LogosMarquee"
 import Testimonials from "@/components/marketing/Testimonials"
-import dynamic from "next/dynamic"
-const LogoCloud = dynamic(() => import("@/components/marketing/LogoCloud"), { ssr: false })
+import LogoCloud from "@/components/marketing/LogoCloud"
 
 function Landing() {
   return (

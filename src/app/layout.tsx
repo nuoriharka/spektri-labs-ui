@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from '@/components/ui/toaster'
-import SiteHeader from '@/components/layout/SiteHeader'
-import { Footer } from '@/components/footer'
 import { initTelemetry } from '@/lib/telemetry'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import { QueryProvider } from '@/components/providers/QueryProvider'
@@ -31,9 +29,7 @@ export const metadata: Metadata = {
   applicationName: 'Spektri.Labs UI',
   authors: [{ name: 'Spektri.Labs' }],
   keywords: ['Spektri', 'UI', 'shadcn', 'Next.js', 'Tailwind'],
-  icons: {
-  icon: '/brand/favicon.svg',
-  },
+  icons: { icon: '/brand/favicon.svg' },
   openGraph: { images: ["/images/og/og-home.png"] },
   twitter: {
     card: 'summary_large_image',
@@ -41,10 +37,7 @@ export const metadata: Metadata = {
     description:
       'Ammattimainen käyttöliittymäkirjasto ja demo, rakennettu shadcn/ui-komponenteilla.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
   alternates: { canonical: '/' },
 }
 
@@ -82,22 +75,22 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-black"
-          >
-            Siirry sisältöön
-          </a>
-          <QueryProvider>
-            <Toaster>
-              <SiteHeader />
-              <main id="main">
-                {children}
-              </main>
-              <Footer />
-            </Toaster>
-          </QueryProvider>
-          <Analytics />
+          <>
+            <a
+              href="#main"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-black"
+            >
+              Siirry sisältöön
+            </a>
+            <QueryProvider>
+              <Toaster>
+                <main id="main">
+                  {children}
+                </main>
+              </Toaster>
+            </QueryProvider>
+            <Analytics />
+          </>
         </ThemeProvider>
       </body>
     </html>
