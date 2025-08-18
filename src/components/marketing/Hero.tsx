@@ -5,6 +5,11 @@ export default function Hero(){
   return (
     <section className="relative mx-auto max-w-6xl px-6 py-20 grid gap-10 md:grid-cols-2 items-center">
       <div>
+        <img
+          src="/brand/spektri-logo-horizontal.svg"
+          alt="Spektri"
+          className="h-7 w-auto mb-4 opacity-90"
+        />
         <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
           Sinulla on idea. <br/>Me annamme sille armeijan.
         </h1>
