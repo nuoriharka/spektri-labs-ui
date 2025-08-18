@@ -3,6 +3,9 @@ import Hero from "@/components/marketing/Hero"
 import DashboardShowcase from "@/components/marketing/DashboardShowcase"
 import LogoCloud from "@/components/marketing/LogoCloud"
 import FeatureGrid from "@/components/marketing/FeatureGrid"
+import { LogoCloudMarquee } from "@/components/marketing/LogoCloudMarquee"
+import { IntegrationsMarquee } from "@/components/marketing/IntegrationsMarquee"
+import SectionBg from "@/components/marketing/SectionBg"
 import HowItWorks from "@/components/marketing/HowItWorks"
 import { Pillars, TrustBar, FinalCTA } from "@/components/marketing/Sections"
 import WinSection from "@/components/marketing/WinSection"
@@ -21,6 +24,9 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <SectionBg>
+        <LogoCloudMarquee speed={28} />
+      </SectionBg>
   <Problems />
       <section className="py-12 md:py-16">
         <LogoCloud variant="mono" />
@@ -36,6 +42,9 @@ export default function Home() {
       <TrustBar />
       <FeatureGrid />
       <HowItWorks />
+      <SectionBg>
+        <IntegrationsMarquee speed={22} />
+      </SectionBg>
       <LogosMarquee />
       <Testimonials />
       <FinalCTA />
