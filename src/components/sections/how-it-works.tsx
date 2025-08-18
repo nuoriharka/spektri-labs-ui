@@ -1,6 +1,7 @@
 "use client"
 
 import { CheckCircle2, Bot, Workflow, Rocket } from "lucide-react"
+import Image from "next/image"
 
 const steps = [
   { icon: Bot, title: "1. Luo agentti", desc: "Valitse pohja ja määritä tavoitteet. Ydinasetukset muutamassa minuutissa." },
@@ -34,6 +35,11 @@ export function HowItWorks() {
         </div>
         <div className="mt-6 flex items-center justify-center gap-3 text-sm text-slate-300">
           <CheckCircle2 className="h-4 w-4 text-cyan-300" /> Ei lukittuja osia – kaikki on omistettavissa ja laajennettavissa.
+        </div>
+        <div className="mt-10 overflow-hidden rounded-xl border border-white/10">
+          <div className="relative aspect-[7/4]">
+            <Image src="/images/sections/how-it-works.webp" alt="Miten se toimii" fill className="object-cover" sizes="(min-width: 1024px) 896px, 100vw" />
+          </div>
         </div>
       </div>
     </section>

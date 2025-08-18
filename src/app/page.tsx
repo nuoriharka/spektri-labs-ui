@@ -18,6 +18,7 @@ import { PricingTeaser } from "@/components/sections/pricing-teaser"
 // Removed alternate hero variants for stability
 import { FAQSection } from "@/components/sections/faq"
 import { Chart3D } from "@/components/chart-3d"
+const dashboardImg = "/images/app/dashboard.webp"
 
 function FancyLanding() {
   // All features enabled by default
@@ -49,12 +50,9 @@ function FancyLanding() {
             {/* Content */}
             <div className="grid gap-6 p-4 md:p-6 md:grid-cols-3">
               <div className="md:col-span-2 space-y-4">
-                <Chart3D
-                  title="Kokonaisaktiivisuus"
-                  description="Ajot 14 päivän aikana"
-                  data={[8,12,11,18,20,22,25,24,28,30,31,33,35,37]}
-                  labels={["1","2","3","4","5","6","7","8","9","10","11","12","13","14"]}
-                />
+                <div className="relative overflow-hidden rounded-xl ring-1 ring-white/10">
+                  <Image src={dashboardImg} alt="Dashboard" width={1600} height={900} className="w-full h-auto object-cover" />
+                </div>
                 <div className="grid sm:grid-cols-3 gap-3">
                   <Card className="bg-white/5 border-white/10">
                     <CardHeader className="pb-2"><CardTitle className="text-sm text-slate-300">Aktiiviset agentit</CardTitle></CardHeader>

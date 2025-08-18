@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Sparkles, ArrowRight, ShieldCheck, Lock, Cpu } from "lucide-react"
-import saasScreenshot from "../../../photos/image.png"
+const heroSrc = "/images/landing/hero-desktop.webp"
 
 export function HeroDusk() {
   return (
@@ -50,13 +50,7 @@ export function HeroDusk() {
           <div className="relative">
       <div className="absolute -inset-6 rounded-3xl bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-2xl">
-              <Image
-                src={saasScreenshot}
-                alt="Sovelluksen esittelykuva"
-                className="w-full h-auto object-cover"
-                sizes="(min-width: 1024px) 896px, 100vw"
-                priority
-              />
+              <Image src={heroSrc} alt="Sovelluksen esittelykuva" className="w-full h-auto object-cover" width={1600} height={900} priority />
             </div>
           </div>
         </div>
