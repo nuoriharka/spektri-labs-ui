@@ -148,22 +148,27 @@ const HeroSection = () => (
 )
 
 const LogoCloud = () => {
+  // Local SVGs from public/logos chosen to fit Spektri.Labs
   const logos = [
-    { src: "https://html.tailus.io/blocks/customers/microsoft.svg", alt: "Microsoft" },
-    { src: "https://html.tailus.io/blocks/customers/google.svg", alt: "Google" },
-    { src: "https://html.tailus.io/blocks/customers/airbnb.svg", alt: "Airbnb" },
-    { src: "https://html.tailus.io/blocks/customers/hubspot.svg", alt: "Hubspot" },
-    { src: "https://html.tailus.io/blocks/customers/slack.svg", alt: "Slack" },
-    { src: "https://html.tailus.io/blocks/customers/notion.svg", alt: "Notion" },
-    { src: "https://html.tailus.io/blocks/customers/netflix.svg", alt: "Netflix" },
-    { src: "https://html.tailus.io/blocks/customers/vercel.svg", alt: "Vercel" },
+    { src: "/logos/vercel.svg", alt: "Vercel" },
+    { src: "/logos/openai.svg", alt: "OpenAI" },
+    { src: "/logos/anthropic.svg", alt: "Anthropic" },
+    { src: "/logos/google.svg", alt: "Google" },
+    { src: "/logos/microsoft.svg", alt: "Microsoft" },
+    { src: "/logos/github.svg", alt: "GitHub" },
+    { src: "/logos/stripe.svg", alt: "Stripe" },
+    { src: "/logos/supabase.svg", alt: "Supabase" },
+    { src: "/logos/notion.svg", alt: "Notion" },
+    { src: "/logos/figma.svg", alt: "Figma" },
+    { src: "/logos/gemini.svg", alt: "Google Gemini" },
+    { src: "/logos/revolut.svg", alt: "Revolut" },
   ];
   const extendedLogos = [...logos, ...logos];
   return (
     <section className="bg-background py-16 md:py-24">
       <div className="container mx-auto px-6">
         <h2 className="text-center text-lg font-semibold leading-8 text-foreground">Integroituu saumattomasti parhaisiin työkaluihin</h2>
-        <div className="relative mt-12 w-full overflow_hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+        <div className="relative mt-12 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
           <div className="animate-marquee flex min-w-full flex-shrink-0 items-center justify-around gap-x-16">
             {extendedLogos.map((logo, index) => (
               <Image key={index} className="h-8 w-auto flex-shrink-0 dark:invert" src={logo.src} alt={logo.alt} height={32} width={128} />
@@ -194,7 +199,7 @@ const FeaturesSection = () => {
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Kaikki mitä tarvitset, ilman monimutkaisuutta</p>
           <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">Spektri.Labs ei ole vain työkalu, se on käyttöjärjestelmä luovuudelle. Poistamme tekniset esteet, jotta voit keskittyä olennaiseen.</p>
         </div>
-        <div className="mx_auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+  <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w_none lg:grid-cols-2 lg:gap-y-16">
             {features.map((feature) => (
               <div key={feature.title} className="relative pl-16">
