@@ -30,16 +30,18 @@ export default function LogoCloud() {
           Orkestroimme maailman parhaita työkaluja puolestasi
         </p>
         <div className={`relative ${isDesigner ? "" : "animate-marquee"}`}>
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--bg)]" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[var(--bg)]" />
-          <div className="flex gap-20 md:gap-24 whitespace-nowrap will-change-transform items-center py-4">
+          {/* Fade gradients left/right, stronger and longer for luxury effect */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-[var(--bg)] via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-[var(--bg)] via-transparent to-transparent" />
+          {/* Tighter logo spacing, shorter travel */}
+          <div className="flex gap-10 md:gap-14 whitespace-nowrap will-change-transform items-center py-4" style={{ width: 'min(700px, 90vw)', margin: '0 auto' }}>
             {[...LOGOS, ...LOGOS].map(({ slug, label, href }, i) => (
               <a
                 key={`${slug}-${i}`}
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-4 opacity-90 hover:opacity-100 transition-transform hover:scale-110"
+                className="inline-flex items-center gap-3 opacity-90 hover:opacity-100 transition-transform hover:scale-110"
                 style={{ filter: isDesigner ? "none" : "drop-shadow(0 2px 12px rgba(34,211,238,0.10))" }}
               >
                 <img
@@ -57,8 +59,8 @@ export default function LogoCloud() {
         </div>
       </div>
       <style jsx>{`
-        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        .animate-marquee { animation: marquee 30s linear infinite; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-25%); } }
+        .animate-marquee { animation: marquee 18s linear infinite; }
       `}</style>
     </section>
   );
