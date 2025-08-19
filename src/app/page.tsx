@@ -126,20 +126,20 @@ const HeroSection = () => (
           <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-muted-foreground">
             Muunna ideat ja prosessit tuotantovalmiiksi automaatioksi luonnollisella kielellä. Aja ensimmäinen työnkulku alle 60 sekunnissa.
           </p>
-          <div className="mt-12 flex flex-col items_center justify-center gap-2 md:flex-row">
+          <div className="mt-12 flex flex-col items-center justify-center gap-3 md:flex-row">
             <div className="bg-foreground/10 rounded-[calc(0.75rem+0.125rem)] border p-0.5">
-              <a href="#" className="inline-flex items-center justify-center rounded-xl px-5 text-base h-12 font-medium bg-primary text-primary-foreground hover:bg-primary/90">
+              <a href="#" className="inline-flex items-center justify-center rounded-xl px-5 text-base h-12 font-medium btn-spektri focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                 Rakenna ensimmäinen agenttisi
               </a>
             </div>
-            <a href="#" className="inline-flex items-center justify-center rounded-xl px-5 h-[3.25rem] text-base font-medium hover:bg-accent hover:text-accent-foreground">
+            <a href="#" className="inline-flex items-center justify-center rounded-xl px-5 h-[3.25rem] text-base font-medium hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               Katso 60s demo
             </a>
           </div>
         </div>
       </div>
       <div className="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
-        <div aria-hidden className="bg-gradient-to-b to-background absolute inset-0 z-10 from-transparent from-35%" />
+        <div aria-hidden className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-background" />
         <div className="shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)] ring-background dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
           <Image className="bg-background aspect-[15/8] relative rounded-2xl" src="https://placehold.co/1350x720/030712/E7E9EC?text=Dashboard+Preview" alt="app screen" width={2700} height={1440} />
         </div>
@@ -186,8 +186,8 @@ const FeaturesSection = () => {
 
 const IntegrationsSection = () => (
   <section id="ratkaisut" className="relative isolate overflow-hidden bg-background py-24 sm:py-32">
-    <div className="absolute -top-80 left-1/2 -z-10 flex w-[128rem] max-w-full -translate-x-1/2 justify-center" aria-hidden="true">
-      <div className="h-[64rem] w-[64rem] flex-none bg-[radial-gradient(circle,rgba(109,106,255,0.2),transparent)]" />
+    <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+      <div className="mx-auto h-[40rem] w-[40rem] max-w-full rounded-full opacity-40 blur-3xl bg-[radial-gradient(50%_50%_at_50%_50%,rgba(109,106,255,0.20),transparent_70%)]" />
     </div>
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <div className="mx-auto max-w-2xl lg:mx-0">
@@ -211,7 +211,7 @@ const ContentSection = () => (
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <div className="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
         <div className="lg:pr-4">
-          <div className="relative overflow-hidden rounded-3xl bg_gray-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
+          <div className="relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
             <div className="absolute inset-0 bg-indigo-500 mix-blend-multiply" />
             <div className="absolute left-1/2 top-1/2 -ml-16 -translate-x-1/2 -translate-y-1/2 transform-gpu blur-3xl" aria-hidden="true">
               <div className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#6d6aff] to-[#22d3ee] opacity-40" />
@@ -221,7 +221,7 @@ const ContentSection = () => (
                 <p>“Spektri.Labs on muuttanut tapamme ajatella automaatiota...”</p>
               </blockquote>
               <figcaption className="mt-6 text-sm leading-6 text-gray-300">
-                <strong className="font-semibold text_white">Liisa Virtanen</strong>, Toimitusjohtaja, Kasvu Oy
+                <strong className="font-semibold text-white">Liisa Virtanen</strong>, Toimitusjohtaja, Kasvu Oy
               </figcaption>
             </figure>
           </div>
