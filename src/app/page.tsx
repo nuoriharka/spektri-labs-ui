@@ -8,6 +8,7 @@ import { ArrowRight, Bot, Gauge, Network, AppWindow, Check, Menu, X } from 'luci
 import { Balancer } from "react-wrap-balancer";
 import { cn } from "@/lib/utils";
 import LogoCloud from "@/components/logo-cloud";
+import OnePlatformSection, { ConnectToolsSection } from "@/components/OnePlatformSection";
 
 // Logo component
 const Logo = () => (
@@ -184,27 +185,7 @@ const FeaturesSection = () => {
   );
 }
 
-const IntegrationsSection = () => (
-  <section id="ratkaisut" className="relative isolate overflow-hidden bg-background py-24 sm:py-32">
-    <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-      <div className="mx-auto h-[40rem] w-[40rem] max-w-full rounded-full opacity-40 blur-3xl bg-[radial-gradient(50%_50%_at_50%_50%,rgba(109,106,255,0.20),transparent_70%)]" />
-    </div>
-    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-      <div className="mx-auto max-w-2xl lg:mx-0">
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Yhdistä kaikki työkalusi. Vapauta data.</h2>
-        <p className="mt-6 text-lg leading-8 text-muted-foreground">Spektri.Labs toimii hermokeskuksena, joka yhdistää kaikki sovelluksesi ja datalähteesi. Agentit voivat liikkua saumattomasti järjestelmien välillä, tuoden oikean tiedon oikeaan paikkaan, oikeaan aikaan.</p>
-      </div>
-      <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="rounded-2xl bg-white/5 p-8 shadow-lg ring-1 ring-white/10">
-            <h3 className="text-lg font-semibold leading-7 text-foreground">Placeholder</h3>
-            <p className="mt-4 text-base leading-7 text-muted-foreground">Integraatiokuvaus...</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-)
+// IntegrationsSection replaced by ConnectToolsSection from OnePlatformSection
 
 const ContentSection = () => (
   <section className="bg-slate-50 dark:bg-slate-900/50 py-24 sm:py-32">
@@ -345,8 +326,9 @@ export default function LandingPage() {
       <main>
         <HeroSection />
         <LogoCloud />
+  <OnePlatformSection />
         <FeaturesSection />
-        <IntegrationsSection />
+  <ConnectToolsSection />
         <ContentSection />
         <CtaSection />
       </main>
