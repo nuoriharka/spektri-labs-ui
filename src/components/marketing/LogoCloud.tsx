@@ -1,6 +1,8 @@
 
 "use client";
-import * as React from "react";
+
+import { InfiniteSlider } from "./InfiniteSlider";
+import { ProgressiveBlur } from "./ProgressiveBlur";
 
 const LOGOS = [
   { slug: "openai", label: "OpenAI", href: "https://openai.com" },
@@ -14,54 +16,45 @@ const LOGOS = [
 ];
 
 export default function LogoCloud() {
-  const [isDesigner, setIsDesigner] = React.useState(false);
-  React.useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsDesigner(document.documentElement.getAttribute("data-theme") === "designer");
-    });
-    observer.observe(document.documentElement, { attributes: true });
-    setIsDesigner(document.documentElement.getAttribute("data-theme") === "designer");
-    return () => observer.disconnect();
-  }, []);
   return (
-    <section className="overflow-hidden py-16 md:py-24">
-      <div className="container mx-auto px-6">
-        <p className="mb-8 text-center text-lg font-medium text-[color:var(--muted)] tracking-tight">
-          Orkestroimme maailman parhaita työkaluja puolestasi
-        </p>
-        <div className={`relative ${isDesigner ? "" : "animate-marquee"}`}>
-          {/* Fade gradients left/right, stronger and longer for luxury effect */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-[var(--bg)] via-transparent to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-[var(--bg)] via-transparent to-transparent" />
-          {/* Tighter logo spacing, shorter travel */}
-          <div className="flex gap-10 md:gap-14 whitespace-nowrap will-change-transform items-center py-4" style={{ width: 'min(700px, 90vw)', margin: '0 auto' }}>
-            {[...LOGOS, ...LOGOS].map(({ slug, label, href }, i) => (
-              <a
-                key={`${slug}-${i}`}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-3 opacity-90 hover:opacity-100 transition-transform hover:scale-110"
-                style={{ filter: isDesigner ? "none" : "drop-shadow(0 2px 12px rgba(34,211,238,0.10))" }}
-              >
-                <img
-                  src={`/logos/${slug}.svg`}
-                  alt={`${label} logo`}
-                  className={`h-10 w-10 object-contain drop-shadow-xl transition-all duration-200 ${isDesigner ? "" : "grayscale invert"} data-[theme=designer]:invert-0`}
-                  style={{ imageRendering: 'auto' }}
-                />
-                <span className="text-xs md:text-sm text-[color:var(--fg)] font-medium tracking-wide drop-shadow-lg">
-                  {label}
-                </span>
-              </a>
-            ))}
+    <section className="bg-background overflow-hidden py-16">
+      <div className="group relative m-auto max-w-7xl px-6">
+        <div className="flex flex-col items-center md:flex-row">
+          <div className="md:max-w-44 md:border-r md:pr-6">
+            <p className="text-end text-sm text-[color:var(--muted)]">Orkestroimme maailman parhaita työkaluja puolestasi</p>
+          </div>
+          <div className="relative py-6 md:w-[calc(100%-11rem)]">
+            <InfiniteSlider speedOnHover={20} speed={40} gap={80}>
+              {LOGOS.map(({ slug, label, href }, i) => (
+                <div className="flex" key={slug+label+i}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-3 opacity-90 hover:opacity-100 transition-transform hover:scale-110"
+                  >
+                    <img
+                      src={`/logos/${slug}.svg`}
+                      alt={`${label} logo`}
+                      className="mx-auto h-7 w-fit dark:invert drop-shadow-xl transition-all duration-200"
+                      height={28}
+                      style={{ imageRendering: 'auto' }}
+                    />
+                    <span className="text-xs md:text-sm text-[color:var(--fg)] font-medium tracking-wide drop-shadow-lg">
+                      {label}
+                    </span>
+                  </a>
+                </div>
+              ))}
+            </InfiniteSlider>
+            {/* Fade gradients and progressive blur for luxury effect */}
+            <div className="bg-gradient-to-r from-background absolute inset-y-0 left-0 w-20 pointer-events-none" />
+            <div className="bg-gradient-to-l from-background absolute inset-y-0 right-0 w-20 pointer-events-none" />
+            <ProgressiveBlur className="absolute left-0 top-0 h-full w-20" direction="left" blurIntensity={1} />
+            <ProgressiveBlur className="absolute right-0 top-0 h-full w-20" direction="right" blurIntensity={1} />
           </div>
         </div>
       </div>
-      <style jsx>{`
-        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-25%); } }
-        .animate-marquee { animation: marquee 18s linear infinite; }
-      `}</style>
     </section>
   );
 }
