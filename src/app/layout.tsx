@@ -64,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@type': 'Organization',
               name: 'Spektri.Labs',
               url: resolvedBaseUrl,
-              logo: `${resolvedBaseUrl}/favicon.svg`,
+              logo: `${resolvedBaseUrl}/brand/favicon.svg`,
             }),
           }}
         />

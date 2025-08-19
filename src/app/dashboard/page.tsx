@@ -16,7 +16,7 @@ export default function DashboardPage() {
     fetch('/api/kpi').then(r=>r.json()).then(setKpi).catch(()=>{})
   }, [])
   return (
-    <DashboardLayout>
+  <DashboardLayout>
       <main className="relative px-6 py-8 md:px-8 md:py-10">
         <RetroGrid />
 

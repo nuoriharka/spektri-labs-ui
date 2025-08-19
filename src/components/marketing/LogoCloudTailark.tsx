@@ -35,7 +35,7 @@ export default function LogoCloudTailark() {
               <img
                 src={spektriLogo.src}
                 alt={spektriLogo.label}
-                className="h-14 w-14 object-contain drop-shadow-2xl transition-all duration-200"
+                className="h-14 w-14 object-contain drop-shadow-2xl transition-all duration-200 hover:scale-110 hover:drop-shadow-2xl"
                 decoding="async"
                 loading="lazy"
                 onError={handleError}

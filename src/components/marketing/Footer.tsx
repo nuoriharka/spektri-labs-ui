@@ -41,7 +41,7 @@ export default function Footer() {
         <div>
           <div className="text-white font-semibold">Yhteys</div>
           <ul className="mt-3 space-y-2">
-            <li><Link href="mailto:hello@spektri.fi" className="hover:text-white/100">hello@spektri.fi</Link></li>
+            <li><Link href="mailto:hello@spektri.fi" className="hover:text-[var(--brand)] transition-colors">hello@spektri.fi</Link></li>
             <li><Link href="/trust" className="hover:text-white/100">Trust</Link></li>
           </ul>
         </div>

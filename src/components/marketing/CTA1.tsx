@@ -12,7 +12,7 @@ export default function CTA1() {
           Liity edelläkävijöihin. Ensimmäinen digitaalinen työntekijäsi odottaa — ilmainen ikuisesti.
         </p>
         <div className="flex justify-center gap-3">
-          <Link href="/signup" className="rounded-xl bg-[var(--brand,#6D6AFF)] px-6 py-3 text-sm font-medium text-white ring-1 ring-white/10 hover:brightness-110">
+          <Link href="/signup" className="rounded-xl bg-[var(--brand)] px-6 py-3 text-sm font-medium text-white ring-1 ring-brand/30 hover:brightness-110 hover:scale-105 transition-transform">
             Aloita ilmaiseksi
           </Link>
           <Link href="/demo" className="rounded-xl bg-white/5 px-6 py-3 text-sm font-medium text-white ring-1 ring-white/10 hover:bg-white/10">

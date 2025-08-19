@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image"
-import spektriLogo from "photos/spektri-2.png"
+const spektriLogo = "/brand/spektri-logomark-gradient.svg"
 
 export function LogoCloud3() {
   const logos = Array.from({ length: 8 }).map((_, i) => ({ id: i }))
@@ -14,7 +14,7 @@ export function LogoCloud3() {
               key={l.id}
               src={spektriLogo}
               alt="Spektri"
-              className="h-8 w-auto opacity-90"
+              className="h-8 w-auto opacity-90 hover:scale-110 hover:drop-shadow-2xl transition"
               height={32}
               placeholder="empty"
             />

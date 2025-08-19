@@ -36,7 +36,7 @@ export default function LogoCloud() {
                     <img
                       src={`/logos/${slug}.svg`}
                       alt={`${label} logo`}
-                      className="mx-auto h-7 w-fit dark:invert drop-shadow-xl transition-all duration-200"
+                      className="mx-auto h-7 w-fit dark:invert drop-shadow-xl transition-all duration-200 hover:scale-110 hover:drop-shadow-2xl"
                       height={28}
                       style={{ imageRendering: 'auto' }}
                     />

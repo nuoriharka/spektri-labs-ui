@@ -18,7 +18,7 @@ export default function Footer1() {
           </nav>
         </div>
         <div className="mt-6 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} Spektri.Labs — Kaikki oikeudet pidätetään.
+          © {new Date().getFullYear()} Spektri.Labs UI — Kaikki oikeudet pidätetään.
         </div>
       </div>
     </footer>
