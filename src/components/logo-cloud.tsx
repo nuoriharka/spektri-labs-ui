@@ -15,96 +15,116 @@ export default function LogoCloud() {
                             speed={40}
                             gap={112}>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/openai.svg"
-                                    alt="OpenAI Logo"
-                                    height="20"
-                                    width="auto"
-                                />
+                                <a href="https://openai.com" target="_blank" rel="noreferrer noopener" aria-label="OpenAI">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/openai.svg"
+                                        alt="OpenAI Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
 
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/microsoft.svg"
-                                    alt="Microsoft Logo"
-                                    height="20"
-                                    width="auto"
-                                />
+                                <a href="https://microsoft.com" target="_blank" rel="noreferrer noopener" aria-label="Microsoft">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/microsoft.svg"
+                                        alt="Microsoft Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/google.svg"
-                                    alt="Google Logo"
-                                    height="16"
-                                    width="auto"
-                                />
+                                <a href="https://google.com" target="_blank" rel="noreferrer noopener" aria-label="Google">
+                                    <img
+                                        className="mx-auto h-4 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/google.svg"
+                                        alt="Google Logo"
+                                        height="16"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/github.svg"
-                                    alt="GitHub Logo"
-                                    height="16"
-                                    width="auto"
-                                />
+                                <a href="https://github.com" target="_blank" rel="noreferrer noopener" aria-label="GitHub">
+                                    <img
+                                        className="mx-auto h-4 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/github.svg"
+                                        alt="GitHub Logo"
+                                        height="16"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/vercel.svg"
-                                    alt="Vercel Logo"
-                                    height="20"
-                                    width="auto"
-                                />
+                                <a href="https://vercel.com" target="_blank" rel="noreferrer noopener" aria-label="Vercel">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/vercel.svg"
+                                        alt="Vercel Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/stripe.svg"
-                                    alt="Stripe Logo"
-                                    height="16"
-                                    width="auto"
-                                />
+                                <a href="https://stripe.com" target="_blank" rel="noreferrer noopener" aria-label="Stripe">
+                                    <img
+                                        className="mx-auto h-4 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/stripe.svg"
+                                        alt="Stripe Logo"
+                                        height="16"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/notion.svg"
-                                    alt="Notion Logo"
-                                    height="20"
-                                    width="auto"
-                                />
+                                <a href="https://notion.so" target="_blank" rel="noreferrer noopener" aria-label="Notion">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/notion.svg"
+                                        alt="Notion Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
 
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/supabase.svg"
-                                    alt="Supabase Logo"
-                                    height="20"
-                                    width="auto"
-                                />
+                                <a href="https://supabase.com" target="_blank" rel="noreferrer noopener" aria-label="Supabase">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/supabase.svg"
+                                        alt="Supabase Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/figma.svg"
-                                    alt="Figma Logo"
-                                    height="16"
-                                    width="auto"
-                                />
+                                <a href="https://figma.com" target="_blank" rel="noreferrer noopener" aria-label="Figma">
+                                    <img
+                                        className="mx-auto h-4 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/figma.svg"
+                                        alt="Figma Logo"
+                                        height="16"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
                             <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                                    alt="Nvidia Logo"
-                                    height="20"
-                                    width="auto"
-                                />
+                                <a href="https://nvidia.com" target="_blank" rel="noreferrer noopener" aria-label="NVIDIA">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="https://html.tailus.io/blocks/customers/nvidia.svg"
+                                        alt="Nvidia Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
                             </div>
                         </InfiniteSlider>
 

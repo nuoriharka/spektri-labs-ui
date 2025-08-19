@@ -65,7 +65,7 @@ export default function OnePlatformSection() {
           title="Meta-Orkestroija"
           subtitle="Autopilot for your agents"
           href="/#metaorkestroija"
-          img="/photos/ai-agent.jpg"
+          img="/metaorkesteroija1.png"
           className="col-span-12 h-[360px] sm:h-[420px] lg:col-span-7 lg:h-[520px]"
         />
 
@@ -74,14 +74,14 @@ export default function OnePlatformSection() {
           title="Agenttifarmit"
           subtitle="Scale AI crews on demand"
           href="/#agenttifarmit"
-          img="/photos/agent-swarm.jpg"
+          img="/agentfarm.png"
           className="col-span-12 h-[200px] sm:col-span-6 lg:col-span-5"
         />
         <Tile
           title="Mission Control"
           subtitle="Operoi ekosysteemiä yhdestä näkymästä"
           href="/#mission-control"
-          img="/photos/dashboard-3.png"
+          img="/missioncontrol.png"
           className="col-span-12 h-[200px] sm:col-span-6 lg:col-span-5"
         />
 
@@ -90,7 +90,7 @@ export default function OnePlatformSection() {
           title="Idea → MVP"
           subtitle="Ideasta sovellukseksi tunneissa"
           href="/#idea-to-mvp"
-          img="/photos/templates.png"
+          img="/idea-to-mvp.png"
           className="col-span-12 h-[220px]"
         />
 
@@ -99,7 +99,7 @@ export default function OnePlatformSection() {
           title="Role Agents"
           subtitle="Specialist roles that ship work"
           href="/#role-agents"
-          img="/photos/dashboard-agents.png"
+          img="/role-agents.png"
           className="col-span-12 h-[200px] sm:col-span-6 lg:col-span-4"
         />
 
@@ -129,10 +129,10 @@ export default function OnePlatformSection() {
 
 export function ConnectToolsSection() {
   const tabs = [
-    { key: "integrations", label: "Integrations", icon: Plug, img: "/photos/integrations.png" },
-    { key: "connections", label: "Connections", icon: Link2, img: "/photos/how-step-2-connect-oauth.webp" },
-    { key: "nocode", label: "No‑Code", icon: Workflow, img: "/photos/how-it-works.png" },
-    { key: "ai", label: "AI Software", icon: Cpu, img: "/photos/builder-hero.png" },
+    { key: "integrations", label: "Integrations", icon: Plug, img: "/integrations1.png" },
+    { key: "connections", label: "Connections", icon: Link2, img: "/connections.png" },
+    { key: "nocode", label: "No‑Code", icon: Workflow, img: "/nocodesoftware.png" },
+    { key: "ai", label: "AI Software", icon: Cpu, img: "/ai-software.png" },
   ] as const;
   const [active, setActive] = useState<(typeof tabs)[number]["key"]>("integrations");
   const activeTab = tabs.find((t) => t.key === active)!;

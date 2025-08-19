@@ -142,7 +142,14 @@ const HeroSection = () => (
       <div className="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
         <div aria-hidden className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-background" />
         <div className="shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)] ring-background dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
-          <Image className="bg-background aspect-[15/8] relative rounded-2xl" src="https://placehold.co/1350x720/030712/E7E9EC?text=Dashboard+Preview" alt="app screen" width={2700} height={1440} />
+          <Image
+            className="bg-background aspect-[15/8] relative rounded-2xl"
+            src="/photos/dashboard, käytä tätä.png"
+            alt="App screen"
+            width={2700}
+            height={1440}
+            priority
+          />
         </div>
       </div>
     </div>
