@@ -18,7 +18,7 @@ export default function LogoCloud() {
                                 <a href="https://openai.com" target="_blank" rel="noreferrer noopener" aria-label="OpenAI">
                                     <img
                                         className="mx-auto h-5 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/openai.svg"
+                                        src="/logos/openai.svg"
                                         alt="OpenAI Logo"
                                         height="20"
                                         width="auto"
@@ -30,7 +30,7 @@ export default function LogoCloud() {
                                 <a href="https://microsoft.com" target="_blank" rel="noreferrer noopener" aria-label="Microsoft">
                                     <img
                                         className="mx-auto h-5 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/microsoft.svg"
+                                        src="/logos/microsoft.svg"
                                         alt="Microsoft Logo"
                                         height="20"
                                         width="auto"
@@ -41,7 +41,7 @@ export default function LogoCloud() {
                                 <a href="https://google.com" target="_blank" rel="noreferrer noopener" aria-label="Google">
                                     <img
                                         className="mx-auto h-4 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/google.svg"
+                                        src="/logos/google.svg"
                                         alt="Google Logo"
                                         height="16"
                                         width="auto"
@@ -52,7 +52,7 @@ export default function LogoCloud() {
                                 <a href="https://github.com" target="_blank" rel="noreferrer noopener" aria-label="GitHub">
                                     <img
                                         className="mx-auto h-4 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/github.svg"
+                                        src="/logos/github.svg"
                                         alt="GitHub Logo"
                                         height="16"
                                         width="auto"
@@ -63,7 +63,7 @@ export default function LogoCloud() {
                                 <a href="https://vercel.com" target="_blank" rel="noreferrer noopener" aria-label="Vercel">
                                     <img
                                         className="mx-auto h-5 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/vercel.svg"
+                                        src="/logos/vercel.svg"
                                         alt="Vercel Logo"
                                         height="20"
                                         width="auto"
@@ -74,32 +74,9 @@ export default function LogoCloud() {
                                 <a href="https://stripe.com" target="_blank" rel="noreferrer noopener" aria-label="Stripe">
                                     <img
                                         className="mx-auto h-4 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/stripe.svg"
+                                        src="/logos/stripe.svg"
                                         alt="Stripe Logo"
                                         height="16"
-                                        width="auto"
-                                    />
-                                </a>
-                            </div>
-                            <div className="flex">
-                                <a href="https://notion.so" target="_blank" rel="noreferrer noopener" aria-label="Notion">
-                                    <img
-                                        className="mx-auto h-5 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/notion.svg"
-                                        alt="Notion Logo"
-                                        height="20"
-                                        width="auto"
-                                    />
-                                </a>
-                            </div>
-
-                            <div className="flex">
-                                <a href="https://supabase.com" target="_blank" rel="noreferrer noopener" aria-label="Supabase">
-                                    <img
-                                        className="mx-auto h-5 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/supabase.svg"
-                                        alt="Supabase Logo"
-                                        height="20"
                                         width="auto"
                                     />
                                 </a>
@@ -108,7 +85,7 @@ export default function LogoCloud() {
                                 <a href="https://figma.com" target="_blank" rel="noreferrer noopener" aria-label="Figma">
                                     <img
                                         className="mx-auto h-4 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/figma.svg"
+                                        src="/logos/figma.svg"
                                         alt="Figma Logo"
                                         height="16"
                                         width="auto"
@@ -116,11 +93,33 @@ export default function LogoCloud() {
                                 </a>
                             </div>
                             <div className="flex">
-                                <a href="https://nvidia.com" target="_blank" rel="noreferrer noopener" aria-label="NVIDIA">
+                                <a href="https://anthropic.com" target="_blank" rel="noreferrer noopener" aria-label="Anthropic">
                                     <img
                                         className="mx-auto h-5 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                                        alt="Nvidia Logo"
+                                        src="/logos/anthropic.svg"
+                                        alt="Anthropic Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
+                            </div>
+                            <div className="flex">
+                                <a href="https://tailwindcss.com" target="_blank" rel="noreferrer noopener" aria-label="Tailwind CSS">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="/logos/tailwindcss.svg"
+                                        alt="Tailwind CSS Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
+                            </div>
+                            <div className="flex">
+                                <a href="https://zapier.com" target="_blank" rel="noreferrer noopener" aria-label="Zapier">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="/logos/zapier.svg"
+                                        alt="Zapier Logo"
                                         height="20"
                                         width="auto"
                                     />

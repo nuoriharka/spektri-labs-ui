@@ -9,6 +9,7 @@ import { Balancer } from "react-wrap-balancer";
 import { cn } from "@/lib/utils";
 import LogoCloud from "@/components/logo-cloud";
 import OnePlatformSection, { ConnectToolsSection } from "@/components/OnePlatformSection";
+import SpektriFeatures from "@/components/SpektriFeatures";
 
 // Logo component
 const Logo = () => (
@@ -333,9 +334,10 @@ export default function LandingPage() {
       <main>
         <HeroSection />
         <LogoCloud />
-  <OnePlatformSection />
+        <SpektriFeatures />
+        <OnePlatformSection />
         <FeaturesSection />
-  <ConnectToolsSection />
+        <ConnectToolsSection />
         <ContentSection />
         <CtaSection />
       </main>

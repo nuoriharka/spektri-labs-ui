@@ -7,6 +7,39 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Plug, Link2, Workflow, Cpu } from "lucide-react";
 import BorderBeam from "@/components/magicui/BorderBeam";
 
+// Internal helper: Next/Image with graceful fallback to /photos/* when root image is missing locally
+function AutoImage({
+  src,
+  fallbackSrc,
+  alt,
+  fill,
+  className,
+}: {
+  src: string;
+  fallbackSrc: string;
+  alt: string;
+  fill?: boolean;
+  className?: string;
+}) {
+  const [current, setCurrent] = useState(src);
+  const [triedFallback, setTriedFallback] = useState(false);
+  return (
+    <Image
+      src={current}
+      alt={alt}
+      {...(fill ? { fill: true } : {})}
+      className={className}
+      onError={() => {
+        if (!triedFallback) {
+          setCurrent(fallbackSrc);
+          setTriedFallback(true);
+        }
+      }}
+      sizes="(max-width: 1024px) 100vw, 1024px"
+    />
+  );
+}
+
 // Tile card used in the asymmetric mosaic
 function Tile({
   title,
@@ -28,8 +61,15 @@ function Tile({
         className || ""
       }`}
     >
-      <Image
+      <AutoImage
         src={img}
+        fallbackSrc={
+          img === "/metaorkesteroija1.png" ? "/photos/ai-agent.jpg" :
+          img === "/agentfarm.png" ? "/photos/agent-swarm.jpg" :
+          img === "/missioncontrol.png" ? "/photos/dashboard-3.png" :
+          img === "/idea-to-mvp.png" ? "/photos/templates.png" :
+          img === "/role-agents.png" ? "/photos/dashboard-agents.png" : img
+        }
         alt={title}
         fill
         className="object-cover opacity-75 transition-transform duration-700 group-hover:scale-105"
@@ -128,14 +168,20 @@ export default function OnePlatformSection() {
 }
 
 export function ConnectToolsSection() {
-  const tabs = [
+  type Tab = {
+    key: "integrations" | "connections" | "nocode" | "ai";
+    label: string;
+    icon: typeof Plug;
+    img: string;
+  };
+  const tabs: Tab[] = [
     { key: "integrations", label: "Integrations", icon: Plug, img: "/integrations1.png" },
     { key: "connections", label: "Connections", icon: Link2, img: "/connections.png" },
     { key: "nocode", label: "No‑Code", icon: Workflow, img: "/nocodesoftware.png" },
     { key: "ai", label: "AI Software", icon: Cpu, img: "/ai-software.png" },
-  ] as const;
-  const [active, setActive] = useState<(typeof tabs)[number]["key"]>("integrations");
-  const activeTab = tabs.find((t) => t.key === active)!;
+  ];
+  const [active, setActive] = useState<Tab["key"]>("integrations");
+  const activeTab: Tab = tabs.find((t) => t.key === active)!;
 
   return (
     <section id="connect-tools" className="relative mx-auto max-w-7xl px-4 py-20 text-white">
@@ -187,9 +233,15 @@ export function ConnectToolsSection() {
         {/* RIGHT: BIG PREVIEW PANEL */}
         <div className="lg:col-span-7">
           <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-zinc-800 bg-black/40">
-            <Image
+            <AutoImage
               key={activeTab.img}
               src={activeTab.img}
+              fallbackSrc={
+                activeTab.img === "/integrations1.png" ? "/photos/integrations.png" :
+                activeTab.img === "/connections.png" ? "/photos/how-step-2-connect-oauth.webp" :
+                activeTab.img === "/nocodesoftware.png" ? "/photos/how-it-works.png" :
+                activeTab.img === "/ai-software.png" ? "/photos/builder-hero.png" : activeTab.img
+              }
               alt={activeTab.label}
               fill
               className="object-cover opacity-90"
