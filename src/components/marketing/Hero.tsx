@@ -29,9 +29,9 @@ export default function Hero(){
       />
       <div className="flex flex-col justify-center animate-float">
         <img
-          src="/brand/spektri-logo-horizontal.svg"
-          alt="Spektri"
-          className="h-8 w-auto mb-6 drop-shadow-2xl transition-transform duration-500 hover:scale-105"
+          src="/brand/spektri-logomark-gradient.svg"
+          alt="Spektri.Labs brändilogo"
+          className="h-12 w-auto mb-6 drop-shadow-2xl transition-transform duration-500 hover:scale-105"
         />
         <div className="mb-6 flex items-center justify-between">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight [font-family:var(--font-display-active)] drop-shadow-xl transition-all duration-500 data-[theme=designer]:tracking-[0.08em] data-[theme=designer]:uppercase">
