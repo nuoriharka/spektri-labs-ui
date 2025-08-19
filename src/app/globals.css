@@ -256,3 +256,8 @@ html,body { background:var(--bg); color:var(--fg); }
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
+
+@keyframes border-beam {
+  0% { offset-distance: 0%; }
+  100% { offset-distance: 100%; }
+}

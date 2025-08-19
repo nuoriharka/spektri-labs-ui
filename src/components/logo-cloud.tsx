@@ -103,6 +103,31 @@ export default function LogoCloud() {
                                     />
                                 </a>
                             </div>
+
+                            <div className="flex">
+                                <a href="https://meta.com" target="_blank" rel="noreferrer noopener" aria-label="Meta">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="/logos/meta.svg"
+                                        alt="Meta Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
+                            </div>
+
+                            <div className="flex">
+                                <a href="https://lovable.dev" target="_blank" rel="noreferrer noopener" aria-label="Lovable">
+                                    <img
+                                        className="mx-auto h-5 w-fit dark:invert"
+                                        src="/logos/lovable.svg"
+                                        alt="Lovable Logo"
+                                        height="20"
+                                        width="auto"
+                                    />
+                                </a>
+                            </div>
+
                             <div className="flex">
                                 <a href="https://tailwindcss.com" target="_blank" rel="noreferrer noopener" aria-label="Tailwind CSS">
                                     <img

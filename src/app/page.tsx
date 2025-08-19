@@ -9,7 +9,8 @@ import { Balancer } from "react-wrap-balancer";
 import { cn } from "@/lib/utils";
 import LogoCloud from "@/components/logo-cloud";
 import OnePlatformSection, { ConnectToolsSection } from "@/components/OnePlatformSection";
-import SpektriFeatures from "@/components/SpektriFeatures";
+import FeaturesSection2 from "@/components/FeaturesSection2";
+import Section3Integrations from "@/components/Section3Integrations";
 
 // Logo component
 const Logo = () => (
@@ -145,7 +146,7 @@ const HeroSection = () => (
         <div className="shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)] ring-background dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
           <Image
             className="bg-background aspect-[15/8] relative rounded-2xl"
-            src="/photos/dashboard, käytä tätä.png"
+            src="/photos/hero-dashboard.png"
             alt="App screen"
             width={2700}
             height={1440}
@@ -334,7 +335,8 @@ export default function LandingPage() {
       <main>
         <HeroSection />
         <LogoCloud />
-        <SpektriFeatures />
+        <FeaturesSection2 />
+        <Section3Integrations />
         <OnePlatformSection />
         <FeaturesSection />
         <ConnectToolsSection />
