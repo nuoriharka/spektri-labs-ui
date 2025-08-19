@@ -13,9 +13,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       <body style={{ fontFamily: "var(--font-sans-active)" }}>
         <Suspense>
           <ThemeProvider>
-            <header role="banner">
-              <SiteHeader />
-            </header>
+            {/* Topbar/header removed: now rendered globally in src/app/layout.tsx */}
             {children}
             <footer role="contentinfo">
               <MarketingFooter />
