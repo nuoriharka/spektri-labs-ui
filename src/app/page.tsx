@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { ArrowRight, Bot, Gauge, Network, AppWindow, Check, Menu, X } from 'lucide-react';
 import { Balancer } from "react-wrap-balancer";
 import { cn } from "@/lib/utils";
+import LogoCloud from "@/components/logo-cloud";
 
 // Logo component
 const Logo = () => (
@@ -147,42 +148,6 @@ const HeroSection = () => (
   </section>
 )
 
-const LogoCloud = () => {
-  // Local SVGs from public/logos chosen to fit Spektri.Labs
-  const logos = [
-    { src: "/logos/vercel.svg", alt: "Vercel" },
-    { src: "/logos/openai.svg", alt: "OpenAI" },
-    { src: "/logos/anthropic.svg", alt: "Anthropic" },
-    { src: "/logos/google.svg", alt: "Google" },
-    { src: "/logos/microsoft.svg", alt: "Microsoft" },
-    { src: "/logos/github.svg", alt: "GitHub" },
-    { src: "/logos/stripe.svg", alt: "Stripe" },
-    { src: "/logos/supabase.svg", alt: "Supabase" },
-    { src: "/logos/notion.svg", alt: "Notion" },
-    { src: "/logos/figma.svg", alt: "Figma" },
-    { src: "/logos/gemini.svg", alt: "Google Gemini" },
-    { src: "/logos/revolut.svg", alt: "Revolut" },
-  ];
-  const extendedLogos = [...logos, ...logos];
-  return (
-    <section className="bg-background py-16 md:py-24">
-      <div className="container mx-auto px-6">
-        <h2 className="text-center text-lg font-semibold leading-8 text-foreground">Integroituu saumattomasti parhaisiin työkaluihin</h2>
-        <div className="relative mt-12 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
-          <div className="animate-marquee flex min-w-full flex-shrink-0 items-center justify-around gap-x-16">
-            {extendedLogos.map((logo, index) => (
-              <Image key={index} className="h-8 w-auto flex-shrink-0 dark:invert" src={logo.src} alt={logo.alt} height={32} width={128} />
-            ))}
-          </div>
-        </div>
-      </div>
-      <style jsx global>{`
-        @keyframes marquee { from { transform: translateX(0%); } to { transform: translateX(-50%); } }
-        .animate-marquee { animation: marquee 40s linear infinite; }
-      `}</style>
-    </section>
-  );
-}
 
 const FeaturesSection = () => {
   const features = [
