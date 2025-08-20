@@ -2,6 +2,7 @@
 import { cn } from '../lib/utils'
 import { useMotionValue, animate, motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { useReducedMotion } from 'framer-motion'
 import useMeasure from 'react-use-measure'
 
 export type InfiniteSliderProps = {
@@ -12,9 +13,11 @@ export type InfiniteSliderProps = {
     direction?: 'horizontal' | 'vertical'
     reverse?: boolean
     className?: string
+    reducedSpeed?: number
 }
 
-export function InfiniteSlider({ children, gap = 16, speed = 100, speedOnHover, direction = 'horizontal', reverse = false, className }: InfiniteSliderProps) {
+export function InfiniteSlider({ children, gap = 16, speed = 100, speedOnHover, direction = 'horizontal', reverse = false, className, reducedSpeed = 0 }: InfiniteSliderProps) {
+    const prefersReduced = useReducedMotion()
     const [currentSpeed, setCurrentSpeed] = useState(speed)
     const [ref, { width, height }] = useMeasure()
     const translation = useMotionValue(0)
@@ -29,9 +32,14 @@ export function InfiniteSlider({ children, gap = 16, speed = 100, speedOnHover, 
         const to = reverse ? 0 : -contentSize / 2
 
         const distanceToTravel = Math.abs(to - from)
-        const duration = distanceToTravel / currentSpeed
+        const baseSpeed = prefersReduced ? (reducedSpeed || 0) : currentSpeed
+        const duration = baseSpeed === 0 ? Infinity : distanceToTravel / baseSpeed
 
-        if (isTransitioning) {
+        if (prefersReduced) {
+            // Stop animation for reduced motion
+            translation.set(from)
+            return
+        } else if (isTransitioning) {
             const remainingDistance = Math.abs(translation.get() - to)
             const transitionDuration = remainingDistance / currentSpeed
 
@@ -57,7 +65,7 @@ export function InfiniteSlider({ children, gap = 16, speed = 100, speedOnHover, 
         }
 
         return controls?.stop
-    }, [key, translation, currentSpeed, width, height, gap, isTransitioning, direction, reverse])
+    }, [key, translation, currentSpeed, width, height, gap, isTransitioning, direction, reverse, prefersReduced, reducedSpeed])
 
     const hoverProps = speedOnHover
         ? {

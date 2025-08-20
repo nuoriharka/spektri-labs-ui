@@ -4,7 +4,7 @@ import { ProgressiveBlur } from '@/components/ui/progressive-blur'
 export default function LogoCloud() {
     return (
         <section className="bg-background overflow-hidden py-16">
-            <div className="group relative m-auto max-w-7xl px-6">
+            <div className="group relative m-auto max-w-6xl px-5 md:max-w-7xl md:px-6">
                 <div className="flex flex-col items-center md:flex-row">
                     <div className="md:max-w-44 md:border-r md:pr-6">
                         <p className="text-end text-sm">Powering the best teams</p>
@@ -13,6 +13,7 @@ export default function LogoCloud() {
                         <InfiniteSlider
                             speedOnHover={20}
                             speed={40}
+                            reducedSpeed={0}
                             gap={112}>
                             <div className="flex">
                                 <a href="https://openai.com" target="_blank" rel="noreferrer noopener" aria-label="OpenAI">

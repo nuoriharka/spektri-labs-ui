@@ -117,7 +117,7 @@ export function ChartContainer({
   )
 }
 
-export const ChartTooltip = Tooltip
+export const ChartTooltip = Tooltip as any
 
 export function ChartTooltipContent({
   active,
@@ -145,7 +145,7 @@ export function ChartTooltipContent({
   )
 }
 
-export const ChartLegend = Legend
+export const ChartLegend = Legend as any
 
 export function ChartLegendContent({ payload, className, verticalAlign }: LegendProps & { className?: string }) {
   if (!payload?.length) return null

@@ -82,20 +82,20 @@ export default function Section3Integrations() {
   const [mode, setMode] = useState<"nocode" | "api">("nocode");
 
   return (
-    <section id="integrations-3" className="relative mx-auto max-w-7xl px-4 py-20 text-white">
+    <section id="integrations-3" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline">
       {/* Header */}
       <div className="mb-10">
-        <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+        <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
           Yhdistä kaikki työkalusi. <span className="text-zinc-300">Vapauta data.</span>
         </h2>
-        <p className="mt-3 max-w-2xl text-zinc-300">
+        <p className="mt-3 max-w-2xl text-zinc-300 leading-7 md:leading-8">
           Spektri kytkee integraatiot, datavirrat ja agentit yhdeksi arkkitehtuuriksi.
           Rakennat ilman kitkaa – koodilla tai ilman.
         </p>
 
         {/* Cinematic banner (Matrix image) */}
-        <div className="relative mt-6 h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-2xl border border-zinc-800">
-          <Image src={MATRIX_IMG} alt="Integrations Matrix" fill className="object-cover opacity-95" />
+        <div className="relative mt-6 h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-3xl border border-zinc-800 shadow-lg shadow-zinc-950/20">
+          <Image src={MATRIX_IMG} alt="Integrations Matrix" fill className="object-cover opacity-95" quality={90} />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent,transparent,black_80%)]" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           <BorderBeam className="pointer-events-none" />
@@ -106,7 +106,7 @@ export default function Section3Integrations() {
       </div>
 
       {/* Layout: left pipeline / right brand wall */}
-      <div className="grid items-start gap-8 lg:grid-cols-12">
+  <div className="grid items-start gap-8 lg:grid-cols-12">
         {/* Pipeline */}
         <div className="space-y-4 lg:col-span-5">
           <Step
@@ -162,10 +162,10 @@ export default function Section3Integrations() {
 
           {/* CTAs */}
           <div className="mt-6 flex gap-3">
-            <Link href="/#integrations" className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-100">
+            <Link href="/#integrations" className="rounded-full micro-cta bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-100">
               Katso integraatiot
             </Link>
-            <Link href="/docs" className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm hover:bg-white/20">
+            <Link href="/docs" className="rounded-full micro-cta border border-white/20 bg-white/10 px-4 py-2 text-sm hover:bg-white/20">
               Dokumentaatio
             </Link>
           </div>
@@ -188,8 +188,8 @@ export default function Section3Integrations() {
               { img: "/photos/nocodesoftware.png", label: "No‑Code" },
               { img: "/photos/ai-software.png", label: "AI Software" },
             ].map(({ img, label }) => (
-              <div key={label} className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-zinc-800 bg-black/40">
-                <Image src={img} alt={label} fill className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105" />
+              <div key={label} className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-zinc-800 bg-black/40 shadow-lg shadow-zinc-950/20">
+                <Image src={img} alt={label} fill className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105" quality={85} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-3 left-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
                   {label}

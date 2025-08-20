@@ -252,6 +252,41 @@ html,body { background:var(--bg); color:var(--fg); }
 .marquee { display: flex; white-space: nowrap; will-change: transform; animation: marquee linear infinite; }
 .reduced-motion .marquee { animation: none; transform: none; }
 
+/* Respect system reduced-motion automatically */
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none !important; transform: none !important; }
+}
+
+/* Modular type scale and baseline helpers (opt-in) */
+:root {
+  /* 8px baseline rhythm */
+  --baseline: 8px;
+  /* Major third modular scale around 1rem base */
+  --step--1: clamp(0.83rem, 0.79rem + 0.18vw, 0.9rem);
+  --step-0: clamp(1.00rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.16rem + 0.45vw, 1.423rem);
+  --step-2: clamp(1.563rem, 1.44rem + 0.61vw, 1.78rem);
+  --step-3: clamp(1.953rem, 1.78rem + 0.88vw, 2.22rem);
+  --step-4: clamp(2.441rem, 2.21rem + 1.15vw, 2.78rem);
+}
+
+.type-modular h1 { font-size: var(--step-4); line-height: 1.1; }
+.type-modular h2 { font-size: var(--step-3); line-height: 1.15; }
+.type-modular h3 { font-size: var(--step-2); line-height: 1.2; }
+.type-modular h4 { font-size: var(--step-1); line-height: 1.25; }
+.type-modular .lead { font-size: var(--step-0); line-height: 1.6; }
+
+/* Baseline-friendly defaults for prose in opt-in containers */
+.baseline p { margin-block: calc(2 * var(--baseline)); }
+.baseline .tight > p { margin-block: var(--baseline); }
+
+/* Micro-interaction utility for CTAs (respects reduced motion) */
+.micro-cta { transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease; }
+@media (prefers-reduced-motion: no-preference) {
+  .micro-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+  .micro-cta:active { transform: translateY(0); box-shadow: 0 4px 18px rgba(0,0,0,0.2); }
+}
+
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }

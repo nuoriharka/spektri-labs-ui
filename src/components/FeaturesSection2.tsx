@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, PanelLeft, Bot, Users } from "lucide-react";
+import { ArrowRight, PanelLeft, Bot, Users, type LucideIcon } from "lucide-react";
 import BorderBeam from "@/components/magicui/BorderBeam";
 
 /**
@@ -52,6 +52,16 @@ const FEATURES = [
   },
 ] as const;
 
+type Feature = {
+  kicker: string;
+  title: string;
+  desc: string;
+  img: string;
+  href: string;
+  icon: LucideIcon;
+  chips: readonly string[];
+};
+
 function FeatureRow({
   kicker,
   title,
@@ -61,7 +71,7 @@ function FeatureRow({
   icon: Icon,
   chips,
   reverse,
-}: (typeof FEATURES)[number] & { reverse?: boolean }) {
+}: Feature & { reverse?: boolean }) {
   return (
     <div
       className={`grid items-center gap-8 md:gap-10 lg:gap-12 ${
@@ -98,7 +108,14 @@ function FeatureRow({
       {/* Visual */}
       <div className={`relative ${reverse ? "md:order-1" : ""}`}>
         <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-zinc-800 bg-black/40">
-          <Image src={img} alt={kicker} fill className="object-cover" />
+          <Image
+            src={img}
+            alt={kicker}
+            fill
+            className={`object-cover ${img.includes('meta-agentti') ? 'object-top' : ''}`}
+            quality={90}
+            priority={img.includes('komentokeskus')}
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <BorderBeam className="pointer-events-none" />
           <div className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
@@ -112,22 +129,25 @@ function FeatureRow({
 
 export default function FeaturesSection2() {
   return (
-    <section id="features-2" className="relative mx-auto max-w-7xl px-4 py-20 text-white">
+    <section id="features-2" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white">
       {/* Header */}
-      <div className="mb-12 flex flex-col items-start gap-2">
+      <div className="mb-10 md:mb-12 flex flex-col items-start gap-2">
         <span className="text-xs uppercase tracking-wider text-zinc-400">Section 2 · Features</span>
-        <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+        <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
           Yksi Alusta, <span className="text-zinc-300">Rajaton Potentiaali</span>
         </h2>
-        <p className="max-w-2xl text-zinc-300">
+        <p className="max-w-2xl text-zinc-300 leading-7 md:leading-8">
           Kolme keihäänkärkeä, jotka tekevät Spektristä tappavan nopean: keskitetty ohjaus, itseään parantava meta‑agentti ja rajattomasti skaalautuvat agenttifarmit.
         </p>
       </div>
 
-      <div className="space-y-16">
-        <FeatureRow {...FEATURES[0]} />
-        <FeatureRow {...FEATURES[1]} reverse />
-        <FeatureRow {...FEATURES[2]} />
+      <div className="space-y-14 md:space-y-16">
+        {FEATURES.map((f, idx) => {
+          const { key: featureKey, ...rest } = f;
+          return (
+            <FeatureRow key={featureKey ?? idx} {...(rest as Feature)} reverse={idx === 1} />
+          );
+        })}
       </div>
     </section>
   );

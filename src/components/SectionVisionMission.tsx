@@ -58,23 +58,23 @@ function Kicker({ children }: { children: React.ReactNode }) {
 
 export default function SectionVisionMission() {
   return (
-    <section id="vision" className="relative mx-auto max-w-7xl px-4 py-20 text-white">
+  <section id="vision" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline">
       <BorderBeam className="pointer-events-none" />
 
       {/* Header */}
       <div className="mb-10 flex flex-col items-start gap-3">
         <Kicker>Spektri Labs · Manifesti</Kicker>
-        <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+        <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
           Demokratisoitu tekoäly – <span className="text-zinc-300">luovaa ja sosiaalista</span>
         </h2>
-        <p className="max-w-3xl text-zinc-300">
+        <p className="max-w-3xl text-zinc-300 leading-7 md:leading-8">
           Rakennamme maailmaa, jossa tekoäly on demokraattista, luovaa ja sosiaalista – voimistaen jokaista ihmistä muuttamaan ideat toimiviksi sovelluksiksi ilman koodaustaitoja.
         </p>
       </div>
 
       {/* Two cards: Vision & Mission */}
       <div className="grid gap-6 md:grid-cols-2">
-        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-black/60 to-zinc-900/60 p-6">
+        <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-black/60 to-zinc-900/60 p-6 shadow-lg shadow-zinc-950/20">
           <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
             <Target className="h-4 w-4" /> Visio
           </div>
@@ -85,7 +85,7 @@ export default function SectionVisionMission() {
           <BorderBeam className="pointer-events-none" />
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-black/60 to-zinc-900/60 p-6">
+        <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-black/60 to-zinc-900/60 p-6 shadow-lg shadow-zinc-950/20">
           <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
             <BadgeCheck className="h-4 w-4" /> Missio
           </div>
@@ -104,7 +104,7 @@ export default function SectionVisionMission() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {WHY_ITEMS.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 p-5">
+            <div key={title} className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-black/40 p-5 shadow-lg shadow-zinc-950/10">
               <div className="mb-2 flex items-center gap-2 text-sm font-medium">
                 <Icon className="h-4 w-4 text-zinc-400" /> {title}
               </div>
@@ -116,7 +116,7 @@ export default function SectionVisionMission() {
       </div>
 
       {/* Quote */}
-      <figure className="mt-12 rounded-2xl border border-zinc-800 bg-black/40 p-6">
+      <figure className="mt-12 rounded-3xl border border-zinc-800 bg-black/40 p-6 shadow-lg shadow-zinc-950/10">
         <blockquote className="text-lg font-medium text-zinc-200">
           "Rakennamme seuraavaa sukupolvea muovaavaa alustaa – ei koodilla, vaan kollektiivisella älyllä."
         </blockquote>
@@ -125,10 +125,10 @@ export default function SectionVisionMission() {
 
       {/* CTA Row */}
       <div className="mt-8 flex flex-wrap gap-3">
-        <a href="#one-platform" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-100">
+        <a href="#one-platform" className="inline-flex items-center gap-2 rounded-full micro-cta bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-100">
           Tutustu alustan ytimeen <ArrowRight className="h-4 w-4" />
         </a>
-        <a href="#integrations-3" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm hover:bg-white/20">
+        <a href="#integrations-3" className="inline-flex items-center gap-2 rounded-full micro-cta border border-white/20 bg-white/10 px-4 py-2 text-sm hover:bg-white/20">
           Näe integraatiot
         </a>
       </div>

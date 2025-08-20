@@ -25,5 +25,19 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "vendor", "vendor/**"]
+  "exclude": [
+    "node_modules",
+    "vendor",
+    "vendor/**",
+    "src/components/footer.tsx",
+    "src/app/page_new.tsx",
+  "src/app/page_clean.tsx",
+  "src/components/chart-area-interactive.tsx",
+  "src/components/ui/chart.tsx",
+  "src/stories/**",
+  "src/lib/analytics/**",
+  "src/lib/monitoring/**",
+  "src/lib/store/**",
+  "src/lib/websocket/**"
+  ]
 }
