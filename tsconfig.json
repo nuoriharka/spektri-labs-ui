@@ -21,7 +21,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "photos/*": ["./photos/*"]
+  "photos/*": ["./photos/*"],
+  "@spektri/agents": ["./packages/agents/src/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

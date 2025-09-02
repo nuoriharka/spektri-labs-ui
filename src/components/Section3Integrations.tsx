@@ -31,13 +31,6 @@ import aiSoftware from "../../public/photos/ai-software.png";
  * SECTION 3 — INTEGRATIONS (Tailark integrations-5 inspired)
  * Headline: "Yhdistä kaikki työkalusi. Vapauta data."
  * Copy: "Spektri kytkee integraatiot, datavirrat ja agentit yhdeksi arkkitehtuuriksi.\n        Rakennat ilman kitkaa – koodilla tai ilman."
- *
- * Preview images under /public:
- *  - /photos/all integrations, matrix.png   (cinematic banner)
- *  - /photos/integrations1.png
- *  - /photos/connections.png
- *  - /photos/nocodesoftware.png
- *  - /photos/ai-software.png
  */
 
 const MATRIX_IMG = matrixImg as StaticImageData;
@@ -73,7 +66,7 @@ function Step({
   Icon: any;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-black/60 to-zinc-900/60 p-4">
+    <div className="relative overflow-hidden rounded-2xl hy-card p-4">
       <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
         <Icon className="h-4 w-4" /> {title}
       </div>
@@ -86,7 +79,7 @@ export default function Section3Integrations() {
   const [mode, setMode] = useState<"nocode" | "api">("nocode");
 
   return (
-  <section id="integrations-3" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24">
+    <section id="integrations-3" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24 section-halo">
       {/* Header */}
       <div className="mb-10">
         <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
@@ -98,10 +91,8 @@ export default function Section3Integrations() {
         </p>
 
         {/* Cinematic banner (Matrix image) */}
-        <div className="relative mt-6 h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 shadow-none">
+        <div className="relative mt-6 h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-2xl hy-img hy-overlay shadow-none">
           <Image src={MATRIX_IMG} alt="Integrations Matrix" fill className="object-cover opacity-95" quality={90} placeholder="blur" priority sizes="100vw" />
-          <div className="absolute inset-0 bg-[radial-gradient(80%_80%_at_50%_70%,transparent_0%,black_80%)]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
           <div className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
             Integrations Grid
           </div>
@@ -109,7 +100,7 @@ export default function Section3Integrations() {
       </div>
 
       {/* Layout: left pipeline / right brand wall */}
-  <div className="grid items-start gap-8 lg:grid-cols-12">
+      <div className="grid items-start gap-8 lg:grid-cols-12">
         {/* Pipeline */}
         <div className="space-y-4 lg:col-span-5">
           <Step
@@ -165,8 +156,8 @@ export default function Section3Integrations() {
 
           {/* CTAs */}
           <div className="mt-6 flex gap-3">
-            <Link prefetch={false} href="/#integrations" className="btn-primary focus-ring">Katso integraatiot</Link>
-            <Link prefetch={false} href="/docs" className="btn-secondary focus-ring">Dokumentaatio</Link>
+            <Link prefetch={false} href="/#integrations" className="btn-primary micro-cta focus-ring">Katso integraatiot</Link>
+            <Link prefetch={false} href="/docs" className="btn-secondary micro-cta focus-ring">Dokumentaatio</Link>
           </div>
         </div>
 
@@ -187,9 +178,8 @@ export default function Section3Integrations() {
               { img: nocode as StaticImageData, label: "No‑Code" },
               { img: aiSoftware as StaticImageData, label: "AI Software" },
             ] as { img: StaticImageData; label: string }[]).map(({ img, label }) => (
-              <div key={label} className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 shadow-none">
+              <div key={label} className="group relative aspect-[4/3] overflow-hidden rounded-2xl hy-img hy-overlay shadow-none">
                 <Image src={img} alt={label} fill placeholder="blur" sizes="(min-width:1024px) 50vw, 100vw" className="object-cover opacity-90 transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none" quality={85} />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--overlay-start)] via-black/20 to-[var(--overlay-end)]" />
                 <div className="absolute bottom-3 left-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
                   {label}
                 </div>

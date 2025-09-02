@@ -102,7 +102,7 @@ const HeroHeader = () => {
   <div className="relative h-16 flex items-center px-4">
           {/* Soft background so hero doesn't flash; no layout shift */}
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/70 to-transparent supports-[backdrop-filter]:bg-background/40 supports-[backdrop-filter]:backdrop-blur-md" />
-          <div className={cn('mx-auto w-full max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'bg-background/80 max-w-5xl rounded-2xl border border-white/10 backdrop-blur-lg lg:px-5')}>
+          <div className={cn('mx-auto w-full max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'hy-glass max-w-5xl rounded-2xl lg:px-5')}>
             <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
               <div className="flex w-full justify-between md:w-auto">
                 <Link href="/" aria-label="Etusivu">
@@ -135,12 +135,12 @@ const HeroHeader = () => {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Valikko"
-                className={cn('mb-6 w-full space-y-8 rounded-3xl border border-white/10 p-6 shadow-2xl shadow-zinc-950/20 md:hidden', menuState ? 'block bg-background' : 'hidden')}
+                className={cn('mb-6 w-full space-y-8 rounded-3xl p-6 shadow-2xl shadow-zinc-950/20 md:hidden', menuState ? 'block hy-glass' : 'hidden')}
               >
                 <ul className="space-y-6 text-base">
           {menuItems.map((item) => (
                     <li key={item.name}>
-            <Link prefetch={false} href={item.href} aria-current={currentHash === item.href ? 'page' : undefined} className="block duration-150 text-muted-foreground hover:text-accent-foreground">
+            <Link prefetch={false} href={item.href} aria-current={currentHash === item.href ? 'page' : undefined} className="block duration-150 text-muted-foreground hover:text-accent-foreground" onClick={() => setMenuState(false)}>
                         <span>{item.name}</span>
                       </Link>
                     </li>
@@ -164,7 +164,7 @@ const HeroHeader = () => {
 }
 
 const HeroSection = () => (
-  <section className="type-modular baseline scroll-mt-24">
+  <section className="type-modular baseline scroll-mt-24 section-halo">
     <div className="relative pt-24 md:pt-36">
       <div aria-hidden className="absolute inset-0 -z-20 isolate hidden opacity-65 contain-strict lg:block">
         <div className="w-[87.5rem] h-[200rem] -translate-y-[54.6875rem] absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
@@ -191,10 +191,10 @@ const HeroSection = () => (
             Muunna ideat ja prosessit tuotantovalmiiksi automaatioksi luonnollisella kielellä. Aja ensimmäinen työnkulku alle 60 sekunnissa.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 md:flex-row">
-            <a href="#" className="btn-primary focus-ring rounded-full h-12 px-5">
+            <a href="#" className="btn-primary micro-cta focus-ring rounded-full h-12 px-5">
               Rakenna ensimmäinen agenttisi
             </a>
-            <a href="#" className="btn-secondary focus-ring rounded-full h-12 px-5">
+            <a href="#" className="btn-secondary micro-cta focus-ring rounded-full h-12 px-5">
               Katso 60s demo
             </a>
           </div>
@@ -202,7 +202,7 @@ const HeroSection = () => (
       </div>
   <div className="relative mt-8 overflow-hidden px-4 md:px-6 sm:mt-12 md:mt-20">
         <div aria-hidden className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-background" />
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 p-3 md:p-4 shadow-none">
+        <div className="relative mx-auto max-w-6xl hy-img p-3 md:p-4 shadow-none">
           <Image
             className="bg-background aspect-[15/8] relative rounded-2xl"
             src={heroDashboard}

@@ -6,6 +6,7 @@ import { initTelemetry } from '@/lib/telemetry'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import { QueryProvider } from '@/components/providers/QueryProvider'
 import { Analytics } from '@vercel/analytics/react'
+import { ServiceWorkerRegister } from '@/components/pwa/ServiceWorkerRegister'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -137,6 +138,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </Toaster>
             </QueryProvider>
             <Analytics />
+            <ServiceWorkerRegister />
           </>
         </ThemeProvider>
       </body>

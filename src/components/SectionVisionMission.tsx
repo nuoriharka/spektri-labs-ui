@@ -58,7 +58,7 @@ function Kicker({ children }: { children: React.ReactNode }) {
 
 export default function SectionVisionMission() {
   return (
-  <section id="vision" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24">
+    <section id="vision" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24 section-halo">
       <BorderBeam className="pointer-events-none" />
 
       {/* Header */}
@@ -74,7 +74,7 @@ export default function SectionVisionMission() {
 
       {/* Two cards: Vision & Mission */}
       <div className="grid gap-6 md:grid-cols-2">
-        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 p-6 shadow-none">
+        <div className="relative overflow-hidden rounded-2xl hy-card p-6">
           <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
             <Target className="h-4 w-4" /> Visio
           </div>
@@ -82,10 +82,9 @@ export default function SectionVisionMission() {
           <p className="mt-2 text-zinc-300">
             Voimistaen jokaista muuttamaan ideat sovelluksiksi – ilman koodia.
           </p>
-          {/* Unified card standard; no extra glow */}
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 p-6 shadow-none">
+        <div className="relative overflow-hidden rounded-2xl hy-card p-6">
           <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
             <BadgeCheck className="h-4 w-4" /> Missio
           </div>
@@ -93,7 +92,6 @@ export default function SectionVisionMission() {
           <p className="mt-2 text-zinc-300">
             Teemme agenttien löytämisestä, remixaamisesta ja jakamisesta vaivatonta – arvo palautuu tekijöille.
           </p>
-          {/* Unified card standard; no extra glow */}
         </div>
       </div>
 
@@ -104,7 +102,7 @@ export default function SectionVisionMission() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {WHY_ITEMS.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 p-5 shadow-none">
+            <div key={title} className="group relative overflow-hidden rounded-2xl hy-card p-5">
               <div className="mb-2 flex items-center gap-2 text-sm font-medium">
                 <Icon className="h-4 w-4 text-zinc-400" /> {title}
               </div>
@@ -116,7 +114,7 @@ export default function SectionVisionMission() {
       </div>
 
       {/* Quote */}
-  <figure className="mt-12 rounded-2xl border border-zinc-800 bg-black/40 p-6 shadow-none">
+      <figure className="mt-12 rounded-2xl hy-card p-6">
         <blockquote className="text-lg font-medium text-zinc-200">
           "Rakennamme seuraavaa sukupolvea muovaavaa alustaa – ei koodilla, vaan kollektiivisella älyllä."
         </blockquote>
@@ -125,10 +123,10 @@ export default function SectionVisionMission() {
 
       {/* CTA Row */}
       <div className="mt-8 flex flex-wrap gap-3">
-        <a href="#one-platform" className="btn-primary focus-ring">
+        <a href="#one-platform" className="btn-primary micro-cta focus-ring">
           Tutustu alustan ytimeen <ArrowRight className="h-4 w-4" />
         </a>
-        <a href="#integrations-3" className="btn-secondary focus-ring">
+        <a href="#integrations-3" className="btn-secondary micro-cta focus-ring">
           Näe integraatiot
         </a>
       </div>

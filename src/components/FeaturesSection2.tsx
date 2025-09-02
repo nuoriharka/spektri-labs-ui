@@ -26,7 +26,7 @@ const FEATURES = [
     title: "Operoi koko ekosysteemiä yhdestä näkymästä",
     desc:
       "Valvo agentteja, työnkulkuja ja integraatioita keskitetystä ohjaamosta. Live‑telemetria, hälytykset ja ihmisen hyväksyntä yhdellä klikkauksella.",
-  img: komentokeskus as StaticImageData,
+    img: komentokeskus as StaticImageData,
     href: "/#mission-control",
     icon: PanelLeft,
     chips: ["Realtime", "Audit Trail", "Roolit & oikeudet"],
@@ -37,7 +37,7 @@ const FEATURES = [
     title: "Orkestroi agenttitiimit automaattisesti",
     desc:
       "Meta‑agentti laatii suunnitelman, jakaa tehtävät erikoisagenteille ja optimoi suorituksen jatkuvasti. Tuloksena vähemmän kitkaa, enemmän toimitusta.",
-  img: metaAgentti as StaticImageData,
+    img: metaAgentti as StaticImageData,
     href: "/#metaorkestroija",
     icon: Bot,
     chips: ["Planner", "Critic", "Self‑Improve"],
@@ -48,7 +48,7 @@ const FEATURES = [
     title: "Skaalaa suorituskykyä vailla ylärajaa",
     desc:
       "Käynnistä kymmeniä tai satoja agenteja hetkessä. Eristetyt sandboxit, välimuistit ja kustannusrajat tekevät skaalaamisesta hallittua.",
-  img: agenttifarmit as StaticImageData,
+    img: agenttifarmit as StaticImageData,
     href: "/#agenttifarmit",
     icon: Users,
     chips: ["Autoscale", "Sandbox", "Budjettikatot"],
@@ -84,7 +84,7 @@ function FeatureRow({
     >
       {/* Copy */}
       <div className={`${reverse ? "md:order-2" : ""}`}>
-  <h3 className="text-2xl md:text-3xl font-semibold leading-tight text-balance">{title}</h3>
+        <h3 className="text-2xl md:text-3xl font-semibold leading-tight text-balance">{title}</h3>
         <p className="mt-3 max-w-prose text-zinc-300">{desc}</p>
 
         <div className="mt-5 flex flex-wrap gap-2">
@@ -95,14 +95,14 @@ function FeatureRow({
           ))}
         </div>
 
-  <Link prefetch={false} href={href} className="mt-6 btn-primary focus-ring">
+        <Link prefetch={false} href={href} className="mt-6 btn-primary micro-cta focus-ring">
           Tutustu <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
 
       {/* Visual */}
       <div className={`relative ${reverse ? "md:order-1" : ""}`}>
-        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-none">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl hy-img hy-overlay shadow-none">
           <Image
             src={img}
             alt={kicker}
@@ -113,7 +113,7 @@ function FeatureRow({
             priority={kicker === 'Komentokeskus'}
             sizes="(min-width:1024px) 50vw, 100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--overlay-start)] via-transparent to-[var(--overlay-end)]" />
+          {/* overlay is provided by .hy-overlay */}
           <div className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
             {kicker}
           </div>
@@ -125,7 +125,7 @@ function FeatureRow({
 
 export default function FeaturesSection2() {
   return (
-  <section id="features-2" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white scroll-mt-24">
+    <section id="features-2" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white scroll-mt-24 section-halo">
       {/* Header */}
       <div className="mb-10 md:mb-12 flex flex-col items-start gap-2">
         <span className="text-xs uppercase tracking-wider text-zinc-400">Section 2 · Features</span>

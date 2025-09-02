@@ -339,3 +339,74 @@ html,body { background:var(--bg); color:var(--fg); }
   0% { offset-distance: 0%; }
   100% { offset-distance: 100%; }
 }
+
+/* --- SUPER-AAAA: Tokens and Utilities (Task 1 & 2) --- */
+@layer base {
+  :root {
+    /* Overlay tokens for consistent image readability */
+    --overlay-start: rgba(0,0,0,0.7);
+    --overlay-end: rgba(0,0,0,0);
+    --overlay-soft: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.25) 60%,
+      rgba(0,0,0,0.6) 100%
+    );
+    --overlay-radial: radial-gradient(80% 60% at 50% 0%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 60%);
+    /* Noise strength */
+    --noise-opacity: 0.04;
+    /* Shadow presets */
+    --shadow-subtle: 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-elevated: 0 8px 24px rgba(0,0,0,0.18);
+    --shadow-premium: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.18);
+    /* Gradient helper stops */
+    --surface-grad-from: hsl(var(--spektri-violet) / 0.20);
+    --surface-grad-to: hsl(var(--quantum-blue) / 0.20);
+  }
+}
+
+@layer utilities {
+  /* Layered app background (radial + vignette + very subtle "noise-like" grain) */
+  .bg-app {
+    background-image:
+      radial-gradient(120% 120% at 50% 100%, rgba(0,0,0,0.0) 0%, #0b0c0e 75%),
+      radial-gradient(80% 60% at 50% -10%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 60%),
+      repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,var(--noise-opacity)) 0px,
+        rgba(255,255,255,0) 1px,
+        rgba(255,255,255,0) 2px
+      );
+    background-blend-mode: normal, overlay, normal;
+  }
+
+  /* Section halo utility: apply to large sections */
+  .section-halo { position: relative; }
+  .section-halo::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -48px;
+    width: 70%;
+    height: 160px;
+    pointer-events: none;
+    background: radial-gradient(60% 60% at 50% 0%, rgba(0,0,0,0.5), rgba(0,0,0,0));
+    filter: blur(10px);
+  }
+}
+
+@layer components {
+  /* Card & overlay utilities */
+  .hy-card { position: relative; border-radius: 1rem; border: 1px solid rgba(39,39,42,0.8); background: rgba(0,0,0,0.4); box-shadow: var(--shadow-subtle); }
+  .hy-overlay { position: relative; }
+  .hy-overlay::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--overlay-radial), var(--overlay-soft); }
+  .hy-img { position: relative; overflow: hidden; border-radius: 0.75rem; border: 1px solid rgba(39,39,42,0.8); background: rgba(0,0,0,0.4); }
+  .hy-img img { display: block; }
+  .hy-glass { background: rgba(17,17,19,0.55); border: 1px solid rgba(255,255,255,0.08); -webkit-backdrop-filter: saturate(140%) blur(10px); backdrop-filter: saturate(140%) blur(10px); box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hy-card:hover::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(130deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.10) 50%, rgba(255,255,255,0) 60%); opacity: 0; animation: shine 900ms ease-out forwards; }
+  }
+  @keyframes shine { 0% { opacity: 0; transform: translateX(-30%);} 15% { opacity: .25;} 100% { opacity: 0; transform: translateX(40%);} }
+}
