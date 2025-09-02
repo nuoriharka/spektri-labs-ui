@@ -135,7 +135,7 @@ function FeatureRow({
 
 export default function FeaturesSection2() {
   return (
-    <section id="features-2" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white scroll-mt-24">
+  <section id="features-2" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white scroll-mt-24">
       {/* Header */}
       <div className="mb-10 md:mb-12 flex flex-col items-start gap-2">
         <span className="text-xs uppercase tracking-wider text-zinc-400">Section 2 · Features</span>

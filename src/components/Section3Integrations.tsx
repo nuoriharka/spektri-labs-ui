@@ -87,7 +87,7 @@ export default function Section3Integrations() {
   const [mode, setMode] = useState<"nocode" | "api">("nocode");
 
   return (
-  <section id="integrations-3" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24">
+  <section id="integrations-3" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24">
       {/* Header */}
       <div className="mb-10">
         <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">

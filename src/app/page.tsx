@@ -99,7 +99,7 @@ const HeroHeader = () => {
     <header className="fixed top-0 z-50 w-full">
       <nav role="navigation" aria-label="Päänavigaatio" data-state={menuState ? 'active' : 'inactive'} className="w-full">
         {/* Lock header height to avoid CLS */}
-        <div className="relative h-16 flex items-center px-2">
+  <div className="relative h-16 flex items-center px-4">
           {/* Soft background so hero doesn't flash; no layout shift */}
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/70 to-transparent supports-[backdrop-filter]:bg-background/40 supports-[backdrop-filter]:backdrop-blur-md" />
           <div className={cn('mx-auto w-full max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'bg-background/80 max-w-5xl rounded-2xl border border-white/10 backdrop-blur-lg lg:px-5')}>
@@ -172,7 +172,7 @@ const HeroSection = () => (
         <div className="h-[200rem] -translate-y-[54.6875rem] absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
       </div>
       <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(120%_120%_at_50%_100%,transparent_0%,#0b0c0e_75%)]"></div>
-      <div className="mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6">
+  <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6">
         <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
           <Link href="#" className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
             <span className="text-foreground text-sm">Yksi Alusta. Rajaton Potentiaali.</span>
@@ -202,7 +202,7 @@ const HeroSection = () => (
           </div>
         </div>
       </div>
-      <div className="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
+  <div className="relative mt-8 overflow-hidden px-4 md:px-6 sm:mt-12 md:mt-20">
         <div aria-hidden className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-background" />
         <div className="shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] ring-background dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)] bg-background relative mx-auto max-w-6xl overflow-hidden rounded-3xl border p-3 md:p-4 shadow-lg shadow-zinc-950/20 ring-1">
           <Image

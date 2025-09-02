@@ -11,7 +11,7 @@ import BorderBeam from "@/components/magicui/BorderBeam";
  */
 export default function SectionCTA() {
   return (
-  <section id="cta" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline">
+  <section id="cta" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-fuchsia-500/5 to-cyan-500/5" />
