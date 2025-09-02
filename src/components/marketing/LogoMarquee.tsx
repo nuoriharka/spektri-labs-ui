@@ -9,10 +9,10 @@ export default function LogoMarquee(){
             <img src="/brand/spektri-logomark-gradient.svg" alt="Spektri" className="h-8 md:h-9 w-auto object-contain" />
             <span className="sr-only">Spektri</span>
           </div>
-          {[{ name: "Spektri.Labs", src: "/brand/spektri-logomark-gradient.svg" }, ...logos, ...logos].map((l,i)=>(
+      {[{ alt: "Spektri.Labs", src: "/brand/spektri-logomark-gradient.svg" }, ...logos, ...logos].map((l,i)=>(
             <div key={i} className="h-10 md:h-12 flex items-center opacity-70 hover:opacity-100 hover:scale-110 hover:drop-shadow-2xl transition">
-              <img src={l.src} alt={l.name} className="h-8 md:h-9 w-auto max-w-[140px] object-contain" />
-              <span className="sr-only">{l.name}</span>
+        <img src={l.src} alt={l.alt} className="h-8 md:h-9 w-auto max-w-[140px] object-contain" />
+        <span className="sr-only">{l.alt}</span>
             </div>
           ))}
         </div>
