@@ -80,6 +80,8 @@ export default function Section3Integrations() {
 
   return (
     <section id="ratkaisut" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24 section-halo">
+      {/* AAAA+ gradient background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-900 via-indigo-900/40 to-fuchsia-900/30 opacity-80" />
       {/* Header */}
       <div className="mb-10">
         <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">

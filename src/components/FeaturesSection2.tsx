@@ -2,6 +2,7 @@
 
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowRight, PanelLeft, Bot, Users, type LucideIcon } from "lucide-react";
 import BorderBeam from "@/components/magicui/BorderBeam";
 import komentokeskus from "../../public/photos/komentokeskus.png";
@@ -78,31 +79,29 @@ function FeatureRow({
   const isMeta = kicker.toLowerCase().includes('meta');
   return (
     <div
-      className={`grid items-center gap-8 md:gap-10 lg:gap-12 ${
-        reverse ? "md:grid-cols-[1.1fr_1fr]" : "md:grid-cols-[1fr_1.1fr]"
-      }`}
+      className={`grid items-center gap-10 md:gap-14 lg:gap-20 ${reverse ? "md:grid-cols-[1.1fr_1fr]" : "md:grid-cols-[1fr_1.1fr]"}`}
     >
-      {/* Copy */}
-      <div className={`${reverse ? "md:order-2" : ""}`}>
-        <h3 className="text-2xl md:text-3xl font-semibold leading-tight text-balance">{title}</h3>
-        <p className="mt-3 max-w-prose text-zinc-300">{desc}</p>
+      {/* Copy (AAAA+ style) */}
+      <div className={`${reverse ? "md:order-2" : ""} p-2 md:p-4 lg:p-6 bg-gradient-to-br from-zinc-950/80 via-indigo-900/20 to-fuchsia-900/10 rounded-3xl shadow-xl shadow-indigo-900/10 border border-zinc-800`}>
+        <h3 className="text-3xl md:text-4xl font-extrabold leading-tight text-white drop-shadow-lg mb-2">{title}</h3>
+        <p className="mt-3 max-w-prose text-zinc-300 text-lg leading-relaxed mb-4">{desc}</p>
 
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-5 flex flex-wrap gap-3">
           {chips.map((c) => (
-            <span key={c} className="chip text-zinc-300">
+            <span key={c} className="chip text-fuchsia-300 font-semibold bg-zinc-900/40 border border-fuchsia-500/30 px-3 py-1 rounded-full shadow-sm">
               {c}
             </span>
           ))}
         </div>
 
-        <Link prefetch={false} href={href} className="mt-6 btn-primary micro-cta focus-ring">
-          Tutustu <ArrowRight className="h-4 w-4" />
+        <Link prefetch={false} href={href} className="mt-8 inline-block btn-primary micro-cta focus-ring px-6 py-3 text-lg font-bold bg-gradient-to-r from-fuchsia-500 via-indigo-500 to-cyan-500 shadow-lg shadow-fuchsia-900/20 border-0 hover:scale-105 focus:ring-2 focus:ring-fuchsia-400 transition-transform rounded-full">
+          Tutustu <ArrowRight className="h-5 w-5" />
         </Link>
       </div>
 
-      {/* Visual */}
+      {/* Visual (AAAA+ style) */}
       <div className={`relative ${reverse ? "md:order-1" : ""}`}>
-        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl hy-img hy-overlay shadow-none">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-3xl hy-img hy-overlay shadow-2xl shadow-indigo-900/10 border border-zinc-800">
           <Image
             src={img}
             alt={kicker}
@@ -114,7 +113,7 @@ function FeatureRow({
             sizes="(min-width:1024px) 50vw, 100vw"
           />
           {/* overlay is provided by .hy-overlay */}
-          <div className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
+          <div className="absolute bottom-3 right-3 rounded-full bg-gradient-to-r from-fuchsia-500 via-indigo-500 to-cyan-500 px-4 py-2 text-xs font-bold text-white shadow-md">
             {kicker}
           </div>
         </div>
@@ -126,6 +125,8 @@ function FeatureRow({
 export default function FeaturesSection2() {
   return (
     <section id="ominaisuudet" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white scroll-mt-24 section-halo">
+      {/* AAAA+ gradient background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-fuchsia-900 via-indigo-900/40 to-cyan-900/30 opacity-80" />
       {/* Header */}
       <div className="mb-10 md:mb-12 flex flex-col items-start gap-2">
         <span className="text-xs uppercase tracking-wider text-zinc-400">Section 2 · Features</span>
@@ -133,18 +134,25 @@ export default function FeaturesSection2() {
           Yksi Alusta, <span className="text-zinc-300">Rajaton Potentiaali</span>
         </h2>
         <p className="max-w-2xl text-zinc-300 leading-7 md:leading-8">
-          Kolme keihäänkärkeä, jotka tekevät Spektristä tappavan nopean: keskitetty ohjaus, itseään parantava meta‑agentti ja rajattomasti skaalautuvat agenttifarmit.
+          Kolme keihäänkärkeä, jotka tekevät Spektristä tappavan nopean: keskitetty ohjaus, itseään parantava meta–agentti ja rajattomasti skaalautuvat agenttifarmit.
         </p>
       </div>
 
-      <div className="space-y-14 md:space-y-16">
+      {/* MOTR: Framer Motion entrance animation */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="space-y-14 md:space-y-16"
+      >
         {FEATURES.map((f, idx) => {
           const { key: featureKey, ...rest } = f;
           return (
             <FeatureRow key={featureKey ?? idx} {...(rest as Feature)} reverse={idx === 1} />
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -14,7 +14,8 @@ export default function SectionCTA() {
   <section id="cta" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-fuchsia-500/5 to-cyan-500/5" />
+        {/* AAAA+ gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-900 via-fuchsia-900/40 to-indigo-900/30 opacity-80" />
         <div className="absolute left-1/2 top-1/2 -z-10 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500/10 blur-3xl" />
       </div>
 
@@ -35,16 +36,16 @@ export default function SectionCTA() {
         </p>
 
         {/* Actions */}
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Button asChild className="rounded-full micro-cta">
+        <div className="mt-6 flex flex-wrap gap-4">
+          <Button asChild className="rounded-full micro-cta px-6 py-3 text-lg font-bold bg-gradient-to-r from-fuchsia-500 via-indigo-500 to-cyan-500 shadow-lg shadow-fuchsia-900/20 border-0 hover:scale-105 focus:ring-2 focus:ring-fuchsia-400 transition-transform">
             <Link href="/signup">
               Aloita nyt
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
-          <Button asChild variant="secondary" className="rounded-full micro-cta border border-white/20 bg-white/10 hover:bg-white/20">
+          <Button asChild variant="secondary" className="rounded-full micro-cta px-6 py-3 text-lg font-bold border border-white/20 bg-white/10 hover:bg-white/20 shadow-lg shadow-cyan-900/10 hover:scale-105 focus:ring-2 focus:ring-cyan-400 transition-transform">
             <Link href="/demo">
-              <Calendar className="mr-2 h-4 w-4" /> Varaa demo
+              <Calendar className="mr-2 h-5 w-5" /> Varaa demo
             </Link>
           </Button>
         </div>

@@ -1,5 +1,6 @@
 // server component: no client-only APIs used
 
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Target,
@@ -59,54 +60,64 @@ function Kicker({ children }: { children: React.ReactNode }) {
 export default function SectionVisionMission() {
   return (
     <section id="vision-mission" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24 section-halo">
+      {/* AAAA+ gradient background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-900 via-fuchsia-900/40 to-cyan-900/30 opacity-80" />
       <BorderBeam className="pointer-events-none" />
 
-      {/* Header */}
-      <div className="mb-10 flex flex-col items-start gap-3">
-        <Kicker>Spektri Labs · Manifesti</Kicker>
-        <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-balance">
-          Demokratisoitu tekoäly – <span className="text-zinc-300">luovaa ja sosiaalista</span>
-        </h2>
-        <p className="max-w-3xl text-zinc-300 leading-7 md:leading-8">
-          Rakennamme maailmaa, jossa tekoäly on demokraattista, luovaa ja sosiaalista – voimistaen jokaista ihmistä muuttamaan ideat toimiviksi sovelluksiksi ilman koodaustaitoja.
-        </p>
-      </div>
-
-      {/* Two cards: Vision & Mission */}
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="relative overflow-hidden rounded-2xl hy-card p-6">
-          <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
-            <Target className="h-4 w-4" /> Visio
-          </div>
-          <h3 className="text-xl font-semibold">Demokraattinen, luova ja sosiaalinen tekoäly</h3>
-          <p className="mt-2 text-zinc-300">
-            Voimistaen jokaista muuttamaan ideat sovelluksiksi – ilman koodia.
+      {/* MOTR: Framer Motion entrance animation for header/cards */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
+        {/* Header */}
+        <div className="mb-10 flex flex-col items-start gap-3">
+          <Kicker>Spektri Labs · Manifesti</Kicker>
+          <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-balance">
+            Demokratisoitu tekoäly – <span className="text-zinc-300">luovaa ja sosiaalista</span>
+          </h2>
+          <p className="max-w-3xl text-zinc-300 leading-7 md:leading-8">
+            Rakennamme maailmaa, jossa tekoäly on demokraattista, luovaa ja sosiaalista – voimistaen jokaista ihmistä muuttamaan ideat toimiviksi sovelluksiksi ilman koodaustaitoja.
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl hy-card p-6">
-          <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
-            <BadgeCheck className="h-4 w-4" /> Missio
+        {/* Two cards: Vision & Mission (AAAA+ style) */}
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="relative overflow-hidden rounded-3xl hy-card p-8 bg-gradient-to-br from-indigo-950/80 via-fuchsia-900/40 to-cyan-900/30 shadow-2xl shadow-indigo-900/20 border border-zinc-800">
+            <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-wider text-fuchsia-400 font-bold">
+              <Target className="h-4 w-4 text-fuchsia-400" /> Visio
+            </div>
+            <h3 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-lg">Demokraattinen, luova ja sosiaalinen tekoäly</h3>
+            <p className="mt-3 text-zinc-300 text-base leading-relaxed">
+              Voimistaen jokaista muuttamaan ideat sovelluksiksi – ilman koodia.
+            </p>
           </div>
-          <h3 className="text-xl font-semibold">Modulaarinen ekosysteemi luojataloudelle</h3>
-          <p className="mt-2 text-zinc-300">
-            Teemme agenttien löytämisestä, remixaamisesta ja jakamisesta vaivatonta – arvo palautuu tekijöille.
-          </p>
-        </div>
-      </div>
 
-      {/* Why Spektri */}
-      <div className="mt-12">
-        <div className="mb-4 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
-          <Rocket className="h-4 w-4" /> Miksi Spektri?
+          <div className="relative overflow-hidden rounded-3xl hy-card p-8 bg-gradient-to-br from-cyan-950/80 via-indigo-900/40 to-fuchsia-900/30 shadow-2xl shadow-cyan-900/20 border border-zinc-800">
+            <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-wider text-cyan-400 font-bold">
+              <BadgeCheck className="h-4 w-4 text-cyan-400" /> Missio
+            </div>
+            <h3 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-lg">Modulaarinen ekosysteemi luojataloudelle</h3>
+            <p className="mt-3 text-zinc-300 text-base leading-relaxed">
+              Teemme agenttien löytämisestä, remixaamisesta ja jakamisesta vaivatonta – arvo palautuu tekijöille.
+            </p>
+          </div>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      </motion.div>
+
+      {/* Why Spektri (AAAA+ style) */}
+      <div className="mt-16">
+        <div className="mb-6 flex items-center gap-2 text-xs uppercase tracking-wider text-indigo-400 font-bold">
+          <Rocket className="h-4 w-4 text-indigo-400" /> Miksi Spektri?
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {WHY_ITEMS.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group relative overflow-hidden rounded-2xl hy-card p-5">
-              <div className="mb-2 flex items-center gap-2 text-sm font-medium">
-                <Icon className="h-4 w-4 text-zinc-400" /> {title}
+            <div key={title} className="group relative overflow-hidden rounded-2xl hy-card p-6 bg-gradient-to-br from-zinc-950/80 via-indigo-900/20 to-fuchsia-900/10 border border-zinc-800 shadow-xl shadow-indigo-900/10">
+              <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-fuchsia-300">
+                <Icon className="h-4 w-4 text-fuchsia-300" /> {title}
               </div>
-              <p className="text-sm text-zinc-300">{desc}</p>
+              <p className="text-sm text-zinc-300 leading-relaxed">{desc}</p>
               <span className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition group-hover:opacity-100" />
             </div>
           ))}
@@ -123,10 +134,10 @@ export default function SectionVisionMission() {
 
       {/* CTA Row */}
       <div className="mt-8 flex flex-wrap gap-3">
-        <a href="#one-platform" className="btn-primary micro-cta focus-ring">
+        <a href="/dashboard" className="btn-primary micro-cta focus-ring">
           Tutustu alustan ytimeen <ArrowRight className="h-4 w-4" />
         </a>
-        <a href="#integrations-3" className="btn-secondary micro-cta focus-ring">
+        <a href="/integrations" className="btn-secondary micro-cta focus-ring">
           Näe integraatiot
         </a>
       </div>

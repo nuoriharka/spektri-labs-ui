@@ -208,7 +208,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(120%_120%_at_50%_100%,transparent_0%,#0b0c0e_75%)]"></div>
         <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6">
           <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
-            <Link href="#" className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
+            <Link href="/dashboard" className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
               <span className="text-foreground text-sm">Yksi Alusta. Rajaton Potentiaali.</span>
               <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
               <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
@@ -225,12 +225,12 @@ const HeroSection = () => {
               Muunna ideat ja prosessit tuotantovalmiiksi automaatioksi luonnollisella kielellä. Aja ensimmäinen työnkulku alle 60 sekunnissa.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 md:flex-row">
-              <a href="#" className="btn-primary micro-cta focus-ring rounded-full h-12 px-5">
+              <Link href="/signup" className="btn-primary micro-cta focus-ring rounded-full h-12 px-5">
                 Rakenna ensimmäinen agenttisi
-              </a>
-              <a href="#" className="btn-secondary micro-cta focus-ring rounded-full h-12 px-5">
+              </Link>
+              <Link href="/demo" className="btn-secondary micro-cta focus-ring rounded-full h-12 px-5">
                 Katso 60s demo
-              </a>
+              </Link>
             </div>
           </div>
         </div>
