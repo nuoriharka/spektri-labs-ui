@@ -30,12 +30,22 @@ export const metadata: Metadata = {
   authors: [{ name: 'Spektri.Labs' }],
   keywords: ['Spektri', 'UI', 'shadcn', 'Next.js', 'Tailwind'],
   icons: { icon: '/brand/favicon.svg' },
-  openGraph: { images: ["/images/og/og-home.png"] },
+  openGraph: {
+    title: 'Spektri.Labs UI',
+    description: 'Ammattimainen käyttöliittymäkirjasto ja demo, rakennettu shadcn/ui-komponenteilla.',
+    url: resolvedBaseUrl,
+    siteName: 'Spektri.Labs UI',
+    images: [
+      { url: '/images/og/og-home.png', width: 1200, height: 630, alt: 'Spektri Labs UI' },
+    ],
+    type: 'website',
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'Spektri.Labs UI',
     description:
       'Ammattimainen käyttöliittymäkirjasto ja demo, rakennettu shadcn/ui-komponenteilla.',
+    site: '@spektri',
   },
   robots: { index: true, follow: true },
   alternates: { canonical: '/' },
@@ -68,8 +78,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
+        <script
+          id="ld-site"
+          type="application/ld+json"
+          // WebSite structured data
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Spektri.Labs UI',
+              url: resolvedBaseUrl,
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: `${resolvedBaseUrl}/?q={search_term_string}`,
+                'query-input': 'required name=search_term_string',
+              },
+            }),
+          }}
+        />
       </head>
-      <body className={inter.className}>
+  <body className={inter.className + ' antialiased'}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <>
             <a

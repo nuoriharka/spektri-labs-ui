@@ -10,21 +10,30 @@ export interface ParsedIntent {
 }
 
 export class NaturalLanguageProcessor {
-  private gemini: GoogleGenerativeAI
-  private openai: OpenAI
+  private gemini?: GoogleGenerativeAI
+  private openai?: OpenAI
   
   constructor() {
-    this.gemini = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY!)
-    this.openai = new OpenAI({ 
-      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY!,
-      dangerouslyAllowBrowser: true
-    })
+    try {
+      if (process.env.NEXT_PUBLIC_GEMINI_API_KEY) {
+        this.gemini = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY)
+      }
+      if (process.env.NEXT_PUBLIC_OPENAI_API_KEY) {
+        this.openai = new OpenAI({ 
+          apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+          dangerouslyAllowBrowser: true
+        })
+      }
+    } catch {
+      // no-op; will use fallback
+    }
   }
   
   async processNaturalLanguage(input: string, context?: any): Promise<ParsedIntent> {
     const prompt = this.createAnalysisPrompt(input, context)
     
     try {
+      if (!this.gemini) throw new Error('Gemini key missing')
       const model = this.gemini.getGenerativeModel({ model: 'gemini-pro' })
       const result = await model.generateContent(prompt)
       const analysis = JSON.parse(result.response.text())
@@ -34,7 +43,7 @@ export class NaturalLanguageProcessor {
         confidence: this.calculateConfidence(analysis)
       }
     } catch (error) {
-      console.error('NLP Error:', error)
+  console.error('NLP Error:', error)
       return this.fallbackAnalysis(input)
     }
   }

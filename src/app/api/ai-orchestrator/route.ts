@@ -2,9 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import OpenAI from 'openai'
 
-const gemini = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! })
-
 interface AIRequest {
   command: string
   type: 'component' | 'test' | 'story' | 'analysis'
@@ -17,6 +14,15 @@ interface AIRequest {
 
 export async function POST(request: NextRequest) {
   try {
+    // Avoid hitting external APIs during static generation or when keys are missing
+    if (!process.env.OPENAI_API_KEY || !process.env.GEMINI_API_KEY) {
+      return NextResponse.json({
+        success: false,
+        result: null,
+        model: 'none',
+        metadata: { note: 'AI keys missing; skipping upstream calls' }
+      }, { status: 200 })
+    }
     const aiRequest: AIRequest = await request.json()
     const { command, type, context, preferences } = aiRequest
     
@@ -78,6 +84,10 @@ async function processWithGemini(
   type: string, 
   context: any
 ) {
+  if (!process.env.GEMINI_API_KEY) {
+    return { content: 'Gemini key missing', model: 'gemini-pro', confidence: 0.1 }
+  }
+  const gemini = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
   const model = gemini.getGenerativeModel({ model: 'gemini-pro' })
   
   const prompt = createGeminiPrompt(command, type, context)
@@ -95,8 +105,12 @@ async function processWithGPT4(
   type: string, 
   context: any
 ) {
+  if (!process.env.OPENAI_API_KEY) {
+    return { content: 'OpenAI key missing', model: 'gpt-4', confidence: 0.1 }
+  }
   const prompt = createGPT4Prompt(command, type, context)
   
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   const completion = await openai.chat.completions.create({
     model: 'gpt-4',
     messages: [

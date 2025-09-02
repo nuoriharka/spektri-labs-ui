@@ -58,13 +58,13 @@ function Kicker({ children }: { children: React.ReactNode }) {
 
 export default function SectionVisionMission() {
   return (
-  <section id="vision" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline">
+  <section id="vision" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24">
       <BorderBeam className="pointer-events-none" />
 
       {/* Header */}
       <div className="mb-10 flex flex-col items-start gap-3">
         <Kicker>Spektri Labs · Manifesti</Kicker>
-        <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-balance">
           Demokratisoitu tekoäly – <span className="text-zinc-300">luovaa ja sosiaalista</span>
         </h2>
         <p className="max-w-3xl text-zinc-300 leading-7 md:leading-8">

@@ -1,9 +1,12 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { ArrowRight, PanelLeft, Bot, Users, type LucideIcon } from "lucide-react";
 import BorderBeam from "@/components/magicui/BorderBeam";
+import komentokeskus from "../../public/photos/komentokeskus.png";
+import metaAgentti from "../../public/photos/meta-agentti.png";
+import agenttifarmit from "../../public/photos/agenttifarmit.png";
 
 /**
  * SECTION 2 — FEATURES (Tailark-inspired)  
@@ -23,7 +26,7 @@ const FEATURES = [
     title: "Operoi koko ekosysteemiä yhdestä näkymästä",
     desc:
       "Valvo agentteja, työnkulkuja ja integraatioita keskitetystä ohjaamosta. Live‑telemetria, hälytykset ja ihmisen hyväksyntä yhdellä klikkauksella.",
-    img: "/photos/komentokeskus.png",
+  img: komentokeskus as StaticImageData,
     href: "/#mission-control",
     icon: PanelLeft,
     chips: ["Realtime", "Audit Trail", "Roolit & oikeudet"],
@@ -34,7 +37,7 @@ const FEATURES = [
     title: "Orkestroi agenttitiimit automaattisesti",
     desc:
       "Meta‑agentti laatii suunnitelman, jakaa tehtävät erikoisagenteille ja optimoi suorituksen jatkuvasti. Tuloksena vähemmän kitkaa, enemmän toimitusta.",
-    img: "/photos/meta-agentti.png",
+  img: metaAgentti as StaticImageData,
     href: "/#metaorkestroija",
     icon: Bot,
     chips: ["Planner", "Critic", "Self‑Improve"],
@@ -45,7 +48,7 @@ const FEATURES = [
     title: "Skaalaa suorituskykyä vailla ylärajaa",
     desc:
       "Käynnistä kymmeniä tai satoja agenteja hetkessä. Eristetyt sandboxit, välimuistit ja kustannusrajat tekevät skaalaamisesta hallittua.",
-    img: "/photos/agenttifarmit.png",
+  img: agenttifarmit as StaticImageData,
     href: "/#agenttifarmit",
     icon: Users,
     chips: ["Autoscale", "Sandbox", "Budjettikatot"],
@@ -56,7 +59,7 @@ type Feature = {
   kicker: string;
   title: string;
   desc: string;
-  img: string;
+  img: StaticImageData;
   href: string;
   icon: LucideIcon;
   chips: readonly string[];
@@ -72,6 +75,7 @@ function FeatureRow({
   chips,
   reverse,
 }: Feature & { reverse?: boolean }) {
+  const isMeta = kicker.toLowerCase().includes('meta');
   return (
     <div
       className={`grid items-center gap-8 md:gap-10 lg:gap-12 ${
@@ -80,10 +84,10 @@ function FeatureRow({
     >
       {/* Copy */}
       <div className={`${reverse ? "md:order-2" : ""}`}>
-        <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
-          <Icon className="h-4 w-4" /> {kicker}
-        </div>
-        <h3 className="mt-2 text-2xl font-semibold leading-tight md:text-3xl">{title}</h3>
+        <span className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-black/40 px-3 py-1 text-xs uppercase tracking-wider text-zinc-400">
+          <Icon className="h-3.5 w-3.5" /> {kicker}
+        </span>
+        <h3 className="mt-2 text-2xl md:text-3xl font-semibold leading-tight text-balance">{title}</h3>
         <p className="mt-3 max-w-prose text-zinc-300">{desc}</p>
 
         <div className="mt-5 flex flex-wrap gap-2">
@@ -107,14 +111,16 @@ function FeatureRow({
 
       {/* Visual */}
       <div className={`relative ${reverse ? "md:order-1" : ""}`}>
-        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-zinc-800 bg-black/40">
+  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-zinc-800 bg-black/40">
           <Image
             src={img}
             alt={kicker}
             fill
-            className={`object-cover ${img.includes('meta-agentti') ? 'object-top' : ''}`}
+            placeholder="blur"
+            className={`object-cover ${isMeta ? 'object-top' : ''}`}
             quality={90}
-            priority={img.includes('komentokeskus')}
+            priority={kicker === 'Komentokeskus'}
+            sizes="(min-width:1024px) 50vw, 100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <BorderBeam className="pointer-events-none" />
@@ -129,7 +135,7 @@ function FeatureRow({
 
 export default function FeaturesSection2() {
   return (
-    <section id="features-2" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white">
+    <section id="features-2" className="relative mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24 text-white scroll-mt-24">
       {/* Header */}
       <div className="mb-10 md:mb-12 flex flex-col items-start gap-2">
         <span className="text-xs uppercase tracking-wider text-zinc-400">Section 2 · Features</span>
