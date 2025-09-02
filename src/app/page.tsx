@@ -5,7 +5,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { ArrowRight, Bot, Gauge, Network, AppWindow, Check, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
 import { Balancer } from "react-wrap-balancer";
 import { cn } from "@/lib/utils";
 // Split below-the-fold sections to lower First Load JS
@@ -221,86 +221,6 @@ const HeroSection = () => (
 )
 
 
-const FeaturesSection = () => {
-  const features = [
-    { icon: Network, title: "Agenttifarmit™", description: "Rakenna erikoistuneiden agenttien tiimejä, jotka tekevät yhteistyötä monimutkaisissa prosesseissa." },
-    { icon: Bot, title: "Meta-Orkestrointi", description: "Spektri valitsee ja yhdistää automaattisesti parhaat tekoälymallit ja työkalut jokaiseen tehtävään." },
-    { icon: AppWindow, title: "Ideasta Sovellukseksi™", description: "Muunna ideasi toimivaksi sovellukseksi keskustelemalla – agentit hoitavat suunnittelun ja koodauksen." },
-    { icon: Gauge, title: "Mission Control", description: "Hallitse kaikkea yhdestä näkymästä ja seuraa tuloksia reaaliajassa. Sinä olet aina ohjaksissa." },
-  ];
-  return (
-    <section id="ominaisuudet" className="bg-slate-50 dark:bg-slate-900/50 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">Yksi Alusta. Rajaton Potentiaali.</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Kaikki mitä tarvitset, ilman monimutkaisuutta</p>
-          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">Spektri.Labs ei ole vain työkalu, se on käyttöjärjestelmä luovuudelle. Poistamme tekniset esteet, jotta voit keskittyä olennaiseen.</p>
-        </div>
-  <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w_none lg:grid-cols-2 lg:gap-y-16">
-            {features.map((feature) => (
-              <div key={feature.title} className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
-                    <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
-                  </div>
-                  {feature.title}
-                </dt>
-                <dd className="mt-2 text-base leading-7 text-gray-600 dark:text-gray-300">{feature.description}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// IntegrationsSection replaced by ConnectToolsSection from OnePlatformSection
-
-const ContentSection = () => (
-  <section className="bg-slate-50 dark:bg-slate-900/50 py-24 sm:py-32">
-    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-      <div className="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-        <div className="lg:pr-4">
-          <div className="relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
-            <div className="absolute inset-0 bg-indigo-500 mix-blend-multiply" />
-            <div className="absolute left-1/2 top-1/2 -ml-16 -translate-x-1/2 -translate-y-1/2 transform-gpu blur-3xl" aria-hidden="true">
-              <div className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#6d6aff] to-[#22d3ee] opacity-40" />
-            </div>
-            <figure className="relative isolate">
-              <blockquote className="mt-6 text-xl font-semibold leading-8 text-white">
-                <p>“Spektri.Labs on muuttanut tapamme ajatella automaatiota...”</p>
-              </blockquote>
-              <figcaption className="mt-6 text-sm leading-6 text-gray-300">
-                <strong className="font-semibold text-white">Liisa Virtanen</strong>, Toimitusjohtaja, Kasvu Oy
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-        <div>
-          <div className="text-base leading-7 text-gray-700 dark:text-gray-300 lg:max-w-lg">
-            <p className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">Miksi me voitamme</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Emme rakenna nopeampaa hevosta. Rakennamme auton.</h2>
-            <div className="max-w-xl">
-              <p className="mt-6">Nykyiset automaatiotyökalut ovat tehokkaita, mutta...</p>
-              <ul className="mt-8 space-y-8 text-gray-600 dark:text-gray-300">
-                {["Moni-LLM Orkestrointi.", "Tilallinen Muisti.", "Arvopohjainen Hinnoittelu."].map((title) => (
-                  <li className="flex gap-x-3" key={title}>
-                    <Check className="mt-1 h-5 w-5 flex-none text-indigo-600" aria-hidden="true" />
-                    <span>
-                      <strong className="font-semibold text-gray-900 dark:text-white">{title}</strong> ...
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-)
 
 // Removed inline CTA and Footer; using shared components instead.
 
