@@ -7,7 +7,23 @@ import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import { QueryProvider } from '@/components/providers/QueryProvider'
 import { Analytics } from '@vercel/analytics/react'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  display: 'swap',
+  fallback: [
+    'system-ui',
+    '-apple-system',
+    'Segoe UI',
+    'Roboto',
+    'Noto Sans',
+    'Ubuntu',
+    'Cantarell',
+    'Helvetica Neue',
+    'Arial',
+    'sans-serif',
+  ],
+})
 
 // Resolve site URL for canonical/OG. Prefer explicit env, then Vercel-provided URL, fallback to localhost.
 const resolvedBaseUrl = (() => {

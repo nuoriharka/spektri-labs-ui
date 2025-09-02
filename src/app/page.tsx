@@ -47,7 +47,7 @@ const HeroHeader = () => {
   React.useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
     const handleHash = () => setCurrentHash(window.location.hash)
-    window.addEventListener('scroll', handleScroll)
+  window.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('hashchange', handleHash)
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -118,9 +118,9 @@ const HeroHeader = () => {
               {/* Desktop nav: md+ only */}
               <div className="absolute inset-0 m-auto hidden size-fit md:block">
                 <ul className="flex gap-8 text-sm">
-                  {menuItems.map((item) => (
+          {menuItems.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} aria-current={currentHash === item.href ? 'page' : undefined} className="block duration-150 text-muted-foreground hover:text-accent-foreground">
+            <Link prefetch={false} href={item.href} aria-current={currentHash === item.href ? 'page' : undefined} className="block duration-150 text-muted-foreground hover:text-accent-foreground">
                         <span>{item.name}</span>
                       </Link>
                     </li>
@@ -138,9 +138,9 @@ const HeroHeader = () => {
                 className={cn('mb-6 w-full space-y-8 rounded-3xl border border-white/10 p-6 shadow-2xl shadow-zinc-950/20 md:hidden', menuState ? 'block bg-background' : 'hidden')}
               >
                 <ul className="space-y-6 text-base">
-                  {menuItems.map((item) => (
+          {menuItems.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} aria-current={currentHash === item.href ? 'page' : undefined} className="block duration-150 text-muted-foreground hover:text-accent-foreground">
+            <Link prefetch={false} href={item.href} aria-current={currentHash === item.href ? 'page' : undefined} className="block duration-150 text-muted-foreground hover:text-accent-foreground">
                         <span>{item.name}</span>
                       </Link>
                     </li>
@@ -209,6 +209,7 @@ const HeroSection = () => (
             alt="Spektri dashboardin esikatselu"
             placeholder="blur"
             priority
+            fetchPriority="high"
             sizes="(min-width: 1280px) 1024px, (min-width: 768px) 90vw, 100vw"
             quality={90}
           />
