@@ -4,7 +4,7 @@
  
 @layer base {
   :root {
-    /* Spektri Labs Brand Colors */
+    /* --- SUPER-AAAA: Brand Colors --- */
     --spektri-violet: 275 95% 16%;
     --quantum-blue: 224 85% 16%;
     --emergence-green: 186 85% 14%;
@@ -15,52 +15,55 @@
     --nebula-gray: 248 20% 20%;
     --stellar-white: 240 60% 99%;
 
-  /* Design System Variables */
-    --background: var(--stellar-white);
-    --foreground: var(--space-black);
+    /* --- SUPER-AAAA: Design System Tokens --- */
+    --background: #0B0C0E;
+    --foreground: #E7E9EC;
+    --card: #111316;
+    --card-foreground: #E7E9EC;
+    --popover: #111316;
+    --popover-foreground: #E7E9EC;
+    --primary: #6D6AFF;
+    --primary-foreground: #F8FAFC;
+    --secondary: #18181B;
+    --secondary-foreground: #E7E9EC;
+    --muted: #9BA3AF;
+    --muted-foreground: #E7E9EC;
+    --accent: #22D3EE;
+    --accent-foreground: #F8FAFC;
+    --destructive: #EF4444;
+    --destructive-foreground: #F8FAFC;
+    --border: #23272F;
+    --input: #23272F;
+    --ring: #6D6AFF;
+    --radius: 1rem;
 
-    --card: 0 0% 100%;
-    --card-foreground: var(--space-black);
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: var(--space-black);
- 
-    --primary: var(--spektri-violet);
-    --primary-foreground: var(--stellar-white);
- 
-    --secondary: 240 20% 96%;
-    --secondary-foreground: var(--space-black);
- 
-    --muted: 240 10% 94%;
-    --muted-foreground: var(--nebula-gray);
- 
-    --accent: var(--quantum-blue);
-    --accent-foreground: var(--stellar-white);
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: var(--stellar-white);
+    /* --- SUPER-AAAA: Aliases --- */
+    --bg: var(--background);
+    --panel: var(--card);
+    --fg: var(--foreground);
+    --brand: var(--primary);
+    --brand-2: var(--accent);
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
 
-    --border: 240 20% 88%;
-    --input: 240 20% 88%;
-    --ring: var(--spektri-violet);
-    
-  /* Requested token aliases */
-  --bg: var(--background);
-  --panel: var(--card);
-  --fg: var(--foreground);
-  --brand: var(--spektri-violet);
-  --brand-2: var(--quantum-blue);
-  --success: 142 76% 36%;
-  --warning: 43 96% 56%;
-  --danger: 0 84% 60%;
- 
-  /* Radius per design (rounded-2xl) */
-  --radius: 1rem;
-    
-    /* Premium Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--spektri-violet)) 0%, hsl(var(--quantum-blue)) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(var(--celestial-pink)) 0%, hsl(var(--nova-gold)) 100%);
-    --gradient-surface: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(240 60% 98%) 100%);
+    /* --- SUPER-AAAA: Gradients --- */
+    --gradient-primary: linear-gradient(135deg, #6D6AFF 0%, #22D3EE 100%);
+    --gradient-accent: linear-gradient(135deg, #F472B6 0%, #FDE68A 100%);
+    --gradient-surface: linear-gradient(135deg, #111316 0%, #18181B 100%);
+    --brand-grad: linear-gradient(135deg, #6D6AFF 0%, #22D3EE 100%);
+
+    /* --- SUPER-AAAA: Overlays, Noise, Shadows --- */
+    --overlay-start: rgba(0,0,0,0.7);
+    --overlay-end: rgba(0,0,0,0);
+    --overlay-soft: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.6) 100%);
+    --overlay-radial: radial-gradient(80% 60% at 50% 0%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 60%);
+    --noise-opacity: 0.04;
+    --shadow-subtle: 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-elevated: 0 8px 24px rgba(0,0,0,0.18);
+    --shadow-premium: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.18);
+    --surface-grad-from: #6D6AFF33;
+    --surface-grad-to: #22D3EE33;
   }
  
   .dark {
@@ -226,12 +229,20 @@
 }
 
 @layer utilities {
-  /* Heading sizes per design: h1 30/36, h2 24/32 */
-  h1 { font-size: 30px; line-height: 36px; }
-  h2 { font-size: 24px; line-height: 32px; }
-  h3 { font-size: 18px; line-height: 28px; }
-  p, li { line-height: 24px; }
-  small { font-size: 13px; line-height: 20px; }
+  /* --- SUPER-AAAA: Modular type scale and baseline rhythm --- */
+  h1, .h1 { font-size: var(--step-4); line-height: 1.1; font-weight: 800; letter-spacing: -0.01em; }
+  h2, .h2 { font-size: var(--step-3); line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; }
+  h3, .h3 { font-size: var(--step-2); line-height: 1.2; font-weight: 700; letter-spacing: -0.005em; }
+  h4, .h4 { font-size: var(--step-1); line-height: 1.25; font-weight: 600; }
+  p, li { font-size: var(--step-0); line-height: 1.6; }
+  small, .small { font-size: var(--step--1); line-height: 1.5; }
+  .type-modular h1 { font-size: var(--step-4); line-height: 1.1; font-weight: 800; }
+  .type-modular h2 { font-size: var(--step-3); line-height: 1.15; font-weight: 700; }
+  .type-modular h3 { font-size: var(--step-2); line-height: 1.2; font-weight: 700; }
+  .type-modular h4 { font-size: var(--step-1); line-height: 1.25; font-weight: 600; }
+  .type-modular .lead { font-size: var(--step-0); line-height: 1.6; font-weight: 500; }
+  .baseline p { margin-block: calc(2 * var(--baseline)); }
+  .baseline .tight > p { margin-block: var(--baseline); }
 
   /* Text Gradients */
   .text-gradient-primary {

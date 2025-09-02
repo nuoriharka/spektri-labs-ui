@@ -89,7 +89,7 @@ function Tile({
 
 export default function OnePlatformSection() {
   return (
-  <section id="one-platform" className="relative mx-auto max-w-7xl px-4 py-16 text-white scroll-mt-24">
+  <section id="one-platform" className="relative mx-auto max-w-7xl px-4 py-16 text-white scroll-mt-24 section-halo">
       {/* Headline */}
       <div className="mb-10 flex flex-col items-start gap-2">
         <h2 className="text-3xl font-semibold leading-tight md:text-4xl">

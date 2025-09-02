@@ -58,7 +58,7 @@ function Kicker({ children }: { children: React.ReactNode }) {
 
 export default function SectionVisionMission() {
   return (
-    <section id="vision" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24 section-halo">
+    <section id="vision-mission" className="relative mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24 text-white type-modular baseline scroll-mt-24 section-halo">
       <BorderBeam className="pointer-events-none" />
 
       {/* Header */}

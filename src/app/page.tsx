@@ -2,6 +2,7 @@
 "use client";
 
 import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
@@ -18,6 +19,7 @@ const Section3Integrations = dynamic(() => import("@/components/Section3Integrat
 const Footer = dynamic(() => import("@/components/Footer"), { ssr: true, loading: () => <div className="h-48" /> });
 // Static import hero image for LCP with blur
 import heroDashboard from "../../public/photos/hero-dashboard.png";
+import Hero3D from "@/components/Hero3D";
 // Static import for hero image (LCP) with blur placeholder
 
 // Logo component
@@ -38,6 +40,7 @@ const Logo = () => (
 
 // Header + hero
 const HeroHeader = () => {
+  const shouldReduceMotion = useReducedMotion();
   const [menuState, setMenuState] = React.useState(false)
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [currentHash, setCurrentHash] = React.useState<string>(typeof window !== 'undefined' ? window.location.hash : '')
@@ -47,7 +50,7 @@ const HeroHeader = () => {
   React.useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
     const handleHash = () => setCurrentHash(window.location.hash)
-  window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('hashchange', handleHash)
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -96,31 +99,44 @@ const HeroHeader = () => {
   ]
 
   return (
-    <header className="fixed top-0 z-50 w-full">
+    <motion.header
+      className="fixed top-0 z-50 w-full"
+      initial={shouldReduceMotion ? false : { opacity: 0, y: -32 }}
+      animate={shouldReduceMotion ? false : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+    >
       <nav role="navigation" aria-label="Päänavigaatio" data-state={menuState ? 'active' : 'inactive'} className="w-full">
         {/* Lock header height to avoid CLS */}
-  <div className="relative h-16 flex items-center px-4">
-          {/* Soft background so hero doesn't flash; no layout shift */}
-          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/70 to-transparent supports-[backdrop-filter]:bg-background/40 supports-[backdrop-filter]:backdrop-blur-md" />
-          <div className={cn('mx-auto w-full max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'hy-glass max-w-5xl rounded-2xl lg:px-5')}>
+        <div className="relative h-16 flex items-center px-4">
+          {/* Premium glass + gradient nav background, smooth transition, shadow */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[rgba(17,19,22,0.85)] via-[rgba(109,106,255,0.08)] to-transparent supports-[backdrop-filter]:bg-background/40 supports-[backdrop-filter]:backdrop-blur-md shadow-lg shadow-black/10 transition-all duration-500" />
+          <div className={cn('mx-auto w-full max-w-6xl px-6 transition-all duration-500 lg:px-12', isScrolled && 'hy-glass max-w-5xl rounded-2xl lg:px-5 shadow-xl shadow-black/20')}> 
             <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
               <div className="flex w-full justify-between md:w-auto">
-                <Link href="/" aria-label="Etusivu">
+                <Link href="/" aria-label="Etusivu" className="focus-ring">
                   <Logo />
                 </Link>
-                {/* Mobile menu toggle */}
-                <button onClick={() => setMenuState((v) => !v)} aria-expanded={menuState} aria-controls="mobile-nav" aria-label={menuState ? 'Sulje valikko' : 'Avaa valikko'} className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 md:hidden">
+                {/* Mobile menu toggle with motion */}
+                <button onClick={() => setMenuState((v) => !v)} aria-expanded={menuState} aria-controls="mobile-nav" aria-label={menuState ? 'Sulje valikko' : 'Avaa valikko'} className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 md:hidden focus-ring transition-transform duration-300">
                   <Menu className={cn('m-auto size-6 duration-200', menuState && 'rotate-180 scale-0 opacity-0')} />
                   <X className={cn('absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200', menuState && 'rotate-0 scale-100 opacity-100')} />
                 </button>
               </div>
 
-              {/* Desktop nav: md+ only */}
+              {/* Desktop nav: md+ only, premium scale, focus-ring, motion */}
               <div className="absolute inset-0 m-auto hidden size-fit md:block">
-                <ul className="flex gap-8 text-sm">
-          {menuItems.map((item) => (
-                    <li key={item.name}>
-            <Link prefetch={false} href={item.href} aria-current={currentHash === item.href ? 'page' : undefined} className="block duration-150 text-muted-foreground hover:text-accent-foreground">
+                <ul className="flex gap-10 text-base font-medium">
+                  {menuItems.map((item, idx) => (
+                    <li key={item.name} className="transition-transform duration-300">
+                      <Link
+                        prefetch={false}
+                        href={item.href}
+                        aria-current={currentHash === item.href ? 'page' : undefined}
+                        className={cn(
+                          'block px-2 py-1 rounded-full focus-ring text-muted-foreground hover:text-accent-foreground transition-colors duration-200',
+                          currentHash === item.href && 'bg-gradient-to-r from-[rgba(109,106,255,0.12)] to-[rgba(34,211,238,0.12)] text-accent-foreground shadow-md'
+                        )}
+                      >
                         <span>{item.name}</span>
                       </Link>
                     </li>
@@ -128,29 +144,38 @@ const HeroHeader = () => {
                 </ul>
               </div>
 
-              {/* Mobile nav: <md only */}
+              {/* Mobile nav: <md only, premium scale, focus-ring, motion */}
               <div
                 id="mobile-nav"
                 ref={mobileNavRef}
                 role="dialog"
                 aria-modal="true"
                 aria-label="Valikko"
-                className={cn('mb-6 w-full space-y-8 rounded-3xl p-6 shadow-2xl shadow-zinc-950/20 md:hidden', menuState ? 'block hy-glass' : 'hidden')}
+                className={cn('mb-6 w-full space-y-8 rounded-3xl p-6 shadow-2xl shadow-black/20 md:hidden hy-glass transition-all duration-500', menuState ? 'block' : 'hidden')}
               >
-                <ul className="space-y-6 text-base">
-          {menuItems.map((item) => (
+                <ul className="space-y-6 text-lg font-medium">
+                  {menuItems.map((item) => (
                     <li key={item.name}>
-            <Link prefetch={false} href={item.href} aria-current={currentHash === item.href ? 'page' : undefined} className="block duration-150 text-muted-foreground hover:text-accent-foreground" onClick={() => setMenuState(false)}>
+                      <Link
+                        prefetch={false}
+                        href={item.href}
+                        aria-current={currentHash === item.href ? 'page' : undefined}
+                        className={cn(
+                          'block px-3 py-2 rounded-full focus-ring text-muted-foreground hover:text-accent-foreground transition-colors duration-200',
+                          currentHash === item.href && 'bg-gradient-to-r from-[rgba(109,106,255,0.12)] to-[rgba(34,211,238,0.12)] text-accent-foreground shadow-md'
+                        )}
+                        onClick={() => setMenuState(false)}
+                      >
                         <span>{item.name}</span>
                       </Link>
                     </li>
                   ))}
                 </ul>
-                <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                  <a href="#" className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-transparent px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground">
+                <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit mt-4">
+                  <a href="#" className="btn-secondary micro-cta focus-ring h-10 px-4 py-2 text-base font-medium">
                     Kirjaudu sisään
                   </a>
-                  <a href="#" className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+                  <a href="#" className="btn-primary micro-cta focus-ring h-10 px-4 py-2 text-base font-medium">
                     Aloita ilmaiseksi
                   </a>
                 </div>
@@ -159,66 +184,76 @@ const HeroHeader = () => {
           </div>
         </div>
       </nav>
-    </header>
+  </motion.header>
   )
 }
 
-const HeroSection = () => (
-  <section className="type-modular baseline scroll-mt-24 section-halo">
-    <div className="relative pt-24 md:pt-36">
-      <div aria-hidden className="absolute inset-0 -z-20 isolate hidden opacity-65 contain-strict lg:block">
-        <div className="w-[87.5rem] h-[200rem] -translate-y-[54.6875rem] absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
-        <div className="h-[200rem] absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] translate-x-[5%] -translate-y-1/2" />
-        <div className="h-[200rem] -translate-y-[54.6875rem] absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
-      </div>
-      <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(120%_120%_at_50%_100%,transparent_0%,#0b0c0e_75%)]"></div>
-  <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6">
-        <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
-          <Link href="#" className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
-            <span className="text-foreground text-sm">Yksi Alusta. Rajaton Potentiaali.</span>
-            <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
-            <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
-              <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
-                <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
+const HeroSection = () => {
+  const shouldReduceMotion = useReducedMotion();
+  return (
+    <motion.section
+      className="type-modular baseline scroll-mt-24 section-halo"
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 32 }}
+      animate={shouldReduceMotion ? false : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+    >
+      <div className="relative pt-24 md:pt-36">
+        {/* 3D hero canvas temporarily removed for build debug */}
+        {/* <Hero3D /> */}
+        <div aria-hidden className="absolute inset-0 -z-20 isolate hidden opacity-65 contain-strict lg:block">
+          <div className="w-[87.5rem] h-[200rem] -translate-y-[54.6875rem] absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
+          <div className="h-[200rem] absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] translate-x-[5%] -translate-y-1/2" />
+          <div className="h-[200rem] -translate-y-[54.6875rem] absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
+        </div>
+        <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(120%_120%_at_50%_100%,transparent_0%,#0b0c0e_75%)]"></div>
+        <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6">
+          <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
+            <Link href="#" className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
+              <span className="text-foreground text-sm">Yksi Alusta. Rajaton Potentiaali.</span>
+              <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
+              <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
+                <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
+                  <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
+                  <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
+                </div>
               </div>
+            </Link>
+            <h1 className="mt-10 text-balance text-[2.5rem] leading-tight font-bold md:text-7xl md:leading-[1.05] lg:mt-16 xl:text-[5rem]">
+              <Balancer>Anna tavoite. Agentit hoitavat työn.</Balancer>
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-7 text-muted-foreground md:leading-8">
+              Muunna ideat ja prosessit tuotantovalmiiksi automaatioksi luonnollisella kielellä. Aja ensimmäinen työnkulku alle 60 sekunnissa.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 md:flex-row">
+              <a href="#" className="btn-primary micro-cta focus-ring rounded-full h-12 px-5">
+                Rakenna ensimmäinen agenttisi
+              </a>
+              <a href="#" className="btn-secondary micro-cta focus-ring rounded-full h-12 px-5">
+                Katso 60s demo
+              </a>
             </div>
-          </Link>
-          <h1 className="mt-10 text-balance text-[2.5rem] leading-tight font-bold md:text-7xl md:leading-[1.05] lg:mt-16 xl:text-[5rem]">
-            <Balancer>Anna tavoite. Agentit hoitavat työn.</Balancer>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-7 text-muted-foreground md:leading-8">
-            Muunna ideat ja prosessit tuotantovalmiiksi automaatioksi luonnollisella kielellä. Aja ensimmäinen työnkulku alle 60 sekunnissa.
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 md:flex-row">
-            <a href="#" className="btn-primary micro-cta focus-ring rounded-full h-12 px-5">
-              Rakenna ensimmäinen agenttisi
-            </a>
-            <a href="#" className="btn-secondary micro-cta focus-ring rounded-full h-12 px-5">
-              Katso 60s demo
-            </a>
+          </div>
+        </div>
+        <div className="relative mt-8 overflow-hidden px-4 md:px-6 sm:mt-12 md:mt-20">
+          <div aria-hidden className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-background" />
+          <div className="relative mx-auto max-w-6xl hy-img p-3 md:p-4 shadow-none">
+            <Image
+              className="bg-background aspect-[15/8] relative rounded-2xl"
+              src={heroDashboard}
+              alt="Spektri dashboardin esikatselu"
+              placeholder="blur"
+              priority
+              fetchPriority="high"
+              sizes="(min-width: 1280px) 1024px, (min-width: 768px) 90vw, 100vw"
+              quality={90}
+            />
+            <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           </div>
         </div>
       </div>
-  <div className="relative mt-8 overflow-hidden px-4 md:px-6 sm:mt-12 md:mt-20">
-        <div aria-hidden className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-background" />
-        <div className="relative mx-auto max-w-6xl hy-img p-3 md:p-4 shadow-none">
-          <Image
-            className="bg-background aspect-[15/8] relative rounded-2xl"
-            src={heroDashboard}
-            alt="Spektri dashboardin esikatselu"
-            placeholder="blur"
-            priority
-            fetchPriority="high"
-            sizes="(min-width: 1280px) 1024px, (min-width: 768px) 90vw, 100vw"
-            quality={90}
-          />
-          <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-        </div>
-      </div>
-    </div>
-  </section>
-)
+    </motion.section>
+  );
+};
 
 
 
@@ -227,15 +262,35 @@ const HeroSection = () => (
 export default function LandingPage() {
   return (
     <>
+      {/* Skip to main content link for a11y */}
+      <a
+        href="#main"
+        className="skip-link absolute left-2 top-2 z-[100] rounded bg-black px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-accent transition-transform -translate-y-16 focus:translate-y-0"
+        tabIndex={0}
+      >
+        Siirry pääsisältöön
+      </a>
       <HeroHeader />
       {/* Avoid nested <main>; layout already provides <main id="main"> */}
       <div>
         <HeroSection />
         <LogoCloud />
-        <SectionVisionMission />
-        <FeaturesSection2 />
-        <Section3Integrations />
-        <SectionCTA />
+        {/* Vision & Mission section: anchor id, scroll-mt, section-halo, tabIndex for skip nav */}
+        <section id="vision-mission" tabIndex={-1}>
+          <SectionVisionMission />
+        </section>
+        {/* Features section: anchor id, scroll-mt, section-halo, tabIndex for skip nav */}
+        <section id="ominaisuudet" tabIndex={-1}>
+          <FeaturesSection2 />
+        </section>
+        {/* Integrations section: anchor id, scroll-mt, section-halo, tabIndex for skip nav */}
+        <section id="ratkaisut" tabIndex={-1}>
+          <Section3Integrations />
+        </section>
+        {/* CTA section: anchor id, scroll-mt, section-halo, tabIndex for skip nav */}
+        <section id="cta" tabIndex={-1}>
+          <SectionCTA />
+        </section>
       </div>
       <Footer />
     </>
