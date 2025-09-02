@@ -1,4 +1,4 @@
-"use client";
+// server component: static content, no client-only APIs
 
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";

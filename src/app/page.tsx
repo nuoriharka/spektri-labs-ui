@@ -8,11 +8,11 @@ import dynamic from 'next/dynamic';
 import { ArrowRight, Bot, Gauge, Network, AppWindow, Check, Menu, X } from 'lucide-react';
 import { Balancer } from "react-wrap-balancer";
 import { cn } from "@/lib/utils";
-import LogoCloud from "@/components/logo-cloud";
-// Removed extra marketing blends; keep landing lean
-import FeaturesSection2 from "@/components/FeaturesSection2";
-import SectionVisionMission from "@/components/SectionVisionMission";
-import SectionCTA from "@/components/SectionCTA";
+// Split below-the-fold sections to lower First Load JS
+const LogoCloud = dynamic(() => import("@/components/logo-cloud"), { ssr: true, loading: () => <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-12"><div className="h-10 w-full animate-pulse rounded-lg bg-white/5"/></div> })
+const FeaturesSection2 = dynamic(() => import("@/components/FeaturesSection2"), { ssr: true, loading: () => <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24"><div className="h-56 w-full animate-pulse rounded-3xl bg-white/5"/></div> })
+const SectionVisionMission = dynamic(() => import("@/components/SectionVisionMission"), { ssr: true, loading: () => <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24"><div className="h-40 w-full animate-pulse rounded-3xl bg-white/5"/></div> })
+const SectionCTA = dynamic(() => import("@/components/SectionCTA"), { ssr: true, loading: () => <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-12"><div className="h-20 w-full animate-pulse rounded-2xl bg-white/5"/></div> })
 // Below-the-fold heavy sections via dynamic import (keeps SSR, splits bundle)
 const Section3Integrations = dynamic(() => import("@/components/Section3Integrations"), { ssr: true, loading: () => <div className="mx-auto max-w-6xl px-5 md:max-w-7xl md:px-6 py-20 md:py-24"><div className="h-56 w-full animate-pulse rounded-3xl bg-white/5"/></div> });
 const Footer = dynamic(() => import("@/components/Footer"), { ssr: true, loading: () => <div className="h-48" /> });

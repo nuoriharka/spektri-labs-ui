@@ -1,4 +1,4 @@
-"use client";
+// server component: no client-only APIs used
 
 import {
   ArrowRight,
