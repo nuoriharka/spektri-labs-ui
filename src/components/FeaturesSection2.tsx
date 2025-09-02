@@ -95,7 +95,7 @@ function FeatureRow({
           ))}
         </div>
 
-  <Link href={href} className="mt-6 btn-primary focus-ring">
+  <Link prefetch={false} href={href} className="mt-6 btn-primary focus-ring">
           Tutustu <ArrowRight className="h-4 w-4" />
         </Link>
       </div>

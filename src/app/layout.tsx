@@ -81,6 +81,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fi" suppressHydrationWarning>
       <head>
+  {/* Minimal network hints: keep conservative */}
+  <link rel="preconnect" href="https://vitals.vercel-insights.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           // Organization structured data

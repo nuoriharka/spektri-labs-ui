@@ -165,8 +165,8 @@ export default function Section3Integrations() {
 
           {/* CTAs */}
           <div className="mt-6 flex gap-3">
-            <Link href="/#integrations" className="btn-primary focus-ring">Katso integraatiot</Link>
-            <Link href="/docs" className="btn-secondary focus-ring">Dokumentaatio</Link>
+            <Link prefetch={false} href="/#integrations" className="btn-primary focus-ring">Katso integraatiot</Link>
+            <Link prefetch={false} href="/docs" className="btn-secondary focus-ring">Dokumentaatio</Link>
           </div>
         </div>
 
