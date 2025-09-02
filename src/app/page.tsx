@@ -191,12 +191,10 @@ const HeroSection = () => (
             Muunna ideat ja prosessit tuotantovalmiiksi automaatioksi luonnollisella kielellä. Aja ensimmäinen työnkulku alle 60 sekunnissa.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 md:flex-row">
-            <div className="bg-foreground/10 rounded-[calc(0.75rem+0.125rem)] border p-0.5">
-              <a href="#" className="inline-flex items-center justify-center rounded-xl px-5 text-base h-12 font-medium btn-spektri micro-cta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                Rakenna ensimmäinen agenttisi
-              </a>
-            </div>
-            <a href="#" className="inline-flex items-center justify-center rounded-xl px-5 h-[3.25rem] text-base font-medium micro-cta hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <a href="#" className="btn-primary focus-ring rounded-full h-12 px-5">
+              Rakenna ensimmäinen agenttisi
+            </a>
+            <a href="#" className="btn-secondary focus-ring rounded-full h-12 px-5">
               Katso 60s demo
             </a>
           </div>
@@ -204,7 +202,7 @@ const HeroSection = () => (
       </div>
   <div className="relative mt-8 overflow-hidden px-4 md:px-6 sm:mt-12 md:mt-20">
         <div aria-hidden className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-background" />
-        <div className="shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] ring-background dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)] bg-background relative mx-auto max-w-6xl overflow-hidden rounded-3xl border p-3 md:p-4 shadow-lg shadow-zinc-950/20 ring-1">
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 p-3 md:p-4 shadow-none">
           <Image
             className="bg-background aspect-[15/8] relative rounded-2xl"
             src={heroDashboard}
@@ -214,6 +212,7 @@ const HeroSection = () => (
             sizes="(min-width: 1280px) 1024px, (min-width: 768px) 90vw, 100vw"
             quality={90}
           />
+          <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
         </div>
       </div>
     </div>

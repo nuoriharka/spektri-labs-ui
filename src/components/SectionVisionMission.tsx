@@ -74,7 +74,7 @@ export default function SectionVisionMission() {
 
       {/* Two cards: Vision & Mission */}
       <div className="grid gap-6 md:grid-cols-2">
-        <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-black/60 to-zinc-900/60 p-6 shadow-lg shadow-zinc-950/20">
+        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 p-6 shadow-none">
           <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
             <Target className="h-4 w-4" /> Visio
           </div>
@@ -82,10 +82,10 @@ export default function SectionVisionMission() {
           <p className="mt-2 text-zinc-300">
             Voimistaen jokaista muuttamaan ideat sovelluksiksi – ilman koodia.
           </p>
-          <BorderBeam className="pointer-events-none" />
+          {/* Unified card standard; no extra glow */}
         </div>
 
-        <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-black/60 to-zinc-900/60 p-6 shadow-lg shadow-zinc-950/20">
+        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 p-6 shadow-none">
           <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-zinc-400">
             <BadgeCheck className="h-4 w-4" /> Missio
           </div>
@@ -93,7 +93,7 @@ export default function SectionVisionMission() {
           <p className="mt-2 text-zinc-300">
             Teemme agenttien löytämisestä, remixaamisesta ja jakamisesta vaivatonta – arvo palautuu tekijöille.
           </p>
-          <BorderBeam className="pointer-events-none" />
+          {/* Unified card standard; no extra glow */}
         </div>
       </div>
 
@@ -104,7 +104,7 @@ export default function SectionVisionMission() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {WHY_ITEMS.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-black/40 p-5 shadow-lg shadow-zinc-950/10">
+            <div key={title} className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 p-5 shadow-none">
               <div className="mb-2 flex items-center gap-2 text-sm font-medium">
                 <Icon className="h-4 w-4 text-zinc-400" /> {title}
               </div>
@@ -116,7 +116,7 @@ export default function SectionVisionMission() {
       </div>
 
       {/* Quote */}
-      <figure className="mt-12 rounded-3xl border border-zinc-800 bg-black/40 p-6 shadow-lg shadow-zinc-950/10">
+  <figure className="mt-12 rounded-2xl border border-zinc-800 bg-black/40 p-6 shadow-none">
         <blockquote className="text-lg font-medium text-zinc-200">
           "Rakennamme seuraavaa sukupolvea muovaavaa alustaa – ei koodilla, vaan kollektiivisella älyllä."
         </blockquote>
@@ -125,10 +125,10 @@ export default function SectionVisionMission() {
 
       {/* CTA Row */}
       <div className="mt-8 flex flex-wrap gap-3">
-        <a href="#one-platform" className="inline-flex items-center gap-2 rounded-full micro-cta bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-100">
+        <a href="#one-platform" className="btn-primary focus-ring">
           Tutustu alustan ytimeen <ArrowRight className="h-4 w-4" />
         </a>
-        <a href="#integrations-3" className="inline-flex items-center gap-2 rounded-full micro-cta border border-white/20 bg-white/10 px-4 py-2 text-sm hover:bg-white/20">
+        <a href="#integrations-3" className="btn-secondary focus-ring">
           Näe integraatiot
         </a>
       </div>

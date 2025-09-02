@@ -119,6 +119,45 @@
     outline-offset: 2px;
   }
   html { scroll-behavior: smooth; }
+
+  /* Design tokens for visual standard */
+  :root {
+    --radius-xl: 1rem; /* 16px */
+    --card-bg: rgba(0,0,0,0.4);
+    --card-border: rgb(39 39 42); /* zinc-800 */
+    --overlay-start: rgba(0,0,0,0.7);
+    --overlay-end: rgba(0,0,0,0);
+    --ring: rgba(255,255,255,0.7);
+  }
+
+  /* Unified chip */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in oklab, var(--ring) 25%, transparent);
+    background: color-mix(in oklab, #000 40%, transparent);
+    padding: 0.25rem 0.75rem; /* 4px 12px */
+    font-size: 0.75rem; /* text-xs */
+    line-height: 1rem;
+  }
+
+  /* Unified buttons and focus styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-100;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm hover:bg-white/20;
+  }
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--ring] focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Reduced motion defaults for hover transforms */
+  @media (prefers-reduced-motion: reduce) {
+    .motion-reduce\:transform-none { transform: none !important; }
+    .motion-reduce\:transition-none { transition: none !important; }
+  }
 }
 
 @layer components {
@@ -284,8 +323,11 @@ html,body { background:var(--bg); color:var(--fg); }
 /* Micro-interaction utility for CTAs (respects reduced motion) */
 .micro-cta { transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease; }
 @media (prefers-reduced-motion: no-preference) {
-  .micro-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
-  .micro-cta:active { transform: translateY(0); box-shadow: 0 4px 18px rgba(0,0,0,0.2); }
+  .micro-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+  .micro-cta:active { transform: translateY(0); box-shadow: 0 4px 14px rgba(0,0,0,0.16); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .micro-cta { transition: none; transform: none !important; box-shadow: none !important; }
 }
 
 @keyframes shimmer {

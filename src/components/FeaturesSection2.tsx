@@ -84,46 +84,36 @@ function FeatureRow({
     >
       {/* Copy */}
       <div className={`${reverse ? "md:order-2" : ""}`}>
-        <span className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-black/40 px-3 py-1 text-xs uppercase tracking-wider text-zinc-400">
-          <Icon className="h-3.5 w-3.5" /> {kicker}
-        </span>
-        <h3 className="mt-2 text-2xl md:text-3xl font-semibold leading-tight text-balance">{title}</h3>
+  <h3 className="text-2xl md:text-3xl font-semibold leading-tight text-balance">{title}</h3>
         <p className="mt-3 max-w-prose text-zinc-300">{desc}</p>
 
         <div className="mt-5 flex flex-wrap gap-2">
           {chips.map((c) => (
-            <span
-              key={c}
-              className="rounded-full border border-zinc-700/60 bg-black/40 px-3 py-1 text-xs text-zinc-300"
-            >
+            <span key={c} className="chip text-zinc-300">
               {c}
             </span>
           ))}
         </div>
 
-        <Link
-          href={href}
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-100"
-        >
+  <Link href={href} className="mt-6 btn-primary focus-ring">
           Tutustu <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
 
       {/* Visual */}
       <div className={`relative ${reverse ? "md:order-1" : ""}`}>
-  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-zinc-800 bg-black/40">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-none">
           <Image
             src={img}
             alt={kicker}
             fill
             placeholder="blur"
-            className={`object-cover ${isMeta ? 'object-top' : ''}`}
+            className={`object-cover ${isMeta ? 'object-top' : ''} transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none`}
             quality={90}
             priority={kicker === 'Komentokeskus'}
             sizes="(min-width:1024px) 50vw, 100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          <BorderBeam className="pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--overlay-start)] via-transparent to-[var(--overlay-end)]" />
           <div className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
             {kicker}
           </div>

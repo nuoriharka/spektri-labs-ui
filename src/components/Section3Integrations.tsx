@@ -78,7 +78,6 @@ function Step({
         <Icon className="h-4 w-4" /> {title}
       </div>
       <p className="text-sm text-zinc-300">{desc}</p>
-      <BorderBeam className="pointer-events-none" />
     </div>
   );
 }
@@ -99,11 +98,10 @@ export default function Section3Integrations() {
         </p>
 
         {/* Cinematic banner (Matrix image) */}
-        <div className="relative mt-6 h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-3xl border border-zinc-800 shadow-lg shadow-zinc-950/20">
-          <Image src={MATRIX_IMG} alt="Integrations Matrix" fill className="object-cover opacity-95" quality={90} placeholder="blur" sizes="100vw" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent,transparent,black_80%)]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-          <BorderBeam className="pointer-events-none" />
+        <div className="relative mt-6 h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 shadow-none">
+          <Image src={MATRIX_IMG} alt="Integrations Matrix" fill className="object-cover opacity-95" quality={90} placeholder="blur" priority sizes="100vw" />
+          <div className="absolute inset-0 bg-[radial-gradient(80%_80%_at_50%_70%,transparent_0%,black_80%)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
           <div className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
             Integrations Grid
           </div>
@@ -139,7 +137,7 @@ export default function Section3Integrations() {
           <div className="mt-4 flex gap-2">
             <button
               onClick={() => setMode("nocode")}
-              className={`rounded-full px-4 py-2 text-sm transition ${
+              className={`focus-ring rounded-full px-4 py-2 text-sm transition ${
                 mode === "nocode"
                   ? "bg-white text-black"
                   : "border border-white/20 bg-white/10 hover:bg-white/20"
@@ -149,7 +147,7 @@ export default function Section3Integrations() {
             </button>
             <button
               onClick={() => setMode("api")}
-              className={`rounded-full px-4 py-2 text-sm transition ${
+              className={`focus-ring rounded-full px-4 py-2 text-sm transition ${
                 mode === "api"
                   ? "bg-white text-black"
                   : "border border-white/20 bg-white/10 hover:bg-white/20"
@@ -167,19 +165,15 @@ export default function Section3Integrations() {
 
           {/* CTAs */}
           <div className="mt-6 flex gap-3">
-            <Link href="/#integrations" className="rounded-full micro-cta bg-white px-4 py-2 text-sm font-medium text-black hover:bg-zinc-100">
-              Katso integraatiot
-            </Link>
-            <Link href="/docs" className="rounded-full micro-cta border border-white/20 bg-white/10 px-4 py-2 text-sm hover:bg-white/20">
-              Dokumentaatio
-            </Link>
+            <Link href="/#integrations" className="btn-primary focus-ring">Katso integraatiot</Link>
+            <Link href="/docs" className="btn-secondary focus-ring">Dokumentaatio</Link>
           </div>
         </div>
 
         {/* Brand wall + Preview collage */}
         <div className="lg:col-span-7">
-          {/* Brand wall */}
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {/* Brand wall — one row, scrollable on small screens */}
+          <div aria-label="Powered by" className="grid grid-flow-col auto-cols-max items-center gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {PROVIDERS.map((p) => (
               <ProviderBadge key={p.key} name={p.name} Icon={p.icon} />
             ))}
@@ -193,13 +187,12 @@ export default function Section3Integrations() {
               { img: nocode as StaticImageData, label: "No‑Code" },
               { img: aiSoftware as StaticImageData, label: "AI Software" },
             ] as { img: StaticImageData; label: string }[]).map(({ img, label }) => (
-              <div key={label} className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-zinc-800 bg-black/40 shadow-lg shadow-zinc-950/20">
-                <Image src={img} alt={label} fill placeholder="blur" sizes="(min-width:1024px) 50vw, 100vw" className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105" quality={85} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div key={label} className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-zinc-800 bg-black/40 shadow-none">
+                <Image src={img} alt={label} fill placeholder="blur" sizes="(min-width:1024px) 50vw, 100vw" className="object-cover opacity-90 transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none" quality={85} />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--overlay-start)] via-black/20 to-[var(--overlay-end)]" />
                 <div className="absolute bottom-3 left-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
                   {label}
                 </div>
-                <BorderBeam className="pointer-events-none" />
               </div>
             ))}
           </div>
