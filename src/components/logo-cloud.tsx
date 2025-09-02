@@ -1,4 +1,5 @@
 import { logos } from '@/data/logos'
+import Image from 'next/image'
 import { InfiniteSlider } from '@/components/infinite-slider'
 import { ProgressiveBlur } from '@/components/ui/progressive-blur'
 
@@ -16,17 +17,19 @@ export default function LogoCloud() {
                             speed={40}
                             reducedSpeed={0}
                             gap={112}>
-                                                        {logos.map(({ src, alt }) => (
-                                                            <div className="flex" key={src}>
-                                                                <img
-                                                                    className="mx-auto h-5 w-fit dark:invert"
-                                                                    src={src}
-                                                                    alt={alt}
-                                                                    height={20}
-                                                                    loading="lazy"
-                                                                />
-                                                            </div>
-                                                        ))}
+                                                                                    {logos.map(({ src, alt }) => (
+                                                                                        <div className="flex" key={src}>
+                                                                                            <Image
+                                                                                                className="mx-auto h-5 w-auto dark:invert"
+                                                                                                src={src}
+                                                                                                alt={alt}
+                                                                                                width={140}
+                                                                                                height={20}
+                                                                                                sizes="(min-width: 1024px) 140px, 120px"
+                                                                                                loading="lazy"
+                                                                                            />
+                                                                                        </div>
+                                                                                    ))}
                         </InfiniteSlider>
 
                         <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-20"></div>
