@@ -92,7 +92,7 @@ export function InfiniteSlider({ children, gap = 16, speed = 100, speedOnHover, 
                 ref={ref}
                 {...hoverProps}>
                 {children}
-                {children}
+                {!prefersReduced && children}
             </motion.div>
         </div>
     )
