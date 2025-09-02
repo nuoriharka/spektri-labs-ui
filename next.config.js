@@ -11,6 +11,29 @@ const nextConfig = {
 			{ protocol: 'https', hostname: 'placehold.co' },
 		],
 	},
+	async headers() {
+		return [
+			{
+				source: '/_next/static/:path*',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+				],
+			},
+			{
+				source: '/_next/image/:path*',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+				],
+			},
+			{
+				// cache public assets for a week, revalidate in background
+				source: '/:bucket(photos|images|logos|videos)/:path*',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' },
+				],
+			},
+		]
+	},
 }
 
 module.exports = nextConfig
