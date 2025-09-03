@@ -42,7 +42,7 @@ const Logo = () => (
 const HeroHeader = () => {
   const shouldReduceMotion = useReducedMotion();
   const [menuState, setMenuState] = React.useState(false)
-  const [isScrolled, setIsScrolled] = React.useState(false)
+    const [isScrolled, setIsScrolled] = React.useState(false);
   const [currentHash, setCurrentHash] = React.useState<string>(typeof window !== 'undefined' ? window.location.hash : '')
   const mobileNavRef = React.useRef<HTMLDivElement | null>(null)
   const lastFocusedRef = React.useRef<HTMLElement | null>(null)
@@ -101,7 +101,7 @@ const HeroHeader = () => {
   return (
     <motion.header
       className="fixed top-0 z-50 w-full"
-      initial={shouldReduceMotion ? false : { opacity: 0, y: -32 }}
+        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -32 }}
       animate={shouldReduceMotion ? false : { opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >
@@ -205,7 +205,7 @@ const HeroSection = () => {
   return (
     <motion.section
       className="type-modular baseline scroll-mt-24 section-halo"
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 32 }}
+        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
       animate={shouldReduceMotion ? false : { opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >

@@ -1,3 +1,9 @@
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
   :root {
     /* Core brand colors */
     --brand: 242 100% 71%;
