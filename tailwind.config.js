@@ -20,33 +20,8 @@ module.exports = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-  // Alias tokens (mirror CSS vars)
-  bg: "hsl(var(--bg))",
-  panel: "hsl(var(--panel))",
-  fg: "hsl(var(--fg))",
-  brand: "hsl(var(--brand))",
-  'brand-2': "hsl(var(--brand-2))",
-  success: "hsl(var(--success))",
-  warning: "hsl(var(--warning))",
-  danger: "hsl(var(--danger))",
-        // Spektri brand palette (mapped to CSS variables in globals.css)
-        spektri: {
-          violet: "hsl(var(--spektri-violet))",
-          blue: "hsl(var(--quantum-blue))",
-          green: "hsl(var(--emergence-green))",
-          pink: "hsl(var(--celestial-pink))",
-          gold: "hsl(var(--nova-gold))",
-          orange: "hsl(var(--horizon-orange))",
-          black: "hsl(var(--space-black))",
-          gray: "hsl(var(--nebula-gray))",
-          white: "hsl(var(--stellar-white))",
-        },
-        // Friendly aliases
-        deepblue: "hsl(var(--quantum-blue))",
-        graphite: "hsl(var(--nebula-gray))",
-        platinum: "hsl(var(--stellar-white))",
+        background: "hsl(var(--bg))",
+        foreground: "hsl(var(--fg))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -75,55 +50,43 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
-      fontFamily: {
-        // prefer system + Inter unless brand fonts are added
-        sans: [
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Arial",
-          "Noto Sans",
-          "sans-serif",
-          "Apple Color Emoji",
-          "Segoe UI Emoji",
-          "Segoe UI Symbol",
-          "Noto Color Emoji",
-        ],
+        // Direct mappings from themes.css
+        brand: "hsl(var(--brand))",
+        'brand-2': "hsl(var(--brand-2))",
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        error: "hsl(var(--error))",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        '2xl': "var(--radius-2xl)",
+        xl: "var(--radius-xl)",
+        lg: "var(--radius-lg)",
+        md: "var(--radius-md)",
+        sm: "var(--radius-sm)",
+        DEFAULT: "var(--radius)",
       },
       boxShadow: {
-        // Premium/elevated shadows aligned with visual guide
-        subtle: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        elevated:
-          "0 8px 24px rgba(31, 38, 135, 0.12), 0 2px 6px rgba(0,0,0,0.08)",
-        premium:
-          "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.06)",
-        "premium-shine":
-          "0 0 10px rgba(255,255,255,0.1), 0 0 20px rgba(255,255,255,0.1), 0 0 30px rgba(255,255,255,0.1), 0 0 40px rgba(7, 189, 230, 0.2), 0 0 70px rgba(7, 189, 230, 0.2), 0 0 80px rgba(7, 189, 230, 0.2), 0 0 100px rgba(7, 189, 230, 0.2), 0 0 150px rgba(7, 189, 230, 0.2)",
+        sm: 'var(--shadow-sm)',
+        DEFAULT: 'var(--shadow)',
+        md: 'var(--shadow-md)',
+        lg: 'var(--shadow-lg)',
+        xl: 'var(--shadow-xl)',
       },
-      backgroundImage: {
-        // Use CSS variable gradients for consistent theming
-        "gradient-primary": "var(--gradient-primary)",
-        "gradient-accent": "var(--gradient-accent)",
-        "gradient-surface": "var(--gradient-surface)",
+      fontFamily: {
+        sans: ['var(--font-sans)', 'var(--font-mona)', 'Inter', 'sans-serif'],
+        display: ['var(--font-cal)', 'var(--font-hubot)', 'Inter', 'sans-serif'],
+        cal: ['var(--font-cal)'],
+        mona: ['var(--font-mona)'],
+        hubot: ['var(--font-hubot)'],
       },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+          to: { height: "0" },
         },
         float: {
           "0%": { transform: "translateY(0px)" },
@@ -134,16 +97,6 @@ module.exports = {
           "0%": { "background-position": "-200% 0" },
           "100%": { "background-position": "200% 0" },
         },
-        glow: {
-          "0%, 100%": {
-            "box-shadow":
-              "0 0 5px #2563eb, 0 0 10px #2563eb, 0 0 20px #2563eb, 0 0 40px #2563eb, 0 0 60px #2563eb",
-          },
-          "50%": {
-            "box-shadow":
-              "0 0 10px #8b5cf6, 0 0 20px #8b5cf6, 0 0 40px #8b5cf6, 0 0 80px #8b5cf6, 0 0 120px #8b5cf6",
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -151,9 +104,8 @@ module.exports = {
         float: "float 6s ease-in-out infinite",
         shimmer: "shimmer 2s linear infinite",
         "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        glow: "glow 4s ease-in-out infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };

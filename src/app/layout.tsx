@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
-import { Toaster } from '@/components/ui/toaster'
-import { initTelemetry } from '@/lib/telemetry'
-import { ThemeProvider } from '@/components/layout/ThemeProvider'
-import { QueryProvider } from '@/components/providers/QueryProvider'
+import '@/styles/globals.css'
+import '@/styles/themes.css'
 import { Analytics } from '@vercel/analytics/react'
 import { ServiceWorkerRegister } from '@/components/pwa/ServiceWorkerRegister'
+import { Providers } from './providers'
+import { Header } from '@/components/layout/Header'
+import { initTelemetry } from '@/lib/telemetry'
+import { cn } from '@/lib/utils'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,7 +27,6 @@ const inter = Inter({
   ],
 })
 
-// Resolve site URL for canonical/OG. Prefer explicit env, then Vercel-provided URL, fallback to localhost.
 const resolvedBaseUrl = (() => {
   const explicit = process.env.NEXT_PUBLIC_BASE_URL?.trim()
   if (explicit) return explicit.startsWith('http') ? explicit : `https://${explicit}`
@@ -82,11 +82,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fi" suppressHydrationWarning>
       <head>
-  {/* Minimal network hints: keep conservative */}
-  <link rel="preconnect" href="https://vitals.vercel-insights.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://vitals.vercel-insights.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
-          // Organization structured data
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -100,7 +98,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           id="ld-site"
           type="application/ld+json"
-          // WebSite structured data
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -115,33 +112,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {try {var mq = window.matchMedia('(prefers-reduced-motion: reduce)'); var apply = (v) => document.documentElement.classList.toggle('reduced-motion', !!v); apply(mq.matches); mq.addEventListener && mq.addEventListener('change', (e)=> apply(e.matches));} catch (e) {}})();`
+          }}
+        />
       </head>
-  <body className={inter.className + ' antialiased'}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <>
-            <a
-              href="#main"
-              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-black"
-            >
+      <body className={cn(inter.className, 'antialiased')}>
+        <Providers>
+          <div className="relative flex min-h-screen flex-col">
+            <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 z-50 rounded-md bg-background px-3 py-2 text-sm text-foreground">
               Siirry sisältöön
             </a>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `(() => {try {var mq = window.matchMedia('(prefers-reduced-motion: reduce)'); var apply = (v) => document.documentElement.classList.toggle('reduced-motion', !!v); apply(mq.matches); mq.addEventListener && mq.addEventListener('change', (e)=> apply(e.matches));} catch (e) {}})();`
-              }}
-            />
-            <QueryProvider>
-              <Toaster>
-                <main id="main">
-                  {children}
-                </main>
-              </Toaster>
-            </QueryProvider>
-            <Analytics />
-            <ServiceWorkerRegister />
-          </>
-        </ThemeProvider>
+            <Header />
+            <main id="main" className="flex-1">
+              {children}
+            </main>
+          </div>
+          <Analytics />
+          <ServiceWorkerRegister />
+        </Providers>
       </body>
     </html>
   )
 }
+

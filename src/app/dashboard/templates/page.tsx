@@ -30,7 +30,7 @@ export default function TemplatesPage() {
       <div className="page-wrap">
         <PageHeader title="Pohjat" description="Aloita nopeasti valmiilla malleilla">
           <Link href="/dashboard/agents/new">
-            <Button variant="premium">Luo agentti</Button>
+            <Button variant="default">Luo agentti</Button>
           </Link>
         </PageHeader>
         <div className="flex items-center gap-2 mb-4">

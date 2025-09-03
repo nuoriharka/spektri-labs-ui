@@ -24,7 +24,7 @@ export default function DataSourcesPage() {
               title="Ei datalähteitä"
               description="Lisää ensimmäinen datalähde ja aloita."
               action={(
-                <Link href="/dashboard/integrations"><Button size="sm" variant="premium">Avaa integraatiot</Button></Link>
+                <Link href="/dashboard/integrations"><Button size="sm" variant="default">Avaa integraatiot</Button></Link>
               )}
             />
           </CardContent>

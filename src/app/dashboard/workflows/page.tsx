@@ -34,7 +34,7 @@ export default function WorkflowsPage() {
 			<div className="page-wrap">
 				<PageHeader title="Työnkulut" description="Rakenna ja hallitse työnkulkuja">
 					<Link href="/dashboard/workflows/new">
-						<Button variant="premium">
+						<Button variant="default">
 							<Plus className="mr-2 h-4 w-4" /> Uusi workflow
 						</Button>
 					</Link>
@@ -163,7 +163,7 @@ export default function WorkflowsPage() {
 											<Pause className="mr-2 h-4 w-4" /> Pysäytä
 										</Button>
 									) : (
-										<Button size="sm" className="flex-1 btn-spektri">
+										<Button size="sm" className="flex-1">
 											<Play className="mr-2 h-4 w-4" /> Käynnistä
 										</Button>
 									)}
@@ -185,7 +185,7 @@ export default function WorkflowsPage() {
 						<h3 className="text-lg font-medium">Luo seuraava workflow</h3>
 						<p className="text-sm text-muted-foreground">Hyödynnä kirjastoamme ja aloita minuutissa.</p>
 						<Link href="/dashboard/workflows/new">
-							<Button className="mt-4 btn-spektri">Aloita</Button>
+							<Button className="mt-4">Aloita</Button>
 						</Link>
 					</CardContent>
 				</Card>

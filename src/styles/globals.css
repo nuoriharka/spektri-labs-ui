@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .card-premium {
+    @apply relative overflow-hidden;
+  }
+
+  .card-premium::before {
+    content: '';
+    @apply absolute -top-[2px] -left-[2px] -right-[2px] -bottom-[2px] bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 bg-[length:200%_auto] rounded-lg;
+    animation: premium-border 3s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .card-premium:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes premium-border {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+

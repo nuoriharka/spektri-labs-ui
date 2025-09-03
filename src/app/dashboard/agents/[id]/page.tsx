@@ -101,7 +101,7 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
               {draft.status === "paused" ? (<><Play className="h-4 w-4 mr-2"/> Jatka</>) : (<><Pause className="h-4 w-4 mr-2"/> Pysäytä</>)}
             </Button>
             <Button variant="destructive" onClick={remove} disabled={deleting}><Trash2 className="h-4 w-4 mr-2"/>Poista</Button>
-            <Button variant="premium" onClick={save} disabled={saving}>{saving?"Tallennetaan…":"Tallenna"}</Button>
+            <Button variant="default" onClick={save} disabled={saving}>{saving?"Tallennetaan…":"Tallenna"}</Button>
           </div>
         </div>
 
@@ -127,7 +127,7 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
                   <FlowCanvas nodes={[{ id: "start", x: 60, y: 60, label: "Start" }, { id: "step1", x: 220, y: 160, label: "Step" }]} />
                   <div className="flex gap-2">
                     <Button
-                      variant="gooey-left"
+                      variant="default"
                       onClick={() =>
                         add({
                           title: "Ajo käynnistetty",
@@ -235,7 +235,7 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-3">Asetuslomake tulee myöhemmin.</p>
                   <div className="flex items-center gap-2">
-                    <Button size="sm" variant="gooey-right">
+                    <Button size="sm" variant="default">
                       Aseta ajastus
                     </Button>
                     <Button size="sm" variant="outline">
