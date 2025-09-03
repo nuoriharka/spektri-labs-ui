@@ -6,8 +6,8 @@ import { Logo } from '@/components/brand/Logo'
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-screen-2xl items-center">
+    <header className="sticky top-4 z-50 w-full">
+      <div className="container flex h-16 max-w-screen-2xl items-center rounded-2xl border border-border/40 bg-background/80 shadow-lg shadow-background/10 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Logo />
           <span className="hidden font-bold sm:inline-block">
@@ -34,10 +34,13 @@ export function Header() {
             Tietoa
           </Link>
         </nav>
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex flex-1 items-center justify-end space-x-2">
           <ThemeToggle />
+          <Button variant="secondary" asChild>
+            <Link href="/login">Kirjaudu</Link>
+          </Button>
           <Button asChild>
-            <Link href="/login">Kirjaudu sisään</Link>
+            <Link href="/signup">Aloita ilmaiseksi</Link>
           </Button>
         </div>
       </div>

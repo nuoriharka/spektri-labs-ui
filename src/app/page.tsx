@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -20,6 +19,7 @@ const Footer = dynamic(() => import("@/components/Footer"), { ssr: true, loading
 // Static import hero image for LCP with blur
 import heroDashboard from "../../public/photos/hero-dashboard.png";
 import Hero3D from "@/components/Hero3D";
+const HeroScene = dynamic(() => import("@/components/HeroScene"), { ssr: false });
 // Static import for hero image (LCP) with blur placeholder
 
 // Logo component
@@ -198,8 +198,7 @@ const HeroSection = () => {
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >
       <div className="relative pt-24 md:pt-36">
-        {/* 3D hero canvas temporarily removed for build debug */}
-        {/* <Hero3D /> */}
+        <HeroScene />
         <div aria-hidden className="absolute inset-0 -z-20 isolate hidden opacity-65 contain-strict lg:block">
           <div className="w-[87.5rem] h-[200rem] -translate-y-[54.6875rem] absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
           <div className="h-[200rem] absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] translate-x-[5%] -translate-y-1/2" />
@@ -218,17 +217,17 @@ const HeroSection = () => {
                 </div>
               </div>
             </Link>
-            <h1 className="mt-10 text-balance text-[2.5rem] leading-tight font-bold md:text-7xl md:leading-[1.05] lg:mt-16 xl:text-[5rem]">
+            <h1 className="mt-10 text-balance text-5xl font-bold leading-tight tracking-tighter md:text-7xl md:leading-[1.05] lg:mt-16 xl:text-8xl">
               <Balancer>Anna tavoite. Agentit hoitavat työn.</Balancer>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-7 text-muted-foreground md:leading-8">
+            <p className="mx-auto mt-8 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground">
               Muunna ideat ja prosessit tuotantovalmiiksi automaatioksi luonnollisella kielellä. Aja ensimmäinen työnkulku alle 60 sekunnissa.
             </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 md:flex-row">
-              <Link href="/signup" className="btn-primary micro-cta focus-ring rounded-full h-12 px-5">
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 md:flex-row">
+              <Link href="/signup" className="btn-primary micro-cta focus-ring rounded-full h-12 px-8 text-base">
                 Rakenna ensimmäinen agenttisi
               </Link>
-              <Link href="/demo" className="btn-secondary micro-cta focus-ring rounded-full h-12 px-5">
+              <Link href="/demo" className="btn-secondary micro-cta focus-ring rounded-full h-12 px-8 text-base">
                 Katso 60s demo
               </Link>
             </div>

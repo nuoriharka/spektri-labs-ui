@@ -4,6 +4,14 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, PanelLeft, Bot, Users, type LucideIcon } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import BorderBeam from "@/components/magicui/BorderBeam";
 import komentokeskus from "../../public/photos/komentokeskus.png";
 import metaAgentti from "../../public/photos/meta-agentti.png";
@@ -82,22 +90,26 @@ function FeatureRow({
       className={`grid items-center gap-10 md:gap-14 lg:gap-20 ${reverse ? "md:grid-cols-[1.1fr_1fr]" : "md:grid-cols-[1fr_1.1fr]"}`}
     >
       {/* Copy (AAAA+ style) */}
-      <div className={`${reverse ? "md:order-2" : ""} p-2 md:p-4 lg:p-6 bg-gradient-to-br from-zinc-950/80 via-indigo-900/20 to-fuchsia-900/10 rounded-3xl shadow-xl shadow-indigo-900/10 border border-zinc-800`}>
-        <h3 className="text-3xl md:text-4xl font-extrabold leading-tight text-white drop-shadow-lg mb-2">{title}</h3>
-        <p className="mt-3 max-w-prose text-zinc-300 text-lg leading-relaxed mb-4">{desc}</p>
-
-        <div className="mt-5 flex flex-wrap gap-3">
-          {chips.map((c) => (
-            <span key={c} className="chip text-fuchsia-300 font-semibold bg-zinc-900/40 border border-fuchsia-500/30 px-3 py-1 rounded-full shadow-sm">
-              {c}
-            </span>
-          ))}
-        </div>
-
-        <Link prefetch={false} href={href} className="mt-8 inline-block btn-primary micro-cta focus-ring px-6 py-3 text-lg font-bold bg-gradient-to-r from-fuchsia-500 via-indigo-500 to-cyan-500 shadow-lg shadow-fuchsia-900/20 border-0 hover:scale-105 focus:ring-2 focus:ring-fuchsia-400 transition-transform rounded-full">
-          Tutustu <ArrowRight className="h-5 w-5" />
-        </Link>
-      </div>
+      <Card className={`${reverse ? "md:order-2" : ""} flex flex-col`}>
+        <CardHeader>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{desc}</CardDescription>
+        </CardHeader>
+        <CardContent className="flex-grow">
+          <div className="flex flex-wrap gap-2">
+            {chips.map((c) => (
+              <span key={c} className="chip text-fuchsia-300 font-semibold bg-zinc-900/40 border border-fuchsia-500/30 px-3 py-1 rounded-full shadow-sm text-xs">
+                {c}
+              </span>
+            ))}
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Link prefetch={false} href={href} className="btn-primary micro-cta focus-ring px-6 py-3 font-bold bg-gradient-to-r from-fuchsia-500 via-indigo-500 to-cyan-500 shadow-lg shadow-fuchsia-900/20 border-0 hover:scale-105 focus:ring-2 focus:ring-fuchsia-400 transition-transform rounded-full text-sm inline-flex items-center gap-2">
+            Tutustu <ArrowRight className="h-4 w-4" />
+          </Link>
+        </CardFooter>
+      </Card>
 
       {/* Visual (AAAA+ style) */}
       <div className={`relative ${reverse ? "md:order-1" : ""}`}>

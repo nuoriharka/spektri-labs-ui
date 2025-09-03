@@ -22,7 +22,7 @@ export function IntegrationCard({ integration, onAction }: { integration: Integr
         <span className="text-xs text-muted-foreground">
           {integration.installed ? "Asennettu" : "Ei asennettu"}
         </span>
-        <Button size="sm" variant={integration.installed ? "outline" : "default"} onClick={() => onAction?.(integration)} aria-label={integration.installed ? `${integration.name} auki` : `Asenna ${integration.name}`}>
+        <Button size="sm" variant={integration.installed ? "outline" : "primary"} onClick={() => onAction?.(integration)} aria-label={integration.installed ? `${integration.name} auki` : `Asenna ${integration.name}`}>
           {integration.installed ? "Avaa" : "Asenna"}
         </Button>
       </CardContent>

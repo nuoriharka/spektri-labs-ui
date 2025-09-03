@@ -12,11 +12,14 @@ export default function LogoCloud() {
                         <p className="text-end text-sm">Powering the best teams</p>
                     </div>
                     <div className="relative py-6 md:w-[calc(100%-11rem)]">
+                        <div className="absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
                         <InfiniteSlider
                             speedOnHover={20}
                             speed={40}
                             reducedSpeed={0}
-                            gap={112}>
+                            gap={112}
+                            className="[animation-play-state:running] group-hover:[animation-play-state:paused]"
+                        >
                             {logos.map(({ src, alt }) => (
                                 <div className="flex" key={src}>
                                     <Image
@@ -31,19 +34,7 @@ export default function LogoCloud() {
                                 </div>
                             ))}
                         </InfiniteSlider>
-
-                        <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-20"></div>
-                        <div className="bg-linear-to-l from-background absolute inset-y-0 right-0 w-20"></div>
-                        <ProgressiveBlur
-                            className="pointer-events-none absolute left-0 top-0 h-full w-20"
-                            direction="left"
-                            blurIntensity={1}
-                        />
-                        <ProgressiveBlur
-                            className="pointer-events-none absolute right-0 top-0 h-full w-20"
-                            direction="right"
-                            blurIntensity={1}
-                        />
+                        <div className="absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
                     </div>
                 </div>
             </div>

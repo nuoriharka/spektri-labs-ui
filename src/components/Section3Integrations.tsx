@@ -26,6 +26,7 @@ import integrations1 from "../../public/photos/integrations1.png";
 import connections from "../../public/photos/connections.png";
 import nocode from "../../public/photos/nocodesoftware.png";
 import aiSoftware from "../../public/photos/ai-software.png";
+import { motion } from "framer-motion";
 
 /**
  * SECTION 3 — INTEGRATIONS (Tailark integrations-5 inspired)
@@ -93,18 +94,30 @@ export default function Section3Integrations() {
         </p>
 
         {/* Cinematic banner (Matrix image) */}
-        <div className="relative mt-6 h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-2xl hy-img hy-overlay shadow-none">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="relative mt-6 h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-2xl hy-img hy-overlay shadow-none"
+        >
           <Image src={MATRIX_IMG} alt="Integrations Matrix" fill className="object-cover opacity-95" quality={90} placeholder="blur" priority sizes="100vw" />
           <div className="absolute bottom-3 right-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black">
             Integrations Grid
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Layout: left pipeline / right brand wall */}
       <div className="grid items-start gap-8 lg:grid-cols-12">
         {/* Pipeline */}
-        <div className="space-y-4 lg:col-span-5">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="space-y-4 lg:col-span-5"
+        >
           <Step
             title="Integrations"
             desc="Plug & play liittimet: Zapier, n8n, Webhooks, GraphQL/REST."
@@ -151,29 +164,48 @@ export default function Section3Integrations() {
           </div>
 
           {/* Helper notes */}
-          <div className="mt-3 flex flex-wrap gap-3 text-xs text-zinc-300">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="mt-3 flex flex-wrap gap-3 text-xs text-zinc-300"
+          >
             <span className="inline-flex items-center gap-1 rounded-full border border-zinc-700/70 bg-black/40 px-3 py-1"><ShieldCheck className="h-4 w-4"/> SOC2‑ready</span>
             <span className="inline-flex items-center gap-1 rounded-full border border-zinc-700/70 bg-black/40 px-3 py-1"><Sparkles className="h-4 w-4"/> LLM‑agnostinen</span>
-          </div>
+          </motion.div>
 
           {/* CTAs */}
           <div className="mt-6 flex gap-3">
             <Link prefetch={false} href="/#integrations" className="btn-primary micro-cta focus-ring">Katso integraatiot</Link>
             <Link prefetch={false} href="/docs" className="btn-secondary micro-cta focus-ring">Dokumentaatio</Link>
           </div>
-        </div>
+        </motion.div>
 
         {/* Brand wall + Preview collage */}
         <div className="lg:col-span-7">
           {/* Brand wall — one row, scrollable on small screens */}
-          <div aria-label="Powered by" className="grid grid-flow-col auto-cols-max items-center gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            aria-label="Powered by"
+            className="grid grid-flow-col auto-cols-max items-center gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          >
             {PROVIDERS.map((p) => (
               <ProviderBadge key={p.key} name={p.name} Icon={p.icon} />
             ))}
-          </div>
+          </motion.div>
 
           {/* Collage */}
-          <div className="relative mt-6 grid grid-cols-2 gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="relative mt-6 grid grid-cols-2 gap-4"
+          >
             {([
               { img: integrations1 as StaticImageData, label: "Integrations" },
               { img: connections as StaticImageData, label: "Connections" },
@@ -187,7 +219,7 @@ export default function Section3Integrations() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

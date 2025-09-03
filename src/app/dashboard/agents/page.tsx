@@ -69,7 +69,7 @@ export default function AgentsPage() {
   <div className="page-wrap">
         <PageHeader title="Agentit" description="Hallitse ja seuraa tekoälyagenttejasi">
           <Link href="/dashboard/agents/new">
-            <Button variant="default" size="lg">
+            <Button variant="primary" size="lg">
               <Plus className="mr-2 h-4 w-4" />
               Uusi agentti
             </Button>
@@ -160,8 +160,8 @@ export default function AgentsPage() {
             Suodata
           </Button>
           <div className="ml-auto flex items-center gap-1">
-            <Button variant={view === 'grid' ? 'default' : 'outline'} size="sm" onClick={()=> setView('grid')}>Grid</Button>
-            <Button variant={view === 'list' ? 'default' : 'outline'} size="sm" onClick={()=> setView('list')}>Lista</Button>
+            <Button variant={view === 'grid' ? 'primary' : 'outline'} size="sm" onClick={()=> setView('grid')}>Grid</Button>
+            <Button variant={view === 'list' ? 'primary' : 'outline'} size="sm" onClick={()=> setView('list')}>Lista</Button>
           </div>
         </div>
 

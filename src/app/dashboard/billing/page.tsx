@@ -41,7 +41,7 @@ export default function BillingPage() {
                   </ul>
                   <Button
                     variant={
-                      plan.name === "Pro" ? "default" : "secondary"
+                      plan.name === "Pro" ? "primary" : "secondary"
                     }
                     className="mt-6 w-full"
                   >

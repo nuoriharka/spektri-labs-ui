@@ -8,6 +8,7 @@ import { Providers } from './providers'
 import { Header } from '@/components/layout/Header'
 import { initTelemetry } from '@/lib/telemetry'
 import { cn } from '@/lib/utils'
+import CookieConsent from '@/components/CookieConsent'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -128,6 +129,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main id="main" className="flex-1">
               {children}
             </main>
+            <CookieConsent />
           </div>
           <Analytics />
           <ServiceWorkerRegister />

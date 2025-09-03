@@ -65,7 +65,7 @@ export default function SettingsView() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button variant="default" type="submit">
+                    <Button variant="primary" type="submit">
                       Tallenna
                     </Button>
                   </div>

@@ -3,17 +3,14 @@ import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
   return (
-    <div className="min-h-[60vh] flex items-center justify-center px-4">
-      <div className="text-center max-w-md">
-        <div className="mx-auto mb-6 h-16 w-16 rounded-2xl bg-muted flex items-center justify-center">
-          <span className="text-2xl font-bold text-[hsl(var(--spektri-violet))]">404</span>
+    <html lang="fi">
+      <body className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground">
+        <div className="max-w-md rounded-2xl bg-card p-8 shadow-xl">
+          <h1 className="mb-4 text-2xl font-bold text-primary">404 – Sivua ei löytynyt</h1>
+          <p className="mb-2 text-muted-foreground">Etsimääsi sivua ei löytynyt. Tarkista osoite tai palaa etusivulle.</p>
+          <a href="/" className="btn-primary rounded-full px-4 py-2 font-semibold">Etusivulle</a>
         </div>
-        <h1 className="text-3xl font-bold mb-2">Sivua ei löytynyt</h1>
-        <p className="text-muted-foreground mb-6">Etsimääsi sivua ei ole olemassa tai se on siirretty.</p>
-        <Link href="/">
-          <Button variant="default">Palaa etusivulle</Button>
-        </Link>
-      </div>
-    </div>
-  )
+      </body>
+    </html>
+  );
 }

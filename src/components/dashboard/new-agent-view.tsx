@@ -158,7 +158,7 @@ export default function NewAgentView() {
             </CardHeader>
             <CardContent className="text-center pt-2">
               <Button
-                variant="default"
+                  variant="primary"
                 size="lg"
                 className="w-full"
                 onClick={() => {
@@ -233,7 +233,7 @@ export default function NewAgentView() {
                       </div>
                       
                       <Button
-                        variant="default"
+                          variant="primary"
                         className="w-full"
                         size="sm"
                       >
@@ -279,7 +279,7 @@ export default function NewAgentView() {
             
             <div className="flex space-x-2">
               <Button
-                variant="default"
+                  variant="primary"
                 size="lg"
                 className="flex-1"
                 onClick={handleCreate}
