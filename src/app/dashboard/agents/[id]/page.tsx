@@ -97,11 +97,11 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
       <h1 className="font-bold tracking-tight">{data?.name || "Agentti"}</h1>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="outline" onClick={toggleStatus} disabled={isLoading || saving}>
+            <Button variant="secondary" onClick={toggleStatus} disabled={isLoading || saving}>
               {draft.status === "paused" ? (<><Play className="h-4 w-4 mr-2"/> Jatka</>) : (<><Pause className="h-4 w-4 mr-2"/> Pysäytä</>)}
             </Button>
             <Button variant="destructive" onClick={remove} disabled={deleting}><Trash2 className="h-4 w-4 mr-2"/>Poista</Button>
-            <Button className="btn-spektri" onClick={save} disabled={saving}>{saving?"Tallennetaan…":"Tallenna"}</Button>
+            <Button variant="premium" onClick={save} disabled={saving}>{saving?"Tallennetaan…":"Tallenna"}</Button>
           </div>
         </div>
 
@@ -126,7 +126,17 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
                 <CardContent className="space-y-4">
                   <FlowCanvas nodes={[{ id: "start", x: 60, y: 60, label: "Start" }, { id: "step1", x: 220, y: 160, label: "Step" }]} />
                   <div className="flex gap-2">
-                    <Button className="btn-spektri" onClick={() => add({ title: "Ajo käynnistetty", description: draft.name || "Agentti" })}>Aja</Button>
+                    <Button
+                      variant="gooey-left"
+                      onClick={() =>
+                        add({
+                          title: "Ajo käynnistetty",
+                          description: draft.name || "Agentti",
+                        })
+                      }
+                    >
+                      Aja
+                    </Button>
                     <Button variant="outline">Tallenna</Button>
                   </div>
                 </CardContent>
@@ -225,8 +235,12 @@ export default function AgentDetailPage({ params }: { params: { id: string } }) 
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-3">Asetuslomake tulee myöhemmin.</p>
                   <div className="flex items-center gap-2">
-                    <Button size="sm" className="btn-spektri">Aseta ajastus</Button>
-                    <Button size="sm" variant="outline">Julkaise</Button>
+                    <Button size="sm" variant="gooey-right">
+                      Aseta ajastus
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      Julkaise
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

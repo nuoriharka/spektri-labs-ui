@@ -107,12 +107,14 @@ module.exports = {
           "0 8px 24px rgba(31, 38, 135, 0.12), 0 2px 6px rgba(0,0,0,0.08)",
         premium:
           "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.06)",
+        "premium-shine":
+          "0 0 10px rgba(255,255,255,0.1), 0 0 20px rgba(255,255,255,0.1), 0 0 30px rgba(255,255,255,0.1), 0 0 40px rgba(7, 189, 230, 0.2), 0 0 70px rgba(7, 189, 230, 0.2), 0 0 80px rgba(7, 189, 230, 0.2), 0 0 100px rgba(7, 189, 230, 0.2), 0 0 150px rgba(7, 189, 230, 0.2)",
       },
       backgroundImage: {
         // Use CSS variable gradients for consistent theming
-        'gradient-primary': 'var(--gradient-primary)',
-        'gradient-accent': 'var(--gradient-accent)',
-        'gradient-surface': 'var(--gradient-surface)',
+        "gradient-primary": "var(--gradient-primary)",
+        "gradient-accent": "var(--gradient-accent)",
+        "gradient-surface": "var(--gradient-surface)",
       },
       keyframes: {
         "accordion-down": {
@@ -124,13 +126,23 @@ module.exports = {
           to: { height: 0 },
         },
         float: {
-          '0%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-          '100%': { transform: 'translateY(0px)' },
+          "0%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+          "100%": { transform: "translateY(0px)" },
         },
         shimmer: {
-          '0%': { 'background-position': '-200% 0' },
-          '100%': { 'background-position': '200% 0' },
+          "0%": { "background-position": "-200% 0" },
+          "100%": { "background-position": "200% 0" },
+        },
+        glow: {
+          "0%, 100%": {
+            "box-shadow":
+              "0 0 5px #2563eb, 0 0 10px #2563eb, 0 0 20px #2563eb, 0 0 40px #2563eb, 0 0 60px #2563eb",
+          },
+          "50%": {
+            "box-shadow":
+              "0 0 10px #8b5cf6, 0 0 20px #8b5cf6, 0 0 40px #8b5cf6, 0 0 80px #8b5cf6, 0 0 120px #8b5cf6",
+          },
         },
       },
       animation: {
@@ -139,8 +151,9 @@ module.exports = {
         float: "float 6s ease-in-out infinite",
         shimmer: "shimmer 2s linear infinite",
         "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        glow: "glow 4s ease-in-out infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

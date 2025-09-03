@@ -159,10 +159,15 @@ export default function NewAgentPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center pt-2">
-              <Button className="w-full btn-spektri" onClick={() => {
-                const el = document.getElementById("custom-agent-form")
-                el?.scrollIntoView({ behavior: "smooth", block: "start" })
-              }}>
+              <Button
+                variant="premium"
+                size="lg"
+                className="w-full"
+                onClick={() => {
+                  const el = document.getElementById("custom-agent-form");
+                  el?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+              >
                 <Bot className="mr-2 h-4 w-4" />
                 Luo mukautettu agentti
               </Button>
@@ -180,7 +185,7 @@ export default function NewAgentPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center pt-2">
-              <Button variant="outline" className="w-full">
+              <Button variant="secondary" className="w-full">
                 <Zap className="mr-2 h-4 w-4" />
                 Selaa mallipohjia
               </Button>
@@ -229,7 +234,11 @@ export default function NewAgentPage() {
                         </div>
                       </div>
                       
-                      <Button className="w-full btn-spektri" size="sm">
+                      <Button
+                        variant="gooey-left"
+                        className="w-full"
+                        size="sm"
+                      >
                         Käytä tätä mallipohjaa
                       </Button>
                     </div>
@@ -271,11 +280,17 @@ export default function NewAgentPage() {
             </div>
             
             <div className="flex space-x-2">
-              <Button className="flex-1 btn-spektri" onClick={handleCreate} disabled={submitting}>
+              <Button
+                variant="gooey-right"
+                size="lg"
+                className="flex-1"
+                onClick={handleCreate}
+                disabled={submitting}
+              >
                 <Bot className="mr-2 h-4 w-4" />
                 {submitting ? "Luodaan…" : "Luo agentti"}
               </Button>
-              <Button variant="outline">
+              <Button variant="outline" size="lg">
                 Esikatselu
               </Button>
             </div>

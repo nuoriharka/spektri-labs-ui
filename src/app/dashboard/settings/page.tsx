@@ -65,7 +65,9 @@ export default function SettingsPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button className="btn-spektri" type="submit">Tallenna</Button>
+                    <Button variant="premium" type="submit">
+                      Tallenna
+                    </Button>
                   </div>
                 </form>
               </CardContent>

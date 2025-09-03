@@ -123,7 +123,7 @@ export default function DocsPage() {
                 <code className="text-sm">npm run dev</code>
               </div>
             </div>
-            <Button asChild>
+            <Button asChild variant="secondary">
               <a href="#full-docs">Katso koko opas</a>
             </Button>
           </CardContent>

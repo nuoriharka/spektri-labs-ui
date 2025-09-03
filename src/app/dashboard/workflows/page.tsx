@@ -34,7 +34,7 @@ export default function WorkflowsPage() {
 			<div className="page-wrap">
 				<PageHeader title="Työnkulut" description="Rakenna ja hallitse työnkulkuja">
 					<Link href="/dashboard/workflows/new">
-						<Button className="btn-spektri">
+						<Button variant="premium">
 							<Plus className="mr-2 h-4 w-4" /> Uusi workflow
 						</Button>
 					</Link>

@@ -11,7 +11,7 @@ export default function NotFound() {
         <h1 className="text-3xl font-bold mb-2">Sivua ei löytynyt</h1>
         <p className="text-muted-foreground mb-6">Etsimääsi sivua ei ole olemassa tai se on siirretty.</p>
         <Link href="/">
-          <Button className="btn-spektri">Palaa etusivulle</Button>
+          <Button variant="premium">Palaa etusivulle</Button>
         </Link>
       </div>
     </div>

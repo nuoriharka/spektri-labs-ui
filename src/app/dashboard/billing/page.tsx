@@ -39,7 +39,14 @@ export default function BillingPage() {
                       <li key={f} className="flex items-center gap-2"><Check className="h-4 w-4 text-success"/>{f}</li>
                     ))}
                   </ul>
-                  <Button className="btn-spektri mt-6 w-full">{plan.cta}</Button>
+                  <Button
+                    variant={
+                      plan.name === "Pro" ? "premium" : "secondary-outline"
+                    }
+                    className="mt-6 w-full"
+                  >
+                    {plan.cta}
+                  </Button>
                 </div>
               ))}
             </div>
