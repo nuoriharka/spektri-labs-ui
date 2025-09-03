@@ -1,5 +1,8 @@
-import { redirect } from "next/navigation"
+import { redirect } from "next/navigation";
 
-export default function LegacyAppRedirect(){
-  redirect("/dashboard")
+export const dynamic = "force-static";
+
+export default function AppAliasPage() {
+  // Alias old /app path to dashboard
+  redirect("/dashboard");
 }

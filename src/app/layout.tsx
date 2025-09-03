@@ -10,6 +10,7 @@ import { Header } from '@/components/layout/Header'
 import { initTelemetry } from '@/lib/telemetry'
 import { cn } from '@/lib/utils'
 import CookieConsent from '@/components/CookieConsent'
+import ClientBoot from '@/components/ClientBoot'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -78,14 +79,6 @@ export const viewport: Viewport = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  if (typeof window !== 'undefined') {
-    try { initTelemetry() } catch {}
-  }
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      document.documentElement.classList.add("hydrated");
-    }
-  }, []);
   return (
     <html lang="fi" suppressHydrationWarning>
       <head>
@@ -127,6 +120,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={cn(inter.className, 'antialiased')}>
         <Providers>
+          {/* Client boot: runs telemetry + sets hydrated class on the client */}
+          {/* This avoids using client hooks in a server component */}
+          <ClientBoot />
           <div className="relative flex min-h-screen flex-col">
             <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 z-50 rounded-md bg-background px-3 py-2 text-sm text-foreground">
               Siirry sisältöön

@@ -1,16 +1,12 @@
 {
-  "name": "Spektri.Labs UI",
-  "short_name": "SpektriUI",
-  "description": "Ammattimainen käyttöliittymäkirjasto ja demo, rakennettu shadcn/ui-komponenteilla.",
+  "name": "Spektri",
+  "short_name": "Spektri",
+  "description": "Ammattimainen käyttöliittymäkirjasto ja demo.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0b1020",
   "theme_color": "#6D6AFF",
   "icons": [
-    {
-      "src": "/brand/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    }
+    { "src": "/brand/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
   ]
 }
