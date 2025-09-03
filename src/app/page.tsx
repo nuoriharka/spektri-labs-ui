@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import { Balancer } from "react-wrap-balancer";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 // Split below-the-fold sections to lower First Load JS
 const LogoCloud = dynamic(() => import("@/components/logo-cloud"), { ssr: true, loading: () => <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-12"><div className="h-10 w-full animate-pulse rounded-lg bg-white/5"/></div> })
 const FeaturesSection2 = dynamic(() => import("@/components/FeaturesSection2"), { ssr: true, loading: () => <div className="mx-auto max-w-6xl px-4 md:max-w-7xl md:px-6 py-20 md:py-24"><div className="h-56 w-full animate-pulse rounded-3xl bg-white/5"/></div> })
