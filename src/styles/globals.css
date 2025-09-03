@@ -1,3 +1,6 @@
+html:not(.hydrated) body {
+  opacity: 1 !important;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

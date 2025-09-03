@@ -101,14 +101,12 @@ const HeroHeader = () => {
   return (
     <motion.header
       className="fixed top-0 z-50 w-full"
-        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -32 }}
+      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -32 }}
       animate={shouldReduceMotion ? false : { opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >
-      <nav role="navigation" aria-label="Päänavigaatio" data-state={menuState ? 'active' : 'inactive'} className="w-full">
-        {/* Lock header height to avoid CLS */}
+      <nav role="navigation" aria-label="Päävalikko" data-state={menuState ? 'active' : 'inactive'} className="w-full">
         <div className="relative h-16 flex items-center px-4">
-          {/* Premium glass + gradient nav background, smooth transition, shadow */}
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[rgba(17,19,22,0.85)] via-[rgba(109,106,255,0.08)] to-transparent supports-[backdrop-filter]:bg-background/40 supports-[backdrop-filter]:backdrop-blur-md shadow-lg shadow-black/10 transition-all duration-500" />
           <div className={cn('mx-auto w-full max-w-6xl px-6 transition-all duration-500 lg:px-12', isScrolled && 'hy-glass max-w-5xl rounded-2xl lg:px-5 shadow-xl shadow-black/20')}> 
             <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
@@ -122,29 +120,25 @@ const HeroHeader = () => {
                   <X className={cn('absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200', menuState && 'rotate-0 scale-100 opacity-100')} />
                 </button>
               </div>
-
-              {/* Desktop nav: md+ only, premium scale, focus-ring, motion */}
-              <div className="absolute inset-0 m-auto hidden size-fit md:block">
-                <ul className="flex gap-10 text-base font-medium">
-                  {menuItems.map((item, idx) => (
-                    <li key={item.name} className="transition-transform duration-300">
-                      <Link
-                        prefetch={false}
-                        href={item.href}
-                        aria-current={currentHash === item.href ? 'page' : undefined}
-                        className={cn(
-                          'block px-2 py-1 rounded-full focus-ring text-muted-foreground hover:text-accent-foreground transition-colors duration-200',
-                          currentHash === item.href && 'bg-gradient-to-r from-[rgba(109,106,255,0.12)] to-[rgba(34,211,238,0.12)] text-accent-foreground shadow-md'
-                        )}
-                      >
-                        <span>{item.name}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Mobile nav: <md only, premium scale, focus-ring, motion */}
+              {/* Desktop nav: näkyy vain md+ */}
+              <ul className="hidden md:flex gap-10 text-base font-medium" role="navigation" aria-label="Päävalikko">
+                {menuItems.map((item, idx) => (
+                  <li key={item.name} className="transition-transform duration-300">
+                    <Link
+                      prefetch={false}
+                      href={item.href}
+                      aria-current={currentHash === item.href ? 'page' : undefined}
+                      className={cn(
+                        'block px-2 py-1 rounded-full focus-ring text-muted-foreground hover:text-accent-foreground transition-colors duration-200',
+                        currentHash === item.href && 'bg-gradient-to-r from-[rgba(109,106,255,0.12)] to-[rgba(34,211,238,0.12)] text-accent-foreground shadow-md'
+                      )}
+                    >
+                      <span>{item.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {/* Mobile nav: näkyy vain <md */}
               <div
                 id="mobile-nav"
                 ref={mobileNavRef}
@@ -153,7 +147,7 @@ const HeroHeader = () => {
                 aria-label="Valikko"
                 className={cn('mb-6 w-full space-y-8 rounded-3xl p-6 shadow-2xl shadow-black/20 md:hidden hy-glass transition-all duration-500', menuState ? 'block' : 'hidden')}
               >
-                <ul className="space-y-6 text-lg font-medium">
+                <ul className="space-y-6 text-lg font-medium" role="navigation" aria-label="Päävalikko">
                   {menuItems.map((item) => (
                     <li key={item.name}>
                       <Link
@@ -184,7 +178,7 @@ const HeroHeader = () => {
           </div>
         </div>
       </nav>
-  </motion.header>
+    </motion.header>
   )
 }
 
@@ -244,13 +238,19 @@ const HeroSection = () => {
             <p className="mx-auto mt-8 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground">
               Muunna ideat ja prosessit tuotantovalmiiksi automaatioksi luonnollisella kielellä. Aja ensimmäinen työnkulku alle 60 sekunnissa.
             </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 md:flex-row">
-              <Link href="/signup" className="btn-primary micro-cta focus-ring rounded-full h-12 px-8 text-base">
-                Rakenna ensimmäinen agenttisi
+            <div className="mt-10 flex items-center gap-2 md:gap-3 justify-center">
+              <Link href="/login" className="focus-ring">
+                <span className="sr-only">Kirjaudu sisään</span>
               </Link>
-              <Link href="/demo" className="btn-secondary micro-cta focus-ring rounded-full h-12 px-8 text-base">
-                Katso 60s demo
+              <Link href="/signup" className="focus-ring">
+                <span className="sr-only">Aloita ilmaiseksi</span>
               </Link>
+              <Button variant="secondary" className="rounded-full micro-cta h-12 px-8 text-base">
+                Kirjaudu sisään
+              </Button>
+              <Button variant="primary" className="rounded-full micro-cta h-12 px-8 text-base">
+                Aloita ilmaiseksi
+              </Button>
             </div>
           </div>
         </div>

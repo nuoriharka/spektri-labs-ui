@@ -1,3 +1,4 @@
+import React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
@@ -80,6 +81,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   if (typeof window !== 'undefined') {
     try { initTelemetry() } catch {}
   }
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.documentElement.classList.add("hydrated");
+    }
+  }, []);
   return (
     <html lang="fi" suppressHydrationWarning>
       <head>
