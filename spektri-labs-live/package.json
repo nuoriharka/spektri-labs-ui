@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@next/font": "^14.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-three/drei": "^9.88.13",
     "@react-three/fiber": "^8.15.11",
@@ -20,6 +22,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7",
     "three": "^0.158.0"
   },
   "devDependencies": {
